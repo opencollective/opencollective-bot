@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "lib": ["es2017"],
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "rootDir": "src",
+    "outDir": "dist",
+    "sourceMap": true,
+    "strict": true,
+    "esModuleInterop": true
+  },
+  "exclude": ["node_modules", "dist"]
+}
