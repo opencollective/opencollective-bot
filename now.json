@@ -4,6 +4,7 @@
   "version": 2,
   "alias": "opencollective-bot.now.sh",
   "builds": [{ "src": "src/index.ts", "use": "@now/node-server@canary" }],
+  "routes": [{ "src": "/.*", "dest": "src/index.ts" }],
   "env": {
     "APP_ID": "@ocb-app-id",
     "WEBHOOK_SECRET": "@ocb-webhook-secret",
