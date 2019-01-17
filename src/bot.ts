@@ -6,8 +6,6 @@ export const opencollective = (app: probot.Application): void => {
   app.log('OpenCollective Bot up!')
 
   app.on('issues.closed', async (context: probot.Context) => {
-    console.log('HANDLING 1')
-
     /* Get config */
 
     const configuration = await getConfig<Config>(context, 'opencollective.yml')
@@ -18,14 +16,9 @@ export const opencollective = (app: probot.Application): void => {
       return
     }
 
-    console.log('HANDLING 2', validConfiguration)
-
-    console.log(context.payload.issue)
-
     /* Check labels */
 
     const labelDefinitions = validConfiguration.labels
-    console.log('HANDLING 3', labelDefinitions)
 
     if (
       labelDefinitions !== undefined &&
@@ -39,14 +32,10 @@ export const opencollective = (app: probot.Application): void => {
 
     /* Post */
 
-    console.log('HANDLING 4', context.payload.issue.labels)
-
     /* prettier-ignore */
     const body = `${validConfiguration.message}\n\n${validConfiguration.opencollective}`
 
     const issue = context.issue()
-
-    console.log('HANDLING 5', issue)
 
     await context.github.issues.createComment({
       repo: issue.repo,
@@ -54,8 +43,6 @@ export const opencollective = (app: probot.Application): void => {
       number: issue.number,
       body: body,
     })
-
-    console.log('HANDLING 6 commented')
 
     context.log.info(`Commented on ${issue.owner}/${issue.repo}.`)
   })

@@ -31,13 +31,15 @@ labels:
 
 ##### Default Message
 
-```
 Hey :wave:,
 
 We saw you use our package. To keep our code as accessible as possible, we decided to open source it and are now helping others with their questions.
 
 In a pursuit to continue our work, help us by donating to our collective! :heart:
-```
+
+---
+
+<p align="center"><img src="media/example.png" width="600" /></p>
 
 ## License
 
