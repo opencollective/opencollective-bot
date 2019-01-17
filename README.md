@@ -1,4 +1,4 @@
-<p align="center"><img src="media/logo.png" width="800" /></p>
+<p align="center"><img src="media/logo.png" width="400" /></p>
 
 # OpenCollective Bot
 
