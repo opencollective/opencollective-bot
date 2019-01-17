@@ -1,0 +1,21 @@
+version: 2.0
+jobs:
+  test:
+    docker:
+      - image: 'circleci/node:11.3.0'
+    steps:
+      - checkout
+      - run:
+          name: install
+          command: yarn install
+      - run:
+          name: test
+          command: yarn test
+      - run:
+          name: coverage
+          command: yarn coverage
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test
