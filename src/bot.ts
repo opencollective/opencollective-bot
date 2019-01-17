@@ -3,6 +3,8 @@ import getConfig from 'probot-config'
 import { Config, validateSchema } from './schema'
 
 export const opencollective = (app: probot.Application): void => {
+  app.log('OpenCollective Bot up!')
+
   app.on('issues.closed', async (context: probot.Context) => {
     console.log('HANDLING 1')
 
@@ -18,7 +20,7 @@ export const opencollective = (app: probot.Application): void => {
 
     console.log('HANDLING 2', configuration)
 
-    console.log('HANDLING 3', context.payload.issues.labels)
+    console.log('HANDLING 3', context.payload.issue.labels)
 
     /* Check labels */
 

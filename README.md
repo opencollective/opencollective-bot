@@ -5,13 +5,13 @@
 [![CircleCI](https://circleci.com/gh/maticzav/opencollective-bot/tree/master.svg?style=shield)](https://circleci.com/gh/maticzav/opencollective-bot/tree/master)
 [![codecov](https://codecov.io/gh/maticzav/opencollective-bot/branch/master/graph/badge.svg)](https://codecov.io/gh/maticzav/opencollective-bot)
 
-> Helps you promote your Open Collective in your Github repository.
+> Helps you promote your [Open Collective](https://opencollective.com/) in your Github repository.
 
 ## Overview
 
-- 🐶 **Easy to use:** Simply install Github App and you are ready to go!
+- 🐶 **Easy to use:** Simply install [Github App](https://github.com/apps/opencollective-bot) and you are ready to go!
 - 🛠 **Customizable:** Change the configuration and our bot will listen!
-- ❤ **Build for Open Source community:** Simply install Github App and you are ready to go!
+- ❤ **Covered with tests:** Keeping that 100% bar!
 
 ## Configuration
 
@@ -40,5 +40,7 @@ In a pursuit to continue our work, help us by donating to our collective! :heart
 ```
 
 ## License
+
+> The logo and bot avatar are taken from OpenCollective's marketing website https://opencollective.com/.
 
 MIT @ Matic Zavadlal
