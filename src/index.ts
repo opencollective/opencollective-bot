@@ -1,4 +1,5 @@
 import { createProbot, ApplicationFunction } from 'probot'
+import { findPrivateKey } from 'probot/lib/private-key'
 import logRequestErrors from 'probot/lib/middleware/log-request-errors'
 
 import { opencollective } from './bot'
@@ -15,10 +16,12 @@ if (
 
 /* Probot setup */
 
+const cert = findPrivateKey() as string
+
 const probot = createProbot({
   id: parseInt(process.env.APP_ID, 10),
   secret: process.env.WEBHOOK_SECRET,
-  cert: process.env.PRIVATE_KEY,
+  cert: cert,
   port: 3000,
 })
 
