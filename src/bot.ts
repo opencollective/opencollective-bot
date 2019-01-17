@@ -39,5 +39,7 @@ export const opencollective = (app: probot.Application): void => {
       number: issue.number,
       body: body,
     })
+
+    context.log.info(`Commented on ${issue.owner}/${issue.repo}.`)
   })
 }
