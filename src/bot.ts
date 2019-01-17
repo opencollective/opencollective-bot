@@ -18,25 +18,28 @@ export const opencollective = (app: probot.Application): void => {
       return
     }
 
-    console.log('HANDLING 2', configuration)
+    console.log('HANDLING 2', validConfiguration)
 
-    console.log('HANDLING 3', context.payload.issue.labels)
+    console.log(context.payload.issue)
 
     /* Check labels */
 
+    const labelDefinitions = validConfiguration.labels
+    console.log('HANDLING 3', labelDefinitions)
+
     if (
-      !!validConfiguration.labels &&
+      labelDefinitions !== undefined &&
       context.payload.issue.labels.every(
-        (label: { name: string }) =>
-          !validConfiguration.labels!.includes(label.name),
+        (label: { name: string }) => !labelDefinitions.includes(label.name),
       )
     ) {
       context.log.info(`OpenCollective Bot not configured for recieved labels.`)
       return
     }
+
     /* Post */
 
-    console.log('HANDLING 4', context.payload.issues.labels)
+    console.log('HANDLING 4', context.payload.issue.labels)
 
     /* prettier-ignore */
     const body = `${validConfiguration.message}\n\n${validConfiguration.opencollective}`

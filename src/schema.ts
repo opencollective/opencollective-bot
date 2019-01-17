@@ -24,8 +24,7 @@ export const schema = joi
       .single()
       .description(
         'Issues to apply message to. By default, every issue will receive the message.',
-      )
-      .default(false),
+      ),
     message: joi
       .string()
       .description('Message for your backers.')
