@@ -8,7 +8,8 @@
   "env": {
     "APP_ID": "@ocb-app-id",
     "WEBHOOK_SECRET": "@ocb-webhook-secret",
-    "PRIVATE_KEY": "@ocb-private-key"
+    "PRIVATE_KEY": "@ocb-private-key",
+    "SENTRY_DSN": "@ocb-sentry-dsn"
   },
   "github": {
     "enabled": true,
