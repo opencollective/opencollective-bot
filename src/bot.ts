@@ -4,6 +4,8 @@ import { Config, validateSchema } from './schema'
 
 export const opencollective = (app: probot.Application): void => {
   app.on('issues.closed', async (context: probot.Context) => {
+    console.log('HANDLING 1')
+
     /* Get config */
 
     const configuration = await getConfig<Config>(context, 'opencollective.yml')
@@ -13,6 +15,10 @@ export const opencollective = (app: probot.Application): void => {
       context.log.error("Coudln't load your configuration.")
       return
     }
+
+    console.log('HANDLING 2', configuration)
+
+    console.log('HANDLING 3', context.payload.issues.labels)
 
     /* Check labels */
 
@@ -28,17 +34,23 @@ export const opencollective = (app: probot.Application): void => {
     }
     /* Post */
 
+    console.log('HANDLING 4', context.payload.issues.labels)
+
     /* prettier-ignore */
     const body = `${validConfiguration.message}\n\n${validConfiguration.opencollective}`
 
     const issue = context.issue()
 
-    context.github.issues.createComment({
+    console.log('HANDLING 5', issue)
+
+    await context.github.issues.createComment({
       repo: issue.repo,
       owner: issue.owner,
       number: issue.number,
       body: body,
     })
+
+    console.log('HANDLING 6 commented')
 
     context.log.info(`Commented on ${issue.owner}/${issue.repo}.`)
   })
