@@ -17,8 +17,8 @@ export const opencollective = (app: probot.Application): void => {
     /* Check labels */
 
     if (
-      validConfiguration.labels !== undefined &&
-      context.payload.labels.every(
+      !!validConfiguration.labels &&
+      context.payload.issue.labels.every(
         (label: { name: string }) =>
           !validConfiguration.labels!.includes(label.name),
       )
@@ -28,11 +28,8 @@ export const opencollective = (app: probot.Application): void => {
     }
     /* Post */
 
-    const body = `
-${validConfiguration.message}
-
-${validConfiguration.opencollective}
-    `
+    /* prettier-ignore */
+    const body = `${validConfiguration.message}\n\n${validConfiguration.opencollective}`
 
     const issue = context.issue()
 
