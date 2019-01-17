@@ -5,9 +5,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "dev": "ts-node src/index.ts",
-    "test": "NODE_ENV=test jest",
-    "build": "tsc -d",
-    "prepublish": "npm-run-all build"
+    "test": "NODE_ENV=test jest"
   },
   "dependencies": {
     "joi": "^14.3.1",
