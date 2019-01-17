@@ -1,6 +1,17 @@
+<p align="center"><img src="media/logo.png" width="800" /></p>
+
 # OpenCollective Bot
 
-> Helps you remind your audience about your OpenCollective.
+[![CircleCI](https://circleci.com/gh/maticzav/opencollective-bot/tree/master.svg?style=shield)](https://circleci.com/gh/maticzav/opencollective-bot/tree/master)
+[![codecov](https://codecov.io/gh/maticzav/opencollective-bot/branch/master/graph/badge.svg)](https://codecov.io/gh/maticzav/opencollective-bot)
+
+> Helps you promote your Open Collective in your Github repository.
+
+## Overview
+
+- 🐶 **Easy to use:** Simply install Github App and you are ready to go!
+- 🛠 **Customizable:** Change the configuration and our bot will listen!
+- ❤ **Build for Open Source community:** Simply install Github App and you are ready to go!
 
 ## Configuration
 
