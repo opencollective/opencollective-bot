@@ -14,6 +14,11 @@ export const opencollective = (app: probot.Application): void => {
       return
     }
 
+    // const [allBackers, backerOrganisations] = await Promise.all([
+    //   getCollectiveMembers(collectiveSlug),
+    //   getUserOrganisations(github, backerName),
+    // ])
+
     /* Check labels */
 
     // const labelDefinitions = validConfiguration.labels

@@ -1,4 +1,4 @@
-import * as Octokit from '@octokit/rest'
+import Octokit from '@octokit/rest'
 
 /**
  *
@@ -15,4 +15,19 @@ export async function getUserOrganisations(
       username: username,
     })
     .then(res => res.data.map(org => org.login))
+}
+
+/**
+ *
+ * Strips Github username from Github URL in OpenCollective respnse.
+ *
+ * @param url
+ */
+export function stripGithubName(url: string): string {
+  const matches = url.match(/https:\/\/github.com\/(\w+)(?:\/.*)?/)
+  /* istanbul ignore if */
+  if (!matches || matches.length < 2) {
+    throw new Error(`Couldn't parse Github URL ${url}.`)
+  }
+  return matches[1]
 }

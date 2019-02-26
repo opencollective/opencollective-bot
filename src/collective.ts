@@ -1,5 +1,7 @@
 import fetch from 'isomorphic-fetch'
 
+export type Tier = string
+
 export type Member = {
   MemberId: number
   type: 'COLLECTIVE' | 'EVENT' | 'ORGANIZATION' | 'USER'
@@ -11,10 +13,10 @@ export type Member = {
     | 'MEMBER'
     | 'FUNDRAISER'
     | 'CONTRIBUTOR'
-  tier: string
+  tier?: Tier
   isActive: boolean
   name: string
-  github: string
+  github: string | null
 }
 
 /**

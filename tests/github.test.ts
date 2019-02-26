@@ -1,7 +1,7 @@
 import * as joi from 'joi'
 import Octokit from '@octokit/rest'
 
-import { getUserOrganisations } from '../src/github'
+import { getUserOrganisations, stripGithubName } from '../src/github'
 
 const organsisationTypeSchema = joi.string()
 
@@ -27,5 +27,9 @@ describe('github', () => {
     } catch (err) {
       fail(err)
     }
+  })
+
+  test('strip github username correctly strips', () => {
+    expect(stripGithubName('https://github.com/maticzav')).toMatch('maticzav')
   })
 })
