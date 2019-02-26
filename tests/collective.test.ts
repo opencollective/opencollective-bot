@@ -37,6 +37,7 @@ const memberTypeSchema = joi.object().keys({
 describe('collective', () => {
   test('get members has expected types', async () => {
     const res = await getCollectiveMembers('webpack')
+    expect(res.length).not.toBe(0)
     const validations = res.map(async member => {
       try {
         await joi.validate(member, memberTypeSchema, { allowUnknown: true })
