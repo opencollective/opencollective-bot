@@ -1,4 +1,5 @@
 import * as joi from 'joi'
+import * as probot from 'probot'
 
 export interface Config {
   labels?: string[]
@@ -6,7 +7,7 @@ export interface Config {
   opencollective: string
 }
 
-/* Schema, Defaults */
+/* Schema */
 
 export const defaultMessage = `
 Hey :wave:,
@@ -16,6 +17,9 @@ We saw you use our package. To keep our code as accessible as possible, we decid
 In a pursuit to continue our work, help us by donating to our collective! :heart:
 `
 
+/**
+ * Defines schema of configuration file
+ */
 export const schema = joi
   .object()
   .keys({
@@ -37,8 +41,17 @@ export const schema = joi
   })
   .requiredKeys(['opencollective'])
 
-export async function validateSchema(config: Config): Promise<Config | null> {
+/**
+ *
+ * Loads configuration from Github.
+ *
+ * @param context
+ */
+export async function getConfig(
+  context: probot.Context,
+): Promise<Config | null> {
   try {
+    const config = await context.config('opencollective.yml')
     const value = await joi.validate(config, schema)
 
     return value
