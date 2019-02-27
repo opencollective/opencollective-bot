@@ -1,4 +1,4 @@
-import { main } from '../'
+import { main } from '../src'
 
 describe('index', () => {
   beforeEach(() => {

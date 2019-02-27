@@ -3263,6 +3263,11 @@ ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.1.tgz#30a5864eb3ebb0a66f2ebe6d727af06a09d86e0a"
   integrity sha512-tgp+dl5cGk28utYktBsrFqA7HKgrhgPsg6Z/EfhWI4gl1Hwq8B/GmY/0oXZ6nF8hDVesS/FpnYaD/kOWhYQvyg==
 
+multilines@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/multilines/-/multilines-1.0.2.tgz#3328bccb9ca9e7896ae2dd94bb4b29921e9c845d"
+  integrity sha512-PcDdrteMyLwzlzmuKyaTvbgW5wfJo0RfgWPTAJrjHA75ZU65fN+SluJ3xPytXJ2/kqFM6BXHSGaHfdEZwxjAWw==
+
 mv@~2:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/mv/-/mv-2.1.1.tgz#ae6ce0d6f6d5e0a4f7d893798d03c1ea9559b6a2"

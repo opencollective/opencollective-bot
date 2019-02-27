@@ -1,5 +1,7 @@
 import Octokit from '@octokit/rest'
 
+export type Label = string
+
 /**
  *
  * Returns a list of user organisations.
