@@ -3,7 +3,7 @@ import mls from 'multilines'
 import * as probot from 'probot'
 
 import { Tier } from './collective'
-import { Label } from './github'
+import { GithubLabel } from './github'
 import { intersect } from './utils'
 
 export type Config = {
@@ -14,7 +14,7 @@ export type Config = {
 
 export type TierConfig = {
   tiers: Tier[] | '*'
-  labels: Label[]
+  labels: GithubLabel[]
   message: Message
 }
 
@@ -103,8 +103,8 @@ export async function getConfig(
  *
  * @param config
  */
-export function getLabelsFromConfig(config: Config): Label[] {
-  return config.tiers.reduce<Label[]>(
+export function getLabelsFromConfig(config: Config): GithubLabel[] {
+  return config.tiers.reduce<GithubLabel[]>(
     (acc, tier) => [...acc, ...tier.labels],
     [],
   )
@@ -121,8 +121,8 @@ export function getLabelsFromConfig(config: Config): Label[] {
 export function getLabelsFromConfigForTiers(
   config: Config,
   tiers: Tier[],
-): Label[] {
-  return config.tiers.reduce<Label[]>((acc, tier) => {
+): GithubLabel[] {
+  return config.tiers.reduce<GithubLabel[]>((acc, tier) => {
     if (tier.tiers === '*') {
       return [...acc, ...tier.labels]
     } else if (intersect(tier.tiers)(tiers)) {
