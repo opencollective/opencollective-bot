@@ -89,3 +89,29 @@ export async function labelGithubIssue(
     labels: labels,
   })
 }
+
+/**
+ *
+ * Removes labels from a Github Issue.
+ *
+ * @param github
+ * @param issue
+ * @param messages
+ */
+export async function removeLabelsFromGithubIssue(
+  github: Octokit,
+  issue: GithubIssue,
+  labels: GithubLabel[],
+): Promise<GithubLabel[]> {
+  const actions = labels.map(label =>
+    github.issues.removeLabel({
+      repo: issue.repo,
+      owner: issue.owner,
+      number: issue.number,
+      name: label,
+    }),
+  )
+
+  await Promise.all(actions)
+  return labels
+}

@@ -50,7 +50,6 @@ export const opencollective = (app: probot.Application): void => {
     const labels = getLabelsFromConfigForTiers(configuration, backerTiers)
 
     // Sync
-
     await Promise.all([
       messageGithubIssue(context.github, issue, messages),
       labelGithubIssue(context.github, issue, labels),
