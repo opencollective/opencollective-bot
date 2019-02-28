@@ -17,3 +17,15 @@ export function is<T>(a: T): (b: T) => boolean {
 export function intersect<T>(as: T[]): (bs: T[]) => boolean {
   return bs => bs.some(b => as.some(is(b)))
 }
+
+/**
+ *
+ * Functionally negates the function.
+ *
+ * @param fn
+ */
+export function not<T>(
+  fn: (...args: T[]) => boolean,
+): (...args: T[]) => boolean {
+  return (...args) => !fn(...args)
+}

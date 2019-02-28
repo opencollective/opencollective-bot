@@ -36,7 +36,7 @@ export async function getUserOrganisations(
  * @param url
  */
 export function stripGithubName(url: string): string {
-  const matches = url.match(/https:\/\/github.com\/(\w+)(?:\/.*)?/)
+  const matches = url.match(/https:\/\/github.com\/([\w\-]+)(?:\/.*)?/)
   /* istanbul ignore if */
   if (!matches || matches.length < 2) {
     throw new Error(`Couldn't parse Github URL ${url}.`)

@@ -145,6 +145,16 @@ export function getMessagesFromConfigForTiers(
   tiers: Tier[],
   dictionary: { [key: string]: string },
 ): Message[] {
+  /**
+   * Returns invitation message if user has no tiers.
+   */
+  if (tiers.length === 0) {
+    return [hydrateMessage(config.invitation)]
+  }
+
+  /**
+   * Finds all messages for specified tiers.
+   */
   const rawMessages = config.tiers.reduce<Message[]>((acc, tier) => {
     if (tier.tiers === '*') {
       return [...acc, tier.message]

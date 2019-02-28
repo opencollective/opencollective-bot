@@ -1,6 +1,7 @@
-import { main } from '../src'
+import * as fs from 'fs'
+import * as path from 'path'
 
-// TODO: Some error
+import { main } from '../src'
 
 describe('index', () => {
   beforeEach(() => {
@@ -12,17 +13,24 @@ describe('index', () => {
     delete process.env.PRIVATE_KEY
   })
 
-  test('reporst missing credentials', async () => {
+  test('reports missing credentials', async () => {
     await expect(main()).rejects.toThrow()
   })
 
   test('correctly build server', async () => {
     process.env.APP_ID = '1234'
     process.env.WEBHOOK_SECRET = 'secret'
-    process.env.PRIVATE_KEY = `-----BEGIN RSA PRIVATE KEY-----\ncontent\n-----END RSA PRIVATE KEY-----`
+    process.env.PRIVATE_KEY = fs.readFileSync(
+      path.resolve(__dirname, './__fixtures__/cert.pem'),
+      'UTF-8',
+    )
 
-    const server = await main()
+    try {
+      const server = await main()
 
-    server.close()
+      server.close()
+    } catch (err) {
+      fail(err)
+    }
   })
 })

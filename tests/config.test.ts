@@ -158,3 +158,26 @@ test('getMessageFromConfigForTiers finds messages', async () => {
     ),
   ).toEqual(['Hey :wave: pass cool-pass', 'Hey backer!'])
 })
+
+test('getMessageFromConfigForTiers returns invite when user is not a backer', async () => {
+  expect(
+    getMessagesFromConfigForTiers(
+      {
+        collective: 'webpack',
+        tiers: [
+          {
+            tiers: ['Sponsors'],
+            labels: ['sponsor-priority'],
+            message: 'Hey sponsor!',
+          },
+        ],
+        invitation: 'Hey <link>',
+      },
+      [],
+      {
+        '<link>': 'pass',
+        '<cool>': 'cool-pass',
+      },
+    ),
+  ).toEqual(['Hey pass'])
+})
