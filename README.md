@@ -36,8 +36,10 @@ invitation: |
 
 #### Available tags
 
-- **<author>:** Author of an issue,
-- **<link>:** Link to your OpenCollective.
+- **\<author\>:** Author of an issue,
+- **\<link\>:** Link to your OpenCollective.
+
+> Note that OpenCollective bot won't message issues opened by maintainers or other OpenCollective admin members.
 
 ##### Default Messages
 
