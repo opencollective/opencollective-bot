@@ -135,7 +135,7 @@ test('getMessageFromConfigForTiers finds messages', async () => {
           {
             tiers: '*',
             labels: ['priority'],
-            message: 'Hey :wave: <link>',
+            message: 'Hey :wave: <link> <cool>',
           },
           {
             tiers: ['Backers'],
@@ -151,6 +151,10 @@ test('getMessageFromConfigForTiers finds messages', async () => {
         invitation: 'Hey',
       },
       ['Backers'],
+      {
+        '<link>': 'pass',
+        '<cool>': 'cool-pass',
+      },
     ),
-  ).toEqual(['Hey :wave: https://opencollective.com/webpack', 'Hey backer!'])
+  ).toEqual(['Hey :wave: pass cool-pass', 'Hey backer!'])
 })

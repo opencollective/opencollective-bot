@@ -80,6 +80,11 @@ describe('github', () => {
   test('labelGithubIssue messages github issue', async () => {
     const client = {
       issues: {
+        getLabel: jest
+          .fn()
+          .mockRejectedValueOnce(undefined)
+          .mockResolvedValue(undefined),
+        createLabel: jest.fn().mockResolvedValue(undefined),
         addLabels: jest.fn().mockImplementation(args => Promise.resolve(args)),
       },
     }
@@ -92,6 +97,8 @@ describe('github', () => {
 
     const res = await labelGithubIssue(client as any, issue, labels)
 
+    expect(client.issues.getLabel).toBeCalledTimes(2)
+    expect(client.issues.createLabel).toBeCalledTimes(1)
     expect(client.issues.addLabels).toBeCalledTimes(1)
     expect(res).toEqual({
       number: 1,

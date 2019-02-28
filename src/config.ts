@@ -143,6 +143,7 @@ export function getLabelsFromConfigForTiers(
 export function getMessagesFromConfigForTiers(
   config: Config,
   tiers: Tier[],
+  dictionary: { [key: string]: string },
 ): Message[] {
   const rawMessages = config.tiers.reduce<Message[]>((acc, tier) => {
     if (tier.tiers === '*') {
@@ -165,9 +166,8 @@ export function getMessagesFromConfigForTiers(
    * @param message
    */
   function hydrateMessage(message: string): string {
-    return message.replace(
-      '<link>',
-      `https://opencollective.com/${config.collective}`,
-    )
+    return Object.keys(dictionary).reduce((acc, tag) => {
+      return acc.replace(tag, dictionary[tag])
+    }, message)
   }
 }

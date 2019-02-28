@@ -1,5 +1,7 @@
 import { main } from '../src'
 
+// TODO: Some error
+
 describe('index', () => {
   beforeEach(() => {
     jest.restoreAllMocks()

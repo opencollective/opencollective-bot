@@ -28,15 +28,13 @@ export const opencollective = (app: probot.Application): void => {
      * 4. Apply messages and labels.
      */
 
-    context.issue()
-
     // Get configuration
-    const configuration = await getConfig(context)
-    if (!configuration) return
+    const config = await getConfig(context)
+    if (!config) return
 
     // Get backer tiers
     const [allBackers, backerOrganisations] = await Promise.all([
-      getCollectiveMembers(configuration.collective),
+      getCollectiveMembers(config.collective),
       getUserOrganisations(context.github, backerName),
     ])
     const backerTiers = getCollectiveBackerTiers(
@@ -46,8 +44,11 @@ export const opencollective = (app: probot.Application): void => {
     )
 
     // Calculate messages and labels
-    const messages = getMessagesFromConfigForTiers(configuration, backerTiers)
-    const labels = getLabelsFromConfigForTiers(configuration, backerTiers)
+    const dict = {
+      '<link>': `https://opencollective.com/${config.collective}`,
+    }
+    const messages = getMessagesFromConfigForTiers(config, backerTiers, dict)
+    const labels = getLabelsFromConfigForTiers(config, backerTiers)
 
     // Sync
     await Promise.all([

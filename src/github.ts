@@ -71,7 +71,7 @@ export async function messageGithubIssue(
 
 /**
  *
- * Adds labels to a Github Issue.
+ * Adds labels to a Github Issue and ensures they all exist.
  *
  * @param github
  * @param issue
@@ -82,6 +82,28 @@ export async function labelGithubIssue(
   issue: GithubIssue,
   labels: GithubLabel[],
 ): Promise<Response<IssuesAddLabelsResponseItem[]>> {
+  /**
+   * Flow
+   * 1. Check if all labels exist.
+   * 2. Create missing ones.
+   * 3. Add labels to issue.
+   */
+
+  const actions = labels.map(async label =>
+    github.issues
+      .getLabel({ ...issue, name: label })
+      .then(() => Promise.resolve())
+      .catch(() =>
+        github.issues.createLabel({
+          ...issue,
+          name: label,
+          color: 'fbca04',
+        }),
+      ),
+  )
+
+  await Promise.all(actions)
+
   return github.issues.addLabels({
     repo: issue.repo,
     owner: issue.owner,
