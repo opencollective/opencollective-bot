@@ -48,6 +48,7 @@ export const opencollective = (app: probot.Application): void => {
 
     // Calculate messages and labels
     const dict = {
+      '<author>': backerName,
       '<link>': `https://opencollective.com/${config.collective}`,
     }
     const messages = getMessagesFromConfigForTiers(config, backerTiers, dict)

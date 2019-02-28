@@ -47,7 +47,7 @@ export const configSchema = joi
           tiers: '*',
           labels: ['priority'],
           message: mls`
-          | Hey :wave:,
+          | Hey <author> :wave:,
           | 
           | Thanks for backing our project. We will handle your issue
           | with priority support. To make sure we don't forget how special
@@ -61,7 +61,7 @@ export const configSchema = joi
       .string()
       .default(
         mls`
-        | Hey :wave:,
+        | Hey <author> :wave:,
         |
         | Thank you for opening an issue. We will get back to you as
         | soon as we can. Also, check out our OpenCollective and consider
