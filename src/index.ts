@@ -5,6 +5,7 @@ import { findPrivateKey } from 'probot/lib/private-key'
 import logRequestErrors from 'probot/lib/middleware/log-request-errors'
 
 import { opencollective } from './bot'
+import { validator } from './validate'
 
 /* istanbul ignore if */
 if (process.env.NODE_ENV !== 'test') {
@@ -48,6 +49,10 @@ export function main(port: number): Server {
   process.on('unhandledRejection', probot.errorHandler)
 
   apps.forEach(appFn => probot.load(appFn))
+
+  /* Load express apps */
+
+  probot.server.use('/validate', validator)
 
   // Register error handler as the last middleware
   probot.server.use(logRequestErrors as any)

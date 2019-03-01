@@ -1,18 +1,16 @@
 import bodyParser from 'body-parser'
 import express from 'express'
-import { Server } from 'http'
 import * as joi from 'joi'
 import yaml from 'js-yaml'
 import mls from 'multilines'
-import { AddressInfo } from 'net'
 
 import { configSchema } from './config'
 
 /* Server */
 
-const server = express()
+const validator = express()
 
-server.get('*', (req, res) => {
+validator.get('*', (req, res) => {
   res.send(mls`
   | <pre>Usage:
   |
@@ -21,7 +19,7 @@ server.get('*', (req, res) => {
   `)
 })
 
-server.post(
+validator.post(
   '*',
   bodyParser.urlencoded({ extended: false }),
   async (req, res) => {
@@ -55,19 +53,4 @@ server.post(
   },
 )
 
-/* Start */
-
-/* istanbul ignore if */
-if (process.env.NODE_ENV !== 'test') {
-  const http = main(4000)
-  const port = (http.address() as AddressInfo).port
-
-  console.log(`Server running on http://localhost:${port}`)
-}
-
-/**
- * Starts the server
- */
-export function main(port: number): Server {
-  return server.listen(port)
-}
+export { validator }
