@@ -34,6 +34,15 @@ const config = btoa(
 
 /* Tests */
 
+beforeEach(async () => {
+  if (!nock.isActive()) nock.activate()
+})
+
+afterEach(async () => {
+  nock.restore()
+  nock.cleanAll()
+})
+
 describe('opencollective issues.opened', () => {
   test('skips execution on incorrect configuration', async () => {
     const app = new probot.Application()
