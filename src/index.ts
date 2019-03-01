@@ -9,10 +9,12 @@ import { validator } from './validate'
 
 /* istanbul ignore if */
 if (process.env.NODE_ENV !== 'test') {
-  const http = main(3000)
-  const port = (http.address() as AddressInfo).port
-
-  console.log(`Server running on http://localhost:${port}`)
+  try {
+    main(3000)
+    console.log(`Server UP! 🚀`)
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 export function main(port: number): Server {
