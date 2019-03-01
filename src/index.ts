@@ -1,5 +1,4 @@
 import { Server } from 'http'
-import { AddressInfo } from 'net'
 import { createProbot, ApplicationFunction } from 'probot'
 import { findPrivateKey } from 'probot/lib/private-key'
 import logRequestErrors from 'probot/lib/middleware/log-request-errors'
