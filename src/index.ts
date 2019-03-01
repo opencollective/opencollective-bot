@@ -4,11 +4,19 @@ import { findPrivateKey } from 'probot/lib/private-key'
 import logRequestErrors from 'probot/lib/middleware/log-request-errors'
 
 import { opencollective } from './bot'
+import { validator } from './validate'
 
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== 'test') main()
+/* istanbul ignore if */
+if (process.env.NODE_ENV !== 'test') {
+  try {
+    main(3000)
+    console.log(`Server UP! 🚀`)
+  } catch (err) {
+    console.log(err)
+  }
+}
 
-export async function main(): Promise<Server> {
+export function main(port: number): Server {
   /* Credentials */
 
   if (
@@ -27,7 +35,7 @@ export async function main(): Promise<Server> {
     id: parseInt(process.env.APP_ID, 10),
     secret: process.env.WEBHOOK_SECRET,
     cert: cert,
-    port: 3000,
+    port: port,
   })
 
   /* Load apps */
@@ -43,12 +51,16 @@ export async function main(): Promise<Server> {
 
   apps.forEach(appFn => probot.load(appFn))
 
+  /* Load express apps */
+
+  probot.server.use('/validate', validator)
+
   // Register error handler as the last middleware
   probot.server.use(logRequestErrors as any)
 
   /* Start the server */
 
-  const server = probot.server.listen(3000)
+  const server = probot.server.listen(port)
 
   return server
 }
