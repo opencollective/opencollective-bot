@@ -14,7 +14,7 @@ validator.get('*', (req, res) => {
   res.send(mls`
   | <pre>Usage:
   |
-  | curl -X POST --data-binary @opencollective.yml https://opencollective-bot.now.sh/validate
+  | curl -X POST --data-binary @.github/opencollective.yml https://opencollective-bot.now.sh/validate
   | <pre>
   `)
 })
