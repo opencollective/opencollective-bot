@@ -9,6 +9,6 @@ exports[`validate correctly validates valid configuration 1`] = `"Valid configur
 exports[`validate shows correct usage description 1`] = `
 "<pre>Usage:
 
-curl -X POST --data-binary @opencollective.yml https://opencollective-bot.now.sh/validate
+curl -X POST --data-binary @.github/opencollective.yml https://opencollective-bot.now.sh/validate
 <pre>"
 `;
