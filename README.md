@@ -41,6 +41,8 @@ invitation: |
 
 > Note that OpenCollective bot won't message issues opened by maintainers or other OpenCollective admin members.
 
+> PS.: You can test your configuration at `https://opencollective-bot.now.sh/validate`!
+
 ##### Default Messages
 
 - `backers`

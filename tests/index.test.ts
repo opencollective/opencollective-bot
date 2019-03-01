@@ -13,11 +13,13 @@ describe('index', () => {
     delete process.env.PRIVATE_KEY
   })
 
-  test('reports missing credentials', async () => {
-    await expect(main()).rejects.toThrow()
+  test('reports missing credentials', () => {
+    expect(() => {
+      main(0)
+    }).toThrow()
   })
 
-  test('correctly build server', async () => {
+  test('correctly build server', () => {
     process.env.APP_ID = '1234'
     process.env.WEBHOOK_SECRET = 'secret'
     process.env.PRIVATE_KEY = fs.readFileSync(
@@ -26,7 +28,7 @@ describe('index', () => {
     )
 
     try {
-      const server = await main()
+      const server = main(0)
 
       server.close()
     } catch (err) {

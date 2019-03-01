@@ -1,14 +1,20 @@
 import { Server } from 'http'
+import { AddressInfo } from 'net'
 import { createProbot, ApplicationFunction } from 'probot'
 import { findPrivateKey } from 'probot/lib/private-key'
 import logRequestErrors from 'probot/lib/middleware/log-request-errors'
 
 import { opencollective } from './bot'
 
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== 'test') main()
+/* istanbul ignore if */
+if (process.env.NODE_ENV !== 'test') {
+  const http = main(3000)
+  const port = (http.address() as AddressInfo).port
 
-export async function main(): Promise<Server> {
+  console.log(`Server running on http://localhost:${port}`)
+}
+
+export function main(port: number): Server {
   /* Credentials */
 
   if (
@@ -27,7 +33,7 @@ export async function main(): Promise<Server> {
     id: parseInt(process.env.APP_ID, 10),
     secret: process.env.WEBHOOK_SECRET,
     cert: cert,
-    port: 3000,
+    port: port,
   })
 
   /* Load apps */
@@ -48,7 +54,7 @@ export async function main(): Promise<Server> {
 
   /* Start the server */
 
-  const server = probot.server.listen(3000)
+  const server = probot.server.listen(port)
 
   return server
 }
