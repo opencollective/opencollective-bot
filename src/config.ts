@@ -69,8 +69,7 @@ export const configSchema = joi
         |
         | <link>
         |
-        | PS.: We offer ${'`priority`'} support for all backers. Don't forget to
-        | add ${'`priority`'} label when you start backing us :smile:
+        | > PS.: We offer ${'`priority`'} support for all backers. Don't forget to add ${'`priority`'} label when you start backing us :smile:
       `,
       )
       .optional()
