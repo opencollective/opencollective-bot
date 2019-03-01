@@ -39,6 +39,25 @@ invitation: |
 - **\<author\>:** Author of an issue,
 - **\<link\>:** Link to your OpenCollective.
 
+#### API
+
+```ts
+type Message = string
+type GithubLabel = string
+
+type Config = {
+  collective: string
+  tiers: TierConfig[]
+  invitation: Message | false
+}
+
+type TierConfig = {
+  tiers: Tier[] | '*'
+  labels: GithubLabel[]
+  message: Message
+}
+```
+
 > Note that OpenCollective bot won't message issues opened by maintainers or other OpenCollective admin members.
 
 > PS.: You can test your configuration at `https://opencollective-bot.now.sh/validate`!

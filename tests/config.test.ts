@@ -46,6 +46,11 @@ describe('getConfig', () => {
         ],
         invitation: 'Hey',
       },
+      {
+        collective: 'webpack',
+        tiers: [],
+        invitation: false,
+      },
     ]
 
     const validations = correctConfigurations.map(async config => {
@@ -180,4 +185,27 @@ test('getMessageFromConfigForTiers returns invite when user is not a backer', as
       },
     ),
   ).toEqual(['Hey pass'])
+})
+
+test('getMessageFromConfigForTiers returns no message when user is not a backer and invitaiton is disabled', async () => {
+  expect(
+    getMessagesFromConfigForTiers(
+      {
+        collective: 'webpack',
+        tiers: [
+          {
+            tiers: ['Sponsors'],
+            labels: ['sponsor-priority'],
+            message: 'Hey sponsor!',
+          },
+        ],
+        invitation: false,
+      },
+      [],
+      {
+        '<link>': 'pass',
+        '<cool>': 'cool-pass',
+      },
+    ),
+  ).toEqual([])
 })

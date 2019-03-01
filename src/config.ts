@@ -9,7 +9,7 @@ import { intersect } from './utils'
 export type Config = {
   collective: string
   tiers: TierConfig[]
-  invitation: Message
+  invitation: Message | false
 }
 
 export type TierConfig = {
@@ -74,7 +74,8 @@ export const configSchema = joi
       `,
       )
       .optional()
-      .description('An invitation message shown to non-backers'),
+      .description('An invitation message shown to non-backers')
+      .allow(false),
   })
   .requiredKeys(['collective'])
 
@@ -148,7 +149,7 @@ export function getMessagesFromConfigForTiers(
   /**
    * Returns invitation message if user has no tiers.
    */
-  if (tiers.length === 0) {
+  if (tiers.length === 0 && config.invitation) {
     return [hydrateMessage(config.invitation)]
   }
 
