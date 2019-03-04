@@ -49,10 +49,10 @@
     "@types/connect" "*"
     "@types/node" "*"
 
-"@types/btoa@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@types/btoa/-/btoa-1.2.0.tgz#b7c477f0b0171b0e0d6ccad0ddd9376a9e734d0d"
-  integrity sha512-mRkSzBQqmikda80QjYWhsM7beHu2zo6jqkbqn6YH3XpOeUiw+7qhRuKtDRKLR4/rPAt7KEV9Iy40NeY5KKUVmA==
+"@types/btoa@1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@types/btoa/-/btoa-1.2.2.tgz#cbd47d0d1bb5fa64a810e11eaa2c1c0fbbebb476"
+  integrity sha512-uPugUTgPrYH6jKs/mE58JpSLhLRC5i5QoxQBMuk8wBDvvH4cw+YQwMo8mhi8ORgmlAVaeLhFlBgfvvKRnl5/iQ==
 
 "@types/caseless@*":
   version "0.12.1"
