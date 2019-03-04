@@ -101,10 +101,10 @@
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.12.tgz#7e0ced251fa94c3bc2d1023d4b84b2992fa06376"
   integrity sha512-/kQvbVzdEpOq4tEWT79yAHSM4nH4xMlhJv2GrLVQt4Qmo8yYsPdioBM1QpN/2GX1wkfMnyXvdoftvLUr0LBj7Q==
 
-"@types/joi@14.0.1":
-  version "14.0.1"
-  resolved "https://registry.yarnpkg.com/@types/joi/-/joi-14.0.1.tgz#739be8a8899a75631a3c9f15611e54bbab06c024"
-  integrity sha512-0uZZ+nffpr480zwwUXsk0Z5O0szllffNW1EbkI+dDzKhNKhiX4QOwpwK37WpKIpaPLk9V8U9y2We/VOeD6zyhQ==
+"@types/joi@14.3.2":
+  version "14.3.2"
+  resolved "https://registry.yarnpkg.com/@types/joi/-/joi-14.3.2.tgz#eff771f0b19698b8e6e7c6fe6b625e07e2618fe9"
+  integrity sha512-riJTpNwDOoRgRrrOjfcjwMBYJLVg8rzwMEAAcZ2JBvdmYWCLIsbzTFXHV517terbYzGmdzkwFYeXUem7eXVNoQ==
 
 "@types/js-yaml@3.11.4":
   version "3.11.4"
