@@ -1,6 +1,6 @@
 <p align="center"><img src="media/logo.png" width="400" /></p>
 
-# OpenCollective Bot
+# Open Collective Bot
 
 [![CircleCI](https://circleci.com/gh/maticzav/opencollective-bot/tree/master.svg?style=shield)](https://circleci.com/gh/maticzav/opencollective-bot/tree/master)
 [![codecov](https://codecov.io/gh/maticzav/opencollective-bot/branch/master/graph/badge.svg)](https://codecov.io/gh/maticzav/opencollective-bot)
@@ -9,7 +9,7 @@
 
 ## Overview
 
-- 🐶 **Easy to use:** Simply install [Github App](https://github.com/apps/opencollective-bot) and you are ready to go!
+- 🐶 **Easy to use:** Simply install [Github App](https://github.com/apps/open-collective-bot) and you are ready to go!
 - 🛠 **Customizable:** Change the configuration and our bot will listen!
 - ❤ **Covered with tests:** Keeping that 100% bar!
 
@@ -37,7 +37,7 @@ invitation: |
 #### Available tags
 
 - **\<author\>:** Author of an issue,
-- **\<link\>:** Link to your OpenCollective.
+- **\<link\>:** Link to your Open Collective.
 
 #### API
 
@@ -58,7 +58,7 @@ type TierConfig = {
 }
 ```
 
-> Note that OpenCollective bot won't message issues opened by maintainers or other OpenCollective admin members.
+> Note that Open Collective bot won't message issues opened by maintainers or other Open Collective admin members.
 
 > PS.: You can test your configuration at `https://opencollective-bot.now.sh/validate`!
 
@@ -84,7 +84,7 @@ Thanks again for backing us :tada:!
 Hey <author> :wave:,
 
 Thank you for opening an issue. We will get back to you as
-soon as we can. Also, check out our OpenCollective and consider
+soon as we can. Also, check out our Open Collective and consider
 backing us.
 
 <link>
@@ -104,6 +104,6 @@ See: [docs/deployment.md](docs/deployment.md)
 
 ## License
 
-> The logo and bot avatar are taken from OpenCollective's marketing website https://opencollective.com/.
+> The logo and bot avatar are taken from Open Collective's marketing website https://opencollective.com/.
 
 MIT @ Matic Zavadlal
