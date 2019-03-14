@@ -5,7 +5,7 @@
 [![CircleCI](https://circleci.com/gh/maticzav/opencollective-bot/tree/master.svg?style=shield)](https://circleci.com/gh/maticzav/opencollective-bot/tree/master)
 [![codecov](https://codecov.io/gh/maticzav/opencollective-bot/branch/master/graph/badge.svg)](https://codecov.io/gh/maticzav/opencollective-bot)
 
-> Helps you promote your [Open Collective](https://opencollective.com/) in your Github repository.
+This bot will add a custom comment on issues based on whether the author is already a backer of your [Open Collective](https://opencollective.com/)
 
 ## Overview
 
@@ -34,6 +34,11 @@ invitation: |
   <link>
 ```
 
+See some examples:
+
+- [captain-fact](https://github.com/CaptainFact/captain-fact/blob/master/.github/opencollective.yml)
+- [more](https://github.com/search?q=%22opencollective.yml%22+in%3Apath&type=Code)
+
 #### Available tags
 
 - **\<author\>:** Author of an issue,
@@ -58,9 +63,9 @@ type TierConfig = {
 }
 ```
 
-> Note that Open Collective bot won't message issues opened by maintainers or other Open Collective admin members.
+Note that the Open Collective Bot won't comment on issues opened by maintainers or other admins of your Collective.
 
-> PS.: You can test your configuration at `https://opencollective-bot.now.sh/validate`!
+PS: You can test your configuration at https://opencollective-bot.now.sh/validate
 
 ##### Default Messages
 
