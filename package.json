@@ -17,7 +17,7 @@
     "lodash.uniq": "^4.5.0",
     "multilines": "^1.0.2",
     "node-fetch": "^2.3.0",
-    "probot": "^7.5.1"
+    "probot": "^9.0.2"
   },
   "devDependencies": {
     "@types/body-parser": "1.17.0",
