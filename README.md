@@ -94,6 +94,12 @@ add `priority` label when you start backing us :smile:
 
 <p align="center"><img src="media/invite.png" width="600" /></p>
 
+## Deployment
+
+**Summary**: This project is currently deployed with [Now](https://zeit.co/now) (v2). To deploy to staging or production, you need to be a core member of the Open Collective team.
+
+See: [docs/deployment.md](docs/deployment.md)
+
 ---
 
 ## License
