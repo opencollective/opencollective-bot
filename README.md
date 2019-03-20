@@ -65,7 +65,7 @@ type TierConfig = {
 
 Note that the Open Collective Bot won't comment on issues opened by maintainers or other admins of your Collective.
 
-PS: You can test your configuration at https://opencollective-bot.now.sh/validate
+PS: You can test your configuration at https://bot.opencollective.com/validate
 
 ##### Default Messages
 
