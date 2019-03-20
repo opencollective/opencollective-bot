@@ -6,7 +6,9 @@
     "clean": "rimraf dist",
     "dev": "ts-node src/index.ts",
     "test": "NODE_ENV=test jest",
-    "coverage": "yarn codecov"
+    "coverage": "yarn codecov",
+    "deploy:staging": "now -e APP_ID=@oc-bot-staging-app-id -e WEBHOOK_SECRET=@oc-bot-staging-webhook-secret -e PRIVATE_KEY=@oc-bot-staging-private-key -e SENTRY_DSN=@oc-bot-staging-sentry-dsn --target staging && now alias bot-staging.opencollective.com",
+    "deploy:production": "now --target production"
   },
   "dependencies": {
     "@types/lodash.uniq": "^4.5.5",
