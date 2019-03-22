@@ -17,6 +17,7 @@ describe('validate', () => {
       path.resolve(__dirname, './__fixtures__/cert.pem'),
       'UTF-8',
     )
+    process.env.DISABLE_STATS = 'true'
 
     server = main(0)
     const { port } = server.address() as AddressInfo
@@ -27,6 +28,7 @@ describe('validate', () => {
   afterAll(() => {
     server.close()
   })
+
   test('shows correct usage description', async () => {
     const res = await request({
       uri,
