@@ -31,7 +31,7 @@ export async function getUserOrganisations(
 
 /**
  *
- * Strips Github username from Github URL in OpenCollective respnse.
+ * Strips GitHub username from GitHub URL in Open Collective response.
  *
  * @param url
  */
@@ -46,7 +46,7 @@ export function stripGithubName(url: string): string {
 
 /**
  *
- * Adds messages to a Github Issue.
+ * Adds messages to a GitHub Issue.
  *
  * @param github
  * @param issue
@@ -71,7 +71,7 @@ export async function messageGithubIssue(
 
 /**
  *
- * Adds labels to a Github Issue and ensures they all exist.
+ * Adds labels to a GitHub Issue and ensures they all exist.
  *
  * @param github
  * @param issue
@@ -114,7 +114,7 @@ export async function labelGithubIssue(
 
 /**
  *
- * Removes labels from a Github Issue.
+ * Removes labels from a GitHub Issue.
  *
  * @param github
  * @param issue

@@ -5,7 +5,7 @@
 [![CircleCI](https://circleci.com/gh/opencollective/opencollective-bot/tree/master.svg?style=shield)](https://circleci.com/gh/opencollective/opencollective-bot/tree/master)
 [![codecov](https://codecov.io/gh/opencollective/opencollective-bot/branch/master/graph/badge.svg)](https://codecov.io/gh/opencollective/opencollective-bot)
 
-This bot will add a custom comment on issues based on whether the author is already a backer of your [Open Collective](https://opencollective.com/)
+The Open Collective Bot will comment on issues based on whether the author is already a backer of your [Open Collective](https://opencollective.com/). It can also tag issues based on the same information.
 
 ## Overview
 
@@ -74,9 +74,7 @@ PS: You can test your configuration at https://bot.opencollective.com/validate
 ```
 Hey <author> :wave:,
 
-Thanks for backing our project. We will handle your issue
-with priority support. To make sure we don't forget how special
-you are, we added a `priority` label to your issue.
+Thanks for backing our project. We will handle your issue with priority support. To make sure we don't forget how special you are, we added a `priority` label to your issue.
 
 Thanks again for backing us :tada:!
 ```
@@ -88,9 +86,7 @@ Thanks again for backing us :tada:!
 ```
 Hey <author> :wave:,
 
-Thank you for opening an issue. We will get back to you as
-soon as we can. Also, check out our Open Collective and consider
-backing us.
+Thank you for opening an issue. We will get back to you as soon as we can. Also, check out our Open Collective and consider backing us.
 
 <link>
 PS.: We offer `priority` support for all backers. Don't forget to
@@ -105,10 +101,6 @@ add `priority` label when you start backing us :smile:
 
 See: [docs/deployment.md](docs/deployment.md)
 
----
-
 ## License
-
-> The logo and bot avatar are taken from Open Collective's marketing website https://opencollective.com/.
 
 MIT @ Matic Zavadlal

@@ -48,10 +48,8 @@ export const configSchema = joi
           labels: ['priority'],
           message: mls`
           | Hey <author> :wave:,
-          | 
-          | Thanks for backing our project. We will handle your issue
-          | with priority support. To make sure we don't forget how special
-          | you are, we added a ${'`priority`'} label to your issue.
+          |
+          | Thanks for backing our project. We will handle your issue with priority support. To make sure we don't forget how special you are, we added a ${'`priority`'} label to your issue.
           |
           | Thanks again for backing us :tada:!
           `,
@@ -63,9 +61,7 @@ export const configSchema = joi
         mls`
         | Hey <author> :wave:,
         |
-        | Thank you for opening an issue. We will get back to you as
-        | soon as we can. Also, check out our OpenCollective and consider
-        | backing us.
+        | Thank you for opening an issue. We will get back to you as soon as we can. Also, check out our Open Collective and consider backing us.
         |
         | <link>
         |
@@ -80,7 +76,7 @@ export const configSchema = joi
 
 /**
  *
- * Loads configuration from Github.
+ * Loads configuration from GitHub.
  *
  * @param context
  */
