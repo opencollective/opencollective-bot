@@ -498,4 +498,12 @@ export const backers: Member[] = [
     name: 'Airbnb',
     github: 'https://github.com/airbnb',
   },
+  {
+    MemberId: 1770,
+    type: 'USER',
+    role: 'ADMIN',
+    isActive: true,
+    name: 'Open Source Collective 501c6 (Non Profit)',
+    github: 'https://github.com/maticzav',
+  },
 ]

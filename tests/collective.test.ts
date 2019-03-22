@@ -35,22 +35,26 @@ const memberTypeSchema = joi.object().keys({
 })
 
 describe('collective', () => {
-  test('get members has expected types', async () => {
-    const res = await getCollectiveMembers('webpack')
-    expect(res.length).not.toBe(0)
-    const validations = res.map(async member => {
-      try {
-        await joi.validate(member, memberTypeSchema, { allowUnknown: true })
-      } catch (err) {
-        console.log(err, member)
-        throw err
-      }
-    })
+  test(
+    'get members has expected types',
+    async () => {
+      const res = await getCollectiveMembers('webpack')
+      expect(res.length).not.toBe(0)
+      const validations = res.map(async member => {
+        try {
+          await joi.validate(member, memberTypeSchema, { allowUnknown: true })
+        } catch (err) {
+          console.log(err, member)
+          throw err
+        }
+      })
 
-    try {
-      await Promise.all(validations)
-    } catch (err) {
-      fail(err)
-    }
-  })
+      try {
+        await Promise.all(validations)
+      } catch (err) {
+        fail(err)
+      }
+    },
+    60 * 1000,
+  )
 })
