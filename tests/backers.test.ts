@@ -11,4 +11,12 @@ describe('backers', () => {
 
     expect(res).toEqual(['Backer', 'Sponsor'])
   })
+  test('backers return null on admin role', async () => {
+    const res = await getCollectiveBackerTiers(backers, 'maticzav', [
+      'airbnb',
+      'something-else',
+    ])
+
+    expect(res).toEqual(null)
+  })
 })

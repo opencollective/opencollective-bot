@@ -46,6 +46,13 @@ export const opencollective = (app: probot.Application): void => {
       backerOrganisations,
     )
 
+    /**
+     * Ignore messages to admins, contributors...
+     */
+    if (backerTiers === null) {
+      return
+    }
+
     // Calculate messages and labels
     const dict = {
       '<author>': `@${backerName}`,
@@ -91,6 +98,13 @@ export const opencollective = (app: probot.Application): void => {
       backerName,
       backerOrganisations,
     )
+
+    /**
+     * Admins, Contributors,... have full control over labels.
+     */
+    if (backerTiers === null) {
+      return
+    }
 
     // Calculate messages and labels
     const allLabels = getLabelsFromConfig(config)
