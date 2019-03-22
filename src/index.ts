@@ -1,7 +1,7 @@
 import { Server } from 'http'
 import { createProbot, ApplicationFunction } from 'probot'
 import { findPrivateKey } from 'probot/lib/private-key'
-import logRequestErrors from 'probot/lib/middleware/log-request-errors'
+import { logRequestErrors } from 'probot/lib/middleware/log-request-errors'
 
 import { opencollective } from './bot'
 import { validator } from './validate'
@@ -46,8 +46,10 @@ export function main(port: number): Server {
     require('probot/lib/apps/sentry'),
     require('probot/lib/apps/stats'),
   ]
-
-  process.on('unhandledRejection', probot.errorHandler)
+  ;(process as NodeJS.EventEmitter).on(
+    'unhandledRejection',
+    probot.errorHandler,
+  )
 
   apps.forEach(appFn => probot.load(appFn))
 

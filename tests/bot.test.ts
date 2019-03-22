@@ -79,6 +79,7 @@ describe('opencollective issues.opened', () => {
     app.auth = () => Promise.resolve(github as any)
 
     await app.receive({
+      id: '123',
       name: 'issues',
       payload: issueOpenedFixture,
     })
@@ -184,6 +185,7 @@ describe('opencollective issues.opened', () => {
     app.auth = () => Promise.resolve(github as any)
 
     await app.receive({
+      id: '123',
       name: 'issues',
       payload: issueOpenedFixture,
     })
@@ -289,6 +291,7 @@ describe('opencollective issues.opened', () => {
     app.auth = () => Promise.resolve(github as any)
 
     await app.receive({
+      id: '123',
       name: 'issues',
       payload: issueOpenedFixture,
     })
@@ -338,6 +341,7 @@ describe('opencollective issues.labeled', () => {
     app.auth = () => Promise.resolve(github as any)
 
     await app.receive({
+      id: '123',
       name: 'issues',
       payload: issueLabeledFixture,
     })
@@ -411,6 +415,7 @@ describe('opencollective issues.labeled', () => {
     app.auth = () => Promise.resolve(github as any)
 
     await app.receive({
+      id: '123',
       name: 'issues',
       payload: issueLabeledFixture,
     })
@@ -516,6 +521,7 @@ describe('opencollective issues.labeled', () => {
     app.auth = () => Promise.resolve(github as any)
 
     await app.receive({
+      id: '123',
       name: 'issues',
       payload: issueLabeledFixture,
     })
@@ -620,6 +626,7 @@ describe('opencollective issues.labeled', () => {
     app.auth = () => Promise.resolve(github as any)
 
     await app.receive({
+      id: '123',
       name: 'issues',
       payload: issueLabeledFixture,
     })
