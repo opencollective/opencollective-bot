@@ -102,110 +102,143 @@ test('getLabelsFromConfig finds labels', async () => {
   ).toEqual(['priority', 'backer-priority'])
 })
 
-test('getLabelsFromConfigForTiers finds labels', async () => {
-  expect(
-    getLabelsFromConfigForTiers(
-      {
-        collective: 'webpack',
-        tiers: [
-          {
-            tiers: '*',
-            labels: ['priority'],
-            message: 'Hey :wave:',
-          },
-          {
-            tiers: ['Backers'],
-            labels: ['backer-priority'],
-            message: 'Hey backer!',
-          },
-          {
-            tiers: ['Sponsors'],
-            labels: ['sponsor-priority'],
-            message: 'Hey backer!',
-          },
-        ],
-        invitation: 'Hey',
-      },
-      ['Backers'],
-    ),
-  ).toEqual(['priority', 'backer-priority'])
+describe('getLabelsFromConfigForTiers', () => {
+  test('finds labels', async () => {
+    expect(
+      getLabelsFromConfigForTiers(
+        {
+          collective: 'webpack',
+          tiers: [
+            {
+              tiers: '*',
+              labels: ['priority'],
+              message: 'Hey :wave:',
+            },
+            {
+              tiers: ['Backers'],
+              labels: ['backer-priority'],
+              message: 'Hey backer!',
+            },
+            {
+              tiers: ['Sponsors'],
+              labels: ['sponsor-priority'],
+              message: 'Hey backer!',
+            },
+          ],
+          invitation: 'Hey',
+        },
+        ['Backers'],
+      ),
+    ).toEqual(['priority', 'backer-priority'])
+  })
+
+  test('returns no labels when user is not a backer', async () => {
+    expect(
+      getLabelsFromConfigForTiers(
+        {
+          collective: 'webpack',
+          tiers: [
+            {
+              tiers: '*',
+              labels: ['priority'],
+              message: 'Hey :wave:',
+            },
+            {
+              tiers: ['Backers'],
+              labels: ['backer-priority'],
+              message: 'Hey backer!',
+            },
+            {
+              tiers: ['Sponsors'],
+              labels: ['sponsor-priority'],
+              message: 'Hey backer!',
+            },
+          ],
+          invitation: 'Hey',
+        },
+        [],
+      ),
+    ).toEqual([])
+  })
 })
 
-test('getMessageFromConfigForTiers finds messages', async () => {
-  expect(
-    getMessagesFromConfigForTiers(
-      {
-        collective: 'webpack',
-        tiers: [
-          {
-            tiers: '*',
-            labels: ['priority'],
-            message: 'Hey :wave: <link> <cool>',
-          },
-          {
-            tiers: ['Backers'],
-            labels: ['backer-priority'],
-            message: 'Hey backer!',
-          },
-          {
-            tiers: ['Sponsors'],
-            labels: ['sponsor-priority'],
-            message: 'Hey sponsor!',
-          },
-        ],
-        invitation: 'Hey',
-      },
-      ['Backers'],
-      {
-        '<link>': 'pass',
-        '<cool>': 'cool-pass',
-      },
-    ),
-  ).toEqual(['Hey :wave: pass cool-pass', 'Hey backer!'])
-})
+describe('getMessageFromConfigForTiers', () => {
+  test('finds messages', async () => {
+    expect(
+      getMessagesFromConfigForTiers(
+        {
+          collective: 'webpack',
+          tiers: [
+            {
+              tiers: '*',
+              labels: ['priority'],
+              message: 'Hey :wave: <link> <cool>',
+            },
+            {
+              tiers: ['Backers'],
+              labels: ['backer-priority'],
+              message: 'Hey backer!',
+            },
+            {
+              tiers: ['Sponsors'],
+              labels: ['sponsor-priority'],
+              message: 'Hey sponsor!',
+            },
+          ],
+          invitation: 'Hey',
+        },
+        ['Backers'],
+        {
+          '<link>': 'pass',
+          '<cool>': 'cool-pass',
+        },
+      ),
+    ).toEqual(['Hey :wave: pass cool-pass', 'Hey backer!'])
+  })
 
-test('getMessageFromConfigForTiers returns invite when user is not a backer', async () => {
-  expect(
-    getMessagesFromConfigForTiers(
-      {
-        collective: 'webpack',
-        tiers: [
-          {
-            tiers: ['Sponsors'],
-            labels: ['sponsor-priority'],
-            message: 'Hey sponsor!',
-          },
-        ],
-        invitation: 'Hey <link>',
-      },
-      [],
-      {
-        '<link>': 'pass',
-        '<cool>': 'cool-pass',
-      },
-    ),
-  ).toEqual(['Hey pass'])
-})
+  test('returns invite when user is not a backer', async () => {
+    expect(
+      getMessagesFromConfigForTiers(
+        {
+          collective: 'webpack',
+          tiers: [
+            {
+              tiers: ['Sponsors'],
+              labels: ['sponsor-priority'],
+              message: 'Hey sponsor!',
+            },
+          ],
+          invitation: 'Hey <link>',
+        },
+        [],
+        {
+          '<link>': 'pass',
+          '<cool>': 'cool-pass',
+        },
+      ),
+    ).toEqual(['Hey pass'])
+  })
 
-test('getMessageFromConfigForTiers returns no message when user is not a backer and invitaiton is disabled', async () => {
-  expect(
-    getMessagesFromConfigForTiers(
-      {
-        collective: 'webpack',
-        tiers: [
-          {
-            tiers: ['Sponsors'],
-            labels: ['sponsor-priority'],
-            message: 'Hey sponsor!',
-          },
-        ],
-        invitation: false,
-      },
-      [],
-      {
-        '<link>': 'pass',
-        '<cool>': 'cool-pass',
-      },
-    ),
-  ).toEqual([])
+  test('returns no message when user is not a backer and invitaiton is disabled', async () => {
+    expect(
+      getMessagesFromConfigForTiers(
+        {
+          collective: 'webpack',
+          tiers: [
+            {
+              tiers: ['Sponsors'],
+              labels: ['sponsor-priority'],
+              message: 'Hey sponsor!',
+            },
+          ],
+          invitation: false,
+        },
+        [],
+        {
+          '<link>': 'pass',
+          '<cool>': 'cool-pass',
+        },
+      ),
+    ).toEqual([])
+  })
 })

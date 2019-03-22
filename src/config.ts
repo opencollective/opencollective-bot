@@ -69,13 +69,12 @@ export const configSchema = joi
         |
         | <link>
         |
-        | PS.: We offer ${'`priority`'} support for all backers. Don't forget to
-        | add ${'`priority`'} label when you start backing us :smile:
+        | > PS.: We offer ${'`priority`'} support for all backers. Don't forget to add ${'`priority`'} label when you start backing us :smile:
       `,
       )
+      .allow(false)
       .optional()
-      .description('An invitation message shown to non-backers')
-      .allow(false),
+      .description('An invitation message shown to non-backers'),
   })
   .requiredKeys(['collective'])
 
@@ -123,6 +122,16 @@ export function getLabelsFromConfigForTiers(
   config: Config,
   tiers: Tier[],
 ): GithubLabel[] {
+  /**
+   * Returns no labels if user is not a backer.
+   */
+  if (tiers.length === 0) {
+    return []
+  }
+
+  /**
+   * Finds all labels for the specified tiers.
+   */
   return config.tiers.reduce<GithubLabel[]>((acc, tier) => {
     if (tier.tiers === '*') {
       return [...acc, ...tier.labels]

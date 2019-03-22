@@ -2,14 +2,14 @@
   "public": false,
   "name": "opencollective-bot",
   "version": 2,
-  "alias": "opencollective-bot.now.sh",
+  "alias": "bot.opencollective.com",
   "builds": [{ "src": "src/index.ts", "use": "@now/node-server@canary" }],
   "routes": [{ "src": "/.*", "dest": "src/index.ts" }],
   "env": {
-    "APP_ID": "@ocb-app-id",
-    "WEBHOOK_SECRET": "@ocb-webhook-secret",
-    "PRIVATE_KEY": "@ocb-private-key",
-    "SENTRY_DSN": "@ocb-sentry-dsn"
+    "APP_ID": "@oc-bot-app-id",
+    "WEBHOOK_SECRET": "@oc-bot-webhook-secret",
+    "PRIVATE_KEY": "@oc-bot-private-key",
+    "SENTRY_DSN": "@oc-bot-sentry-dsn"
   },
   "github": {
     "enabled": true,
