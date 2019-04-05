@@ -5,6 +5,7 @@ import { logRequestErrors } from 'probot/lib/middleware/log-request-errors'
 
 import { opencollective } from './bot'
 import { validator } from './validate'
+import dotenv from 'dotenv'
 
 /* istanbul ignore if */
 if (process.env.NODE_ENV !== 'test') {

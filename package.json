@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "body-parser": "^1.18.3",
+    "dotenv": "^7.0.0",
     "joi": "^14.3.1",
     "lodash.uniq": "^4.5.0",
     "multilines": "^1.0.2",
