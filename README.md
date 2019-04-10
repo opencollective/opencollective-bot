@@ -117,13 +117,13 @@ Feel free to clone or download this project using the **git clone** and install 
 
 > After making all necessary local Ngrok installations found here [Ngrok](https://ngrok.com)
 
-- Run `Ngrok http <{localhost port}>` from your downloaded `Ngrok.exe` to create a tunnel in your terminal.
-- Take note of the **Web Interface** generated as it would be needed when registering the App on github.
+- Run `Ngrok http <{localhost port}>` from your downloaded `Ngrok.exe` to test your installation.
 
 ### Registering App
 
 > Follow steps listed at [Github](https://developer.github.com/apps/building-github-apps/creating-a-github-app/) to register your bot.
-> Use the **Web Interface** as **Webhook Url** when registering the app on Github.
+
+> Leave the **Web Interface** blank as it would be generated after sucessfully setting up the bot locally and running the Ngrok terminal .
 
 #### Credentials
 
@@ -136,18 +136,24 @@ After registering the app, take note of the **App ID** shown in the about page
 ```js
  APP_ID = <App ID>
  WebHook_Secret =
- Private_Key =
+ Private_Key_PATH = < path to the private key downloaded from github>
 ```
 
 - Copy the App Id found at the **about** page and insert into the App Id value in the `.env` file .
 
-- Generate a Private Key at the **Private Keys** column found in the about page, save the `.pem` file, and copy the values found next to the Private key found into the `.env` file . E.g `53:55:64:04:b1:4a:80:ff:9c:79:8e:48:b2:a2:13:84:9f:c5:71:c4`
+- Place the private key downloaded in the working directory and refrence it in your env file. E.g `private-key.pem`
 
 - Run `openssl rand -base64 32` in a terminal with **Openssl** installed, copy the key generated and paste into the Webhook Secret in the `.env` file.
 
 ### Installation and Inspecting
 
-> Run `Yarn dev` to start the bot locally.
+- Run `Yarn dev` to start the bot locally and this should start the bot on port `3000`
+
+- Run `Ngrok http 3000` to create a local tunnel exposing port 3000
+
+- Copy the generated https port shown at the Ngrok terminal
+
+- Use the https Url generated for Ngrok as the Webhook Url found in the about page
 
 Once fully setup, you can install it within any already existing repository to test and see it work
 

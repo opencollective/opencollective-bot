@@ -24,7 +24,7 @@ export function main(port: number): Server {
   if (
     !process.env.APP_ID ||
     !process.env.WEBHOOK_SECRET ||
-    !process.env.PRIVATE_KEY
+    !process.env.PRIVATE_KEY_PATH
   ) {
     throw new Error('Missing credentials.')
   }
