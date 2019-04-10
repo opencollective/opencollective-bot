@@ -103,15 +103,15 @@ See: [docs/deployment.md](docs/deployment.md)
 
 # Development
 
-> This short guide is meant to give a guide as to how github apps are made and basic steps to reproduce the OpenCollective Bot should you wish to make futher changes.  
+> This short guide is meant to give a guide as to how github apps are made and basic steps to reproduce the OpenCollective Bot should you wish to make futher changes.
 
- ## Installation
+## Installation
 
-Feel free to clone or download this project using the **git clone** and install using **Yarn install** or **Npm install** to install required dependencies
+Feel free to clone or download this project using the **git clone** and install using **Yarn install** to install required dependencies
 
 **WebHooks** are crucial to **Github Apps**. Hence, you can use [Ngrok](https://ngrok.com) , [Smee](https://smee.io) or other comfortable options .
 
-> **Ngrok** is however used in this guide . 
+> **Ngrok** is however used in this guide .
 
 ### Running Ngrok
 
@@ -122,34 +122,34 @@ Feel free to clone or download this project using the **git clone** and install 
 
 ### Registering App
 
-> Follow steps listed at [Github](https://developer.github.com/apps/building-github-apps/creating-a-github-app/) to register your bot. 
- Use the **Web Interface** as **Webhook Url** when registering the app on Github.    
+> Follow steps listed at [Github](https://developer.github.com/apps/building-github-apps/creating-a-github-app/) to register your bot.
+> Use the **Web Interface** as **Webhook Url** when registering the app on Github.
 
 #### Credentials
 
-After registering the app, take note of the following listed details shown in the about page 
+After registering the app, take note of the **App ID** shown in the about page
 
-- App ID
-- Client ID
-- Client Secret
-
-> Using a `.env` file in this project is highly recommended to store your credentials  
+> Using a `.env` file in this project is highly recommended to store your credentials
 
 - Create a new `.env` file at the root folder and copy the code below into it.
-  
+
 ```js
- APP_ID = <your app client id>
- WEBHOOK_SECRET = <your app client secret>
- PRIVATE_KEY = <your app id>
- SENTRY_DSN = <base64 encoded contents of your pem file>
+ APP_ID = <App ID>
+ WebHook_Secret =
+ Private_Key =
 ```
 
-- Copy the previously listed values found at the **about** page and insert them into the respective values in the `.env` file . 
- 
-### Installation and  Inspecting
-> Run `npm or yarn start` to start the bot locally.
+- Copy the App Id found at the **about** page and insert into the App Id value in the `.env` file .
 
-Once fully setup, you can install it within any already existing repository to test and see it work 
+- Generate a Private Key at the **Private Keys** column found in the about page, save the `.pem` file, and copy the values found next to the Private key found into the `.env` file . E.g `53:55:64:04:b1:4a:80:ff:9c:79:8e:48:b2:a2:13:84:9f:c5:71:c4`
+
+- Run `openssl rand -base64 32` in a terminal with **Openssl** installed, copy the key generated and paste into the Webhook Secret in the `.env` file.
+
+### Installation and Inspecting
+
+> Run `Yarn dev` to start the bot locally.
+
+Once fully setup, you can install it within any already existing repository to test and see it work
 
 Ngrok out of the box, provides the ability to inspect incoming traffic running over your tunnels. To do this, open the **localhost ** url shown in your terminal in your browser.
 

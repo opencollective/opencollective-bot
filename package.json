@@ -11,6 +11,7 @@
     "deploy:production": "now --target production"
   },
   "dependencies": {
+    "@types/dotenv": "^6.1.1",
     "body-parser": "^1.18.3",
     "dotenv": "^7.0.0",
     "joi": "^14.3.1",
