@@ -28,7 +28,7 @@
     "@types/lodash.uniq": "4.5.6",
     "@types/nock": "9.3.1",
     "@types/node": "11.13.4",
-    "@types/node-fetch": "2.3.0",
+    "@types/node-fetch": "2.3.1",
     "@types/request-promise-native": "1.0.15",
     "@zeit/ncc": "0.17.4",
     "btoa": "1.2.1",
