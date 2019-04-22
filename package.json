@@ -27,7 +27,7 @@
     "@types/js-yaml": "3.12.1",
     "@types/lodash.uniq": "4.5.6",
     "@types/nock": "9.3.1",
-    "@types/node": "11.13.5",
+    "@types/node": "11.13.6",
     "@types/node-fetch": "2.3.2",
     "@types/request-promise-native": "1.0.15",
     "@zeit/ncc": "0.18.0",
