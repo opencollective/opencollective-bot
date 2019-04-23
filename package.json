@@ -30,7 +30,7 @@
     "@types/node": "11.13.7",
     "@types/node-fetch": "2.3.2",
     "@types/request-promise-native": "1.0.15",
-    "@zeit/ncc": "0.18.0",
+    "@zeit/ncc": "0.18.1",
     "btoa": "1.2.1",
     "codecov": "3.3.0",
     "husky": "1.3.1",
