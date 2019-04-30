@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf dist",
-    "dev": "ts-node src/index.ts",
+    "dev": "dotenv ts-node src/index.ts",
     "test": "NODE_ENV=test jest",
     "coverage": "yarn codecov",
     "deploy:staging": "now -e APP_ID=@oc-bot-staging-app-id -e WEBHOOK_SECRET=@oc-bot-staging-webhook-secret -e PRIVATE_KEY=@oc-bot-staging-private-key -e SENTRY_DSN=@oc-bot-staging-sentry-dsn --target staging && now alias bot-staging.opencollective.com",
@@ -14,6 +14,7 @@
     "@types/dotenv": "^6.1.1",
     "body-parser": "^1.18.3",
     "dotenv": "^7.0.0",
+    "dotenv-cli": "^2.0.0",
     "joi": "^14.3.1",
     "lodash.uniq": "^4.5.0",
     "multilines": "^1.0.2",

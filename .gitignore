@@ -7,5 +7,5 @@ coverage
 *.log*
 .env*
 package-lock.json
-opencollectivetestbot.2019-04-09.private-key.pem
+private-key.pem
 __tmp__
