@@ -163,7 +163,7 @@ After registering the app, take note of the **App ID** shown in the **Github App
 
 Once fully setup, you can install it within any already existing repository to test and see it work
 
-> Github Apps can be installed on repositories visiting the [Github App Settings](https://github.com/settings/apps) and navigating to the **Intsall App** column in the left vertical tab.
+> Github Apps can be installed on repositories by visiting the [Github App Settings](https://github.com/settings/apps) and navigating to the **Intsall App** column in the left vertical tab.
 
 Open your **Smee URL** in any browser to view and inspect incoming payloads
 
