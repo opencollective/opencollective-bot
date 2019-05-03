@@ -9,3 +9,5 @@ coverage
 package-lock.json
 
 __tmp__
+
+*.pem
