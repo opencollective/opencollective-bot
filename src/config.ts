@@ -180,6 +180,7 @@ export function getMessagesFromConfigForTiers(
   }, [])
 
   const messages = rawMessages.map(hydrateMessage)
+
   return messages
 
   /* Helper functions */

@@ -13,6 +13,14 @@ export interface GithubIssue {
   repo: string
 }
 
+export interface GithubPullRequest {
+  owner: string
+  title: string
+  repo: string
+  head: string
+  base: string
+}
+
 /**
  *
  * Returns a list of user organisations.
@@ -121,5 +129,6 @@ export async function removeLabelsFromGithubIssue(
   )
 
   await Promise.all(actions)
+
   return labels
 }
