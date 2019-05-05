@@ -2,6 +2,7 @@ import Octokit, {
   Response,
   IssuesCreateCommentResponse,
   IssuesAddLabelsResponseItem,
+  PullsCreateReviewRequestResponse,
 } from '@octokit/rest'
 import { Message } from './config'
 
@@ -10,6 +11,14 @@ export interface GithubIssue {
   owner: string
   number: number
   repo: string
+}
+
+export interface GithubPullRequest {
+  owner: string
+  title: string
+  repo: string
+  head: string
+  base: string
 }
 
 /**
@@ -63,6 +72,23 @@ export async function messageGithubIssue(
       owner: issue.owner,
       number: issue.number,
       body: message,
+    }),
+  )
+
+  return Promise.all(actions)
+}
+
+export async function createGithubPR(
+  github: Octokit,
+  pulls: GithubPullRequest[],
+): Promise<Response<PullsCreateReviewRequestResponse>[]> {
+  const actions = pulls.map(pull =>
+    github.pulls.create({
+      owner: pull.owner,
+      repo: pull.repo,
+      title: pull.title,
+      head: pull.head,
+      base: pull.base,
     }),
   )
 
