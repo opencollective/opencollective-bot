@@ -2,7 +2,12 @@ import Octokit, {
   Response,
   IssuesCreateCommentResponse,
   IssuesAddLabelsResponseItem,
-  PullsCreateReviewRequestResponse,
+  PullsCreateResponse,
+  ReposCreateFileResponse,
+  GitCreateRefParams,
+  GitCreateRefResponse,
+  ReposCreateFileParams,
+  PullsUpdateResponse,
 } from '@octokit/rest'
 import { Message } from './config'
 
@@ -19,6 +24,8 @@ export interface GithubPullRequest {
   repo: string
   head: string
   base: string
+  body: string
+  maintainer_can_modify: boolean
 }
 
 /**
@@ -78,10 +85,17 @@ export async function messageGithubIssue(
   return Promise.all(actions)
 }
 
+/**
+ *
+ * Creates a GitHub Pull Request.
+ *
+ * @param github
+ * @param pulls
+ */
 export async function createGithubPR(
   github: Octokit,
   pulls: GithubPullRequest[],
-): Promise<Response<PullsCreateReviewRequestResponse>[]> {
+): Promise<Response<PullsCreateResponse>[]> {
   const actions = pulls.map(pull =>
     github.pulls.create({
       owner: pull.owner,
@@ -89,12 +103,83 @@ export async function createGithubPR(
       title: pull.title,
       head: pull.head,
       base: pull.base,
+      body: pull.body,
+      maintainer_can_modify: pull.maintainer_can_modify,
     }),
   )
 
   return Promise.all(actions)
 }
 
+/**
+ *
+ * Creates a GitHub Pull Request.
+ *
+ * @param github
+ * @param owner
+ * @param repo
+ */
+export async function removeGithubPR(
+  github: Octokit,
+  owner: string,
+  repo: string,
+  number: number,
+): Promise<Response<PullsUpdateResponse>> {
+  return github.pulls.update({
+    owner: owner,
+    repo: repo,
+    number: number,
+    state: 'closed',
+  })
+}
+
+/**
+ *
+ * Creates a GitHub Pull Request.
+ *
+ * @param github
+ * @param references
+ */
+export async function createGithubRef(
+  github: Octokit,
+  references: GitCreateRefParams[],
+): Promise<Response<GitCreateRefResponse>[]> {
+  const actions = references.map(reference =>
+    github.git.createRef({
+      owner: reference.owner,
+      repo: reference.repo,
+      ref: reference.ref,
+      sha: reference.sha,
+    }),
+  )
+
+  return Promise.all(actions)
+}
+
+/**
+ *
+ * Creates a GitHub Pull Request.
+ *
+ * @param github
+ * @param files
+ */
+export async function createGithubFile(
+  github: Octokit,
+  files: ReposCreateFileParams[],
+): Promise<Response<ReposCreateFileResponse>[]> {
+  const actions = files.map(file =>
+    github.repos.createFile({
+      owner: file.owner,
+      repo: file.repo,
+      path: file.path,
+      message: file.message,
+      content: file.content,
+      branch: file.branch,
+    }),
+  )
+
+  return Promise.all(actions)
+}
 /**
  *
  * Adds labels to a GitHub Issue and ensures they all exist.
