@@ -12,87 +12,113 @@ import {
   messageGithubIssue,
   labelGithubIssue,
   removeLabelsFromGithubIssue,
+  createGithubPR,
+  createGithubFile,
+  createGithubRef,
 } from './github'
 import { is, not } from './utils'
+
+var fs = require('fs')
+
+let configFileName = 'opencollective.yml'
+
+let configContent = fs
+  .readFileSync(process.cwd() + '/' + configFileName)
+  .toString()
 
 export const opencollective = (app: probot.Application): void => {
   app.log('OpenCollective Bot up!')
 
   app.on('installation_repositories', async (context: probot.Context) => {
+    /**
+     * Flow
+     *
+     * 1. Get 'repository_added' action,
+     * 2. Get all newly added repositories,
+     * In each repo
+     * 3. Get reference to repo's master branch,
+     * 4. Create reference a new branch,
+     * 5. Add content from config file,
+     * 6. Create a PR
+     *
+     */
+
     //get 'added' action as condition before adding the config file
     if (context.payload.action === 'added') {
-      let added_repos = context.payload.repositories_added
-
-      // This can open PRs with new files at any point in time, but this
-      // gets called when the app is first installed on a repo
-      context.log({ event: context.event, action: context.payload.action })
-
       let fields = {
         file: {
           path: '.github/opencollective.yml',
-          content: `collective: graphql-shield
-        tiers:
-          - tiers: '*'
-            labels: ['backer']
-            message: 'Hey <link>'
-          - tiers: ['Sponsor']
-            labels: ['sponsor']
-            message: 'Hey sponsor <link>'
-        invitation: |
-          Hey <author> :wave:,
-          This is an optional message to your audience. Check the
-          default message below.
-        
-          <link>`,
+          content: configContent,
         },
         pr: {
-          body: 'The body of your Pull request',
-          title: 'The title of your Pull Request',
+          body: 'Edit the yml file to configure the bot. \n' + configContent,
+          title: 'Open Collective Bot Configuration',
         },
       }
 
-      const branch = `add-${fields.file.path}` // your branch's name
-      const content = Buffer.from(fields.file.content).toString('base64') // content for your configuration file
+      //call function to open PR with default config details
+      await openPR(context, fields, context.payload)
+    }
+  })
+
+  async function openPR(context: probot.Context, fields: any, payload: any) {
+    const owner = payload.installation.account.login
+    const repos = payload.repositories_added
+
+    //loop through all newly added repositories for bot
+    for (var repo of repos) {
+      var newContext = Object.create(context)
+
+      newContext.repo = { owner: owner, repo: repo }
+
+      const branch = `add-opencollective-config` // new branch's name
+      const content = Buffer.from(fields.file.content).toString('base64') // content for the configuration file
 
       const reference = await context.github.git.getRef({
-        owner: context.repo.owner,
-        repo: context.repo.repo,
+        owner: owner,
+        repo: repo.name,
         ref: 'heads/master',
       }) // get the reference for the master branch
 
-      console.log(
-        await context.github.git.createRef(
-          context.repo({
+      await Promise.all([
+        createGithubRef(context.github, [
+          {
+            owner: owner,
+            repo: repo.name,
             ref: `refs/heads/${branch}`,
             sha: reference.data.object.sha,
-          }),
-        ),
-      ) // create a reference in git for your branch
+          },
+        ]),
+      ]) // create a reference in git for the branch
 
-      console.log(
-        await context.github.repos.createFile(
-          context.repo({
+      await Promise.all([
+        createGithubFile(context.github, [
+          {
+            owner: owner,
+            repo: repo.name,
             path: fields.file.path, // the path to your config file
             message: `adds ${fields.file.path}`, // a commit message
-            content,
-            branch,
-          }),
-        ),
-      ) // create your config file
+            content: content,
+            branch: branch,
+          },
+        ]),
+      ]) // create your config file
 
-      console.log(
-        context.github.pulls.create(
-          context.repo({
-            maintainer_can_modify: true, // allows maintainers to edit your app's PR
+      return await Promise.all([
+        createGithubPR(context.github, [
+          {
+            owner: owner,
+            repo: repo.name,
             title: fields.pr.title, // the title of the PR
             head: branch,
             base: 'master', // where you want to merge your changes
-            body: fields.pr.body, // the body of your PR
-          }),
-        ),
-      )
+            body: fields.pr.body, // the body of your PR,
+            maintainer_can_modify: true, // allows maintainers to edit your app's PR
+          },
+        ]),
+      ])
     }
-  })
+  }
 
   app.on('issues.opened', async (context: probot.Context) => {
     const backerName = context.payload.issue.user.login
