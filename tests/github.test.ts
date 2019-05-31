@@ -7,6 +7,8 @@ import {
   messageGithubIssue,
   labelGithubIssue,
   removeLabelsFromGithubIssue,
+  createGithubPR,
+  removeGithubPR,
 } from '../src/github'
 
 /* Helpers */
@@ -134,4 +136,43 @@ describe('github', () => {
     expect(client.issues.removeLabel).toBeCalledTimes(2)
     expect(res).toEqual(['pass-1', 'pass-2'])
   })
+})
+
+test('createGithubPR creates github pull request', async () => {
+  const client = {
+    pulls: {
+      createPR: jest.fn().mockImplementation(args => Promise.resolve(args)),
+    },
+  }
+
+  const res = await createGithubPR(client as any, [
+    {
+      owner: 'twisstosin',
+      repo: 'Lasgithub-Android',
+      title: 'Test', // the title of the PR
+      head: 'add-opencollective-config',
+      base: 'master', // where you want to merge your changes
+      body: 'test', // the body of your PR,
+      maintainer_can_modify: true, // allows maintainers to edit your app's PR
+    },
+  ])
+
+  let testResponse = res[0].data
+
+  await removeGithubPR(
+    client as any,
+    testResponse.user.login,
+    'Lasgithub-Android',
+    testResponse.number,
+  )
+
+  expect(client.pulls.createPR).toBeCalledTimes(1)
+  expect(testResponse).toEqual([
+    {
+      number: 1,
+      owner: 'maticzav',
+      repo: 'label-sync',
+      body: 'pass-1',
+    },
+  ])
 })
