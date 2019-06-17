@@ -43,7 +43,7 @@
     "request-promise-native": "1.0.7",
     "rimraf": "2.6.3",
     "ts-jest": "24.0.2",
-    "ts-node": "8.2.0",
+    "ts-node": "8.3.0",
     "typescript": "3.5.2"
   },
   "license": "MIT"
