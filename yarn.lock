@@ -601,10 +601,10 @@
   resolved "https://registry.yarnpkg.com/@types/yargs/-/yargs-12.0.10.tgz#17a8ec65cd8e88f51b418ceb271af18d3137df67"
   integrity sha512-WsVzTPshvCSbHThUduGGxbmnwcpkgSctHGHTqzWyFg4lYAuV5qXlyFPOsP3OWqCINfmg/8VXP+zJaa4OxEsBQQ==
 
-"@zeit/ncc@0.20.0":
-  version "0.20.0"
-  resolved "https://registry.yarnpkg.com/@zeit/ncc/-/ncc-0.20.0.tgz#1c3c934b7c191ea225d58b735b003760e796856e"
-  integrity sha512-tc7F3mYiJZgEsPPJJwNznWIeIEKrVxW6hvwAjpLabq8+hu3sm+YuR+59CLfAvA26+yHBrVcYnsxZ6XW1g/oRmg==
+"@zeit/ncc@0.20.1":
+  version "0.20.1"
+  resolved "https://registry.yarnpkg.com/@zeit/ncc/-/ncc-0.20.1.tgz#1e282f23a171b11f5b65d3281fad7b9195cbab66"
+  integrity sha512-sCSWftZlFR2VgbjdMq+/TPXU7fDJpsjxGcDU1Nh2b/Gemvna8Ncl77ck+6WeEhcx/Gwtv4AeR3xJ1upgk7MSnQ==
 
 abab@^2.0.0:
   version "2.0.0"
