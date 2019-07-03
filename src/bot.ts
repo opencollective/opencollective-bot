@@ -1,5 +1,5 @@
 import * as probot from 'probot'
-import { getCollectiveBackerTiers } from './backers'
+import { getIssueAuthorCollectiveTiers } from './backers'
 import {
   getConfig,
   getMessagesFromConfigForTiers,
@@ -19,8 +19,8 @@ export const opencollective = (app: probot.Application): void => {
   app.log('OpenCollective Bot up!')
 
   app.on('issues.opened', async (context: probot.Context) => {
-    const backerName = context.payload.issue.user.login
     const issue = context.issue()
+    const issueAuthorGithubHandle = context.payload.issue.user.login
 
     /**
      * Flow
@@ -36,30 +36,40 @@ export const opencollective = (app: probot.Application): void => {
     if (!config) return
 
     // Get backer tiers
-    const [allBackers, backerOrganisations] = await Promise.all([
+    const [
+      allCollectiveMembers,
+      issueAuthorGithubOrganisations,
+    ] = await Promise.all([
       getCollectiveMembers(config.collective),
-      getUserOrganisations(context.github, backerName),
+      getUserOrganisations(context.github, issueAuthorGithubHandle),
     ])
-    const backerTiers = getCollectiveBackerTiers(
-      allBackers,
-      backerName,
-      backerOrganisations,
+    const issueAuthorCollectiveTiers = getIssueAuthorCollectiveTiers(
+      allCollectiveMembers,
+      issueAuthorGithubHandle,
+      issueAuthorGithubOrganisations,
     )
 
     /**
      * Ignore messages to admins, contributors...
      */
-    if (backerTiers === null) {
+    if (issueAuthorCollectiveTiers === null) {
       return
     }
 
     // Calculate messages and labels
     const dict = {
-      '<author>': `@${backerName}`,
+      '<author>': `@${issueAuthorGithubHandle}`,
       '<link>': `https://opencollective.com/${config.collective}`,
     }
-    const messages = getMessagesFromConfigForTiers(config, backerTiers, dict)
-    const labels = getLabelsFromConfigForTiers(config, backerTiers)
+    const messages = getMessagesFromConfigForTiers(
+      config,
+      issueAuthorCollectiveTiers,
+      dict,
+    )
+    const labels = getLabelsFromConfigForTiers(
+      config,
+      issueAuthorCollectiveTiers,
+    )
 
     // Sync
     await Promise.all([
@@ -71,9 +81,9 @@ export const opencollective = (app: probot.Application): void => {
   })
 
   app.on('issues.labeled', async (context: probot.Context) => {
-    const backerName = context.payload.issue.user.login
     const label = context.payload.label.name
     const issue = context.issue()
+    const issueAuthorGithubHandle = context.payload.issue.user.login
 
     /**
      * Flow
@@ -88,27 +98,33 @@ export const opencollective = (app: probot.Application): void => {
     const config = await getConfig(context)
     if (!config) return
 
-    // Get backer tiers
-    const [allBackers, backerOrganisations] = await Promise.all([
+    // Get Open Collective tiers from issue author
+    const [
+      allCollectiveMembers,
+      issueAuthorGithubOrganisations,
+    ] = await Promise.all([
       getCollectiveMembers(config.collective),
-      getUserOrganisations(context.github, backerName),
+      getUserOrganisations(context.github, issueAuthorGithubHandle),
     ])
-    const backerTiers = getCollectiveBackerTiers(
-      allBackers,
-      backerName,
-      backerOrganisations,
+    const issueAuthorCollectiveTiers = getIssueAuthorCollectiveTiers(
+      allCollectiveMembers,
+      issueAuthorGithubHandle,
+      issueAuthorGithubOrganisations,
     )
 
     /**
      * Admins, Contributors,... have full control over labels.
      */
-    if (backerTiers === null) {
+    if (issueAuthorCollectiveTiers === null) {
       return
     }
 
     // Calculate messages and labels
     const allLabels = getLabelsFromConfig(config)
-    const applicableLabels = getLabelsFromConfigForTiers(config, backerTiers)
+    const applicableLabels = getLabelsFromConfigForTiers(
+      config,
+      issueAuthorCollectiveTiers,
+    )
 
     // Sync
     if (allLabels.some(is(label)) && applicableLabels.every(not(is(label)))) {

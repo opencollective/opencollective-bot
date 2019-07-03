@@ -10,16 +10,18 @@ import { is } from './utils'
  *
  * @param name
  */
-export function getCollectiveBackerTiers(
-  allBackers: Member[],
-  backerName: string,
-  backerOrganisations: string[],
+export function getIssueAuthorCollectiveTiers(
+  collectiveMembers: Member[],
+  githubUser: string,
+  githubUserOrganisations: string[],
 ): Tier[] | null {
-  const tiers = allBackers.reduce<Tier[] | null>((acc, member) => {
+  const tiers = collectiveMembers.reduce<Tier[] | null>((acc, member) => {
     if (!member.github || acc === null) return acc
 
-    const githubName = stripGithubName(member.github)
-    const isMember = [...backerOrganisations, backerName].some(is(githubName))
+    const memberGithub = stripGithubName(member.github)
+    const isMember = [githubUser, ...githubUserOrganisations].some(
+      is(memberGithub),
+    )
 
     /* Tiers */
     if (isMember && member.role === 'BACKER' && member.tier) {
