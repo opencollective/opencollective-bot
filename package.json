@@ -11,12 +11,12 @@
     "deploy:production": "now --target production"
   },
   "dependencies": {
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.19.0",
     "joi": "^14.3.1",
     "lodash.uniq": "^4.5.0",
     "multilines": "^1.0.2",
-    "node-fetch": "^2.3.0",
-    "probot": "^9.0.2"
+    "node-fetch": "^2.6.0",
+    "probot": "^9.2.15"
   },
   "devDependencies": {
     "@types/body-parser": "1.17.0",
@@ -27,7 +27,7 @@
     "@types/js-yaml": "3.12.1",
     "@types/lodash.uniq": "4.5.6",
     "@types/nock": "10.0.3",
-    "@types/node": "11.13.17",
+    "@types/node": "12.0.12",
     "@types/node-fetch": "2.3.7",
     "@types/request-promise-native": "1.0.16",
     "@zeit/ncc": "0.20.4",
