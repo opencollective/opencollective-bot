@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf dist",
-    "dev": "ts-node src/index.ts",
+    "dev": "dotenv ts-node src/index.ts",
     "test": "NODE_ENV=test jest",
     "coverage": "yarn codecov",
     "deploy:staging": "now -e APP_ID=@oc-bot-staging-app-id -e WEBHOOK_SECRET=@oc-bot-staging-webhook-secret -e PRIVATE_KEY=@oc-bot-staging-private-key -e SENTRY_DSN=@oc-bot-staging-sentry-dsn --target staging && now alias bot-staging.opencollective.com",
@@ -33,6 +33,7 @@
     "@zeit/ncc": "0.20.4",
     "btoa": "1.2.1",
     "codecov": "3.5.0",
+    "dotenv-cli": "2.0.0",
     "husky": "3.0.0",
     "jest": "24.8.0",
     "js-yaml": "3.13.1",

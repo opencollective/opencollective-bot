@@ -95,11 +95,21 @@ add `priority` label when you start backing us :smile:
 
 <p align="center"><img src="media/invite.png" width="600" /></p>
 
+## Development
+
+**Summary**: This project is developed in TypeScript, running with Node and dependencies are managed with Yarn. To configure the project, you will need to create a GitHub App. Because the projet rely on Webhooks, you will also need to setup a proxy for that.
+
+See: [docs/development.md](docs/development.md)
+
 ## Deployment
 
 **Summary**: This project is currently deployed with [Now](https://zeit.co/now) (v2). To deploy to staging or production, you need to be a core member of the Open Collective team.
 
 See: [docs/deployment.md](docs/deployment.md)
+
+## More documentation:
+
+- [List of supported environment variables](docs/environment-variables.md)
 
 ## License
 
