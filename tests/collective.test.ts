@@ -8,11 +8,6 @@ import { getCollectiveMembers } from '../src/collective'
  * Schema has to be aligned with Member Type definition.
  */
 const memberTypeSchema = joi.object().keys({
-  MemberId: joi.number().required(),
-  type: joi
-    .string()
-    .valid('COLLECTIVE', 'EVENT', 'ORGANIZATION', 'USER')
-    .required(),
   role: joi
     .string()
     .valid(
@@ -25,13 +20,17 @@ const memberTypeSchema = joi.object().keys({
       'CONTRIBUTOR',
     )
     .required(),
-  tier: joi.string(),
-  isActive: joi.boolean().required(),
-  name: joi
-    .string()
-    .allow('')
-    .required(),
-  github: joi.string().allow(null),
+  tier: joi
+    .object()
+    .keys({
+      slug: joi.string(),
+      name: joi.string(),
+    })
+    .allow(null),
+  account: joi.object().keys({
+    slug: joi.string(),
+    githubHandle: joi.string().allow(null),
+  }),
 })
 
 describe('collective', () => {

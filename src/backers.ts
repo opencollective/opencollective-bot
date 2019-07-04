@@ -1,7 +1,6 @@
-import uniq from 'lodash.uniq'
+import { uniq } from 'lodash'
 
 import { Tier, Member } from './collective'
-import { stripGithubName } from './github'
 import { is } from './utils'
 
 /**
@@ -12,16 +11,16 @@ import { is } from './utils'
  */
 export function getIssueAuthorCollectiveTiers(
   collectiveMembers: Member[],
-  githubUser: string,
-  githubUserOrganisations: string[],
+  issueAuthorGithubHandle: string,
+  issueAuthorGithubOrganisations: string[],
 ): Tier[] | null {
   const tiers = collectiveMembers.reduce<Tier[] | null>((acc, member) => {
-    if (!member.github || acc === null) return acc
+    if (!member.account.githubHandle || acc === null) return acc
 
-    const memberGithub = stripGithubName(member.github)
-    const isMember = [githubUser, ...githubUserOrganisations].some(
-      is(memberGithub),
-    )
+    const isMember = [
+      issueAuthorGithubHandle,
+      ...issueAuthorGithubOrganisations,
+    ].some(is(member.account.githubHandle))
 
     /* Tiers */
     if (isMember && member.role === 'BACKER' && member.tier) {

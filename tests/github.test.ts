@@ -3,7 +3,6 @@ import Octokit from '@octokit/rest'
 
 import {
   getUserOrganisations,
-  stripGithubName,
   messageGithubIssue,
   labelGithubIssue,
   removeLabelsFromGithubIssue,
@@ -37,16 +36,6 @@ describe('github', () => {
     } catch (err) {
       fail(err)
     }
-  })
-
-  test('strip github username correctly strips', () => {
-    expect(stripGithubName('https://github.com/maticzav')).toMatch('maticzav')
-    expect(stripGithubName('https://github.com/graphql-boilerplates')).toMatch(
-      'graphql-boilerplates',
-    )
-    expect(stripGithubName('https://github.com/web-pack-pack')).toMatch(
-      'web-pack-pack',
-    )
   })
 
   test('messageGithubIssue messages github issue', async () => {

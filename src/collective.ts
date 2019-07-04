@@ -1,10 +1,38 @@
 import fetch from 'node-fetch'
 
-export type Tier = string
+const graphqlEndpoint = 'https://api.opencollective.com/graphql/v2'
+
+const membersGraphqlQuery = `query account($slug: String!) {
+  account(slug: $slug) {
+    members(limit: 1000) {
+      limit
+      totalCount
+      nodes {
+        role
+        account {
+          slug
+          githubHandle
+        }
+        tier {
+          slug
+          name
+        }
+      }
+    }
+  }
+}`
+
+export type Tier = {
+  slug: string
+  name: string
+}
+
+export type Account = {
+  slug: string
+  githubHandle: string | null
+}
 
 export type Member = {
-  MemberId: number
-  type: 'COLLECTIVE' | 'EVENT' | 'ORGANIZATION' | 'USER'
   role:
     | 'HOST'
     | 'ADMIN'
@@ -13,10 +41,8 @@ export type Member = {
     | 'MEMBER'
     | 'FUNDRAISER'
     | 'CONTRIBUTOR'
-  tier?: Tier
-  isActive: boolean
-  name: string
-  github: string | null
+  account: Account
+  tier: Tier | null
 }
 
 /**
@@ -26,7 +52,11 @@ export type Member = {
  * @param slug
  */
 export async function getCollectiveMembers(slug: string): Promise<Member[]> {
-  return fetch(`https://opencollective.com/${slug}/members.json`).then(res =>
-    res.json(),
-  )
+  const result = await fetch(graphqlEndpoint, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query: membersGraphqlQuery, variables: { slug } }),
+  })
+
+  return result.json().then(res => res.data.account.members.nodes)
 }

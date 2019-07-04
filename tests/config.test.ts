@@ -127,7 +127,7 @@ describe('getLabelsFromConfigForTiers', () => {
           ],
           invitation: 'Hey',
         },
-        ['Backers'],
+        [{ slug: 'backers', name: 'Backers' }],
       ),
     ).toEqual(['priority', 'backer-priority'])
   })
@@ -187,7 +187,7 @@ describe('getMessageFromConfigForTiers', () => {
           ],
           invitation: 'Hey',
         },
-        ['Backers'],
+        [{ slug: 'backers', name: 'Backers' }],
         {
           '<link>': 'pass',
           '<cool>': 'cool-pass',

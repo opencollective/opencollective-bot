@@ -9,7 +9,10 @@ describe('backers', () => {
       'something-else',
     ])
 
-    expect(res).toEqual(['Backer', 'Sponsor'])
+    expect(res).toEqual([
+      { name: 'Backer', slug: 'backer' },
+      { name: 'Sponsor', slug: 'sponsor' },
+    ])
   })
   test('backers return null on admin role', async () => {
     const res = await getIssueAuthorCollectiveTiers(backers, 'maticzav', [
