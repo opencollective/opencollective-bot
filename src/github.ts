@@ -1,8 +1,4 @@
-import Octokit, {
-  Response,
-  IssuesCreateCommentResponse,
-  IssuesAddLabelsResponseItem,
-} from '@octokit/rest'
+import Octokit, { IssuesAddLabelsResponseItem } from '@octokit/rest'
 import { Message } from './config'
 
 export type GithubLabel = string
@@ -25,7 +21,7 @@ export async function getUserOrganisations(
 ): Promise<string[]> {
   return github.orgs
     .listForUser({
-      username: username,
+      username,
     })
     .then(res => res.data.map(org => org.login))
 }
@@ -57,13 +53,13 @@ export async function messageGithubIssue(
   github: Octokit,
   issue: GithubIssue,
   messages: Message[],
-): Promise<Response<IssuesCreateCommentResponse>[]> {
+): Promise<Array<Response<IssuesCreateCommentResponse>>> {
   const actions = messages.map(message =>
     github.issues.createComment({
-      repo: issue.repo,
-      owner: issue.owner,
-      issue_number: issue.number,
       body: message,
+      issue_number: issue.number,
+      owner: issue.owner,
+      repo: issue.repo,
     }),
   )
 
@@ -97,8 +93,8 @@ export async function labelGithubIssue(
       .catch(() =>
         github.issues.createLabel({
           ...issue,
-          name: label,
           color: 'fbca04',
+          name: label,
         }),
       ),
   )
@@ -106,10 +102,10 @@ export async function labelGithubIssue(
   await Promise.all(actions)
 
   return github.issues.addLabels({
-    repo: issue.repo,
-    owner: issue.owner,
     issue_number: issue.number,
-    labels: labels,
+    labels,
+    owner: issue.owner,
+    repo: issue.repo,
   })
 }
 
@@ -128,10 +124,10 @@ export async function removeLabelsFromGithubIssue(
 ): Promise<GithubLabel[]> {
   const actions = labels.map(label =>
     github.issues.removeLabel({
-      repo: issue.repo,
-      owner: issue.owner,
       issue_number: issue.number,
       name: label,
+      owner: issue.owner,
+      repo: issue.repo,
     }),
   )
 

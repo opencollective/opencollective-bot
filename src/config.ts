@@ -6,13 +6,13 @@ import { Tier } from './collective'
 import { GithubLabel } from './github'
 import { intersect } from './utils'
 
-export type Config = {
+export interface Config {
   collective: string
   tiers: TierConfig[]
   invitation: Message | false
 }
 
-export type TierConfig = {
+export interface TierConfig {
   tiers: Tier[] | '*'
   labels: GithubLabel[]
   message: Message
@@ -23,12 +23,12 @@ export type Message = string
 /* Schema */
 
 const tierConfigSchema = joi.object().keys({
+  labels: joi.array().items(joi.string()),
+  message: joi.string().required(),
   tiers: joi
     .array()
     .items(joi.string())
     .allow('*'),
-  labels: joi.array().items(joi.string()),
-  message: joi.string().required(),
 })
 
 export const configSchema = joi
@@ -38,6 +38,22 @@ export const configSchema = joi
       .string()
       .regex(/^[\w\-]+$/, 'Use your collective slug.')
       .required(),
+    invitation: joi
+      .string()
+      .default(
+        mls`
+        | Hey <author> :wave:,
+        |
+        | Thank you for opening an issue. We will get back to you as soon as we can. Also, check out our Open Collective and consider backing us.
+        |
+        | <link>
+        |
+        | > PS.: We offer ${'`priority`'} support for all backers. Don't forget to add ${'`priority`'} label when you start backing us :smile:
+      `,
+      )
+      .allow(false)
+      .optional()
+      .description('An invitation message shown to non-backers'),
     tiers: joi
       .array()
       .items(tierConfigSchema)
@@ -55,22 +71,6 @@ export const configSchema = joi
           `,
         },
       ]),
-    invitation: joi
-      .string()
-      .default(
-        mls`
-        | Hey <author> :wave:,
-        |
-        | Thank you for opening an issue. We will get back to you as soon as we can. Also, check out our Open Collective and consider backing us.
-        |
-        | <link>
-        |
-        | > PS.: We offer ${'`priority`'} support for all backers. Don't forget to add ${'`priority`'} label when you start backing us :smile:
-      `,
-      )
-      .allow(false)
-      .optional()
-      .description('An invitation message shown to non-backers'),
   })
   .requiredKeys(['collective'])
 

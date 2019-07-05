@@ -1,16 +1,16 @@
 import * as probot from 'probot'
 import { getIssueAuthorCollectiveTiers } from './backers'
-import {
-  getConfig,
-  getMessagesFromConfigForTiers,
-  getLabelsFromConfigForTiers,
-  getLabelsFromConfig,
-} from './config'
 import { getCollectiveMembers } from './collective'
 import {
+  getConfig,
+  getLabelsFromConfig,
+  getLabelsFromConfigForTiers,
+  getMessagesFromConfigForTiers,
+} from './config'
+import {
   getUserOrganisations,
-  messageGithubIssue,
   labelGithubIssue,
+  messageGithubIssue,
   removeLabelsFromGithubIssue,
 } from './github'
 import { is, not } from './utils'
@@ -33,7 +33,9 @@ export const opencollective = (app: probot.Application): void => {
 
     // Get configuration
     const config = await getConfig(context)
-    if (!config) return
+    if (!config) {
+      return
+    }
 
     // Get backer tiers
     const [
@@ -96,7 +98,9 @@ export const opencollective = (app: probot.Application): void => {
 
     // Get configuration
     const config = await getConfig(context)
-    if (!config) return
+    if (!config) {
+      return
+    }
 
     // Get Open Collective tiers from issue author
     const [

@@ -8,14 +8,20 @@
     "test": "NODE_ENV=test jest",
     "coverage": "yarn codecov",
     "deploy:staging": "now -e APP_ID=@oc-bot-staging-app-id -e WEBHOOK_SECRET=@oc-bot-staging-webhook-secret -e PRIVATE_KEY=@oc-bot-staging-private-key -e SENTRY_DSN=@oc-bot-staging-sentry-dsn --target staging && now alias bot-staging.opencollective.com",
-    "deploy:production": "now --target production"
+    "deploy:production": "now --target production",
+    "prettier": "prettier \"*.@(js|json|md)\" \"src/**/*.@(ts)\" \"tests/**/*.@(ts)\"",
+    "prettier:write": "npm run prettier -- --write",
+    "prettier:check": "npm run prettier -- --list-different"
   },
   "engines": {
     "node": "10.x"
   },
   "dependencies": {
     "@hapi/joi": "15.1.0",
+    "@octokit/rest": "16.28.2",
     "body-parser": "1.19.0",
+    "express": "4.17.1",
+    "js-yaml": "3.13.1",
     "lodash.uniq": "4.5.0",
     "multilines": "1.0.2",
     "node-fetch": "2.6.0",
@@ -39,7 +45,6 @@
     "dotenv-cli": "2.0.0",
     "husky": "3.0.0",
     "jest": "24.8.0",
-    "js-yaml": "3.13.1",
     "nock": "10.0.6",
     "npm-run-all": "4.1.5",
     "prettier": "1.18.2",
@@ -49,6 +54,8 @@
     "rimraf": "2.6.3",
     "ts-jest": "24.0.2",
     "ts-node": "8.3.0",
+    "tslint": "5.18.0",
+    "tslint-config-prettier": "1.18.0",
     "typescript": "3.5.2"
   },
   "license": "MIT"

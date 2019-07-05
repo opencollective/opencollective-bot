@@ -1,7 +1,10 @@
 import { Server } from 'http'
-import { createProbot, ApplicationFunction } from 'probot'
-import { findPrivateKey } from 'probot/lib/private-key'
+import { ApplicationFunction, createProbot } from 'probot'
+import probotAppsDefault from 'probot/lib/apps/default'
+import probotAppsSentry from 'probot/lib/apps/sentry'
+import probotAppsStats from 'probot/lib/apps/stats'
 import { logRequestErrors } from 'probot/lib/middleware/log-request-errors'
+import { findPrivateKey } from 'probot/lib/private-key'
 
 import { opencollective } from './bot'
 import { validator } from './validate'
@@ -32,19 +35,19 @@ export function main(port: number): Server {
   const cert = findPrivateKey() as string
 
   const probot = createProbot({
+    cert,
     id: parseInt(process.env.APP_ID, 10),
+    port,
     secret: process.env.WEBHOOK_SECRET,
-    cert: cert,
-    port: port,
   })
 
   /* Load apps */
 
   const apps: ApplicationFunction[] = [
     opencollective,
-    require('probot/lib/apps/default'),
-    require('probot/lib/apps/sentry'),
-    require('probot/lib/apps/stats'),
+    probotAppsDefault,
+    probotAppsSentry,
+    probotAppsStats,
   ]
   ;(process as NodeJS.EventEmitter).on(
     'unhandledRejection',

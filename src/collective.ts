@@ -2,7 +2,7 @@ import fetch from 'node-fetch'
 
 export type Tier = string
 
-export type Member = {
+export interface Member {
   MemberId: number
   type: 'COLLECTIVE' | 'EVENT' | 'ORGANIZATION' | 'USER'
   role:
