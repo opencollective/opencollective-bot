@@ -135,6 +135,18 @@ export function getMessagesFromConfigForTiers(
   dictionary: { [key: string]: string },
 ): Message[] {
   /**
+   *
+   * Hydrates raw message to include placeholder values.
+   *
+   * @param message
+   */
+  function hydrateMessage(message: string): string {
+    return Object.keys(dictionary).reduce((acc, tag) => {
+      return acc.replace(tag, dictionary[tag])
+    }, message)
+  }
+
+  /**
    * Returns invitation message if user has no tiers.
    */
   if (tiers.length === 0 && config.invitation) {
@@ -161,17 +173,4 @@ export function getMessagesFromConfigForTiers(
   const messages = rawMessages.map(hydrateMessage)
 
   return messages
-
-  /* Helper functions */
-  /**
-   *
-   * Hydartes raw message to include placeholder values.
-   *
-   * @param message
-   */
-  function hydrateMessage(message: string): string {
-    return Object.keys(dictionary).reduce((acc, tag) => {
-      return acc.replace(tag, dictionary[tag])
-    }, message)
-  }
 }

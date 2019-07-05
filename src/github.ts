@@ -50,6 +50,22 @@ export async function getUserOrganisations(
 
 /**
  *
+ * Get a single repository
+ *
+ * @param github
+ * @param owner
+ * @param repo
+ */
+export async function getRepo(
+  github: Octokit,
+  owner: string,
+  repo: string,
+): Promise<ReposGetResponse> {
+  return github.repos.get({ owner, repo }).then((res: any) => res.data)
+}
+
+/**
+ *
  * Fetch multiple repositories
  *
  * @param github
@@ -65,22 +81,6 @@ export async function fetchRepos(
       return getRepo(github, owner, repo)
     }),
   )
-}
-
-/**
- *
- * Get a single repository
- *
- * @param github
- * @param owner
- * @param repo
- */
-export async function getRepo(
-  github: Octokit,
-  owner: string,
-  repo: string,
-): Promise<ReposGetResponse> {
-  return github.repos.get({ owner, repo }).then((res: any) => res.data)
 }
 
 /**
