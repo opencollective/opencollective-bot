@@ -1,4 +1,4 @@
-import * as joi from 'joi'
+import * as joi from '@hapi/joi'
 import mls from 'multilines'
 import * as probot from 'probot'
 
