@@ -69,13 +69,13 @@ describe('github', () => {
     expect(client.issues.createComment).toBeCalledTimes(2)
     expect(res).toEqual([
       {
-        number: 1,
+        issue_number: 1,
         owner: 'maticzav',
         repo: 'label-sync',
         body: 'pass-1',
       },
       {
-        number: 1,
+        issue_number: 1,
         owner: 'maticzav',
         repo: 'label-sync',
         body: 'pass-2',
@@ -107,7 +107,7 @@ describe('github', () => {
     expect(client.issues.createLabel).toBeCalledTimes(1)
     expect(client.issues.addLabels).toBeCalledTimes(1)
     expect(res).toEqual({
-      number: 1,
+      issue_number: 1,
       owner: 'maticzav',
       repo: 'label-sync',
       labels: ['pass-1', 'pass-2'],
