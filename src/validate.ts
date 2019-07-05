@@ -1,6 +1,6 @@
 import bodyParser from 'body-parser'
 import express from 'express'
-import * as joi from 'joi'
+import * as joi from '@hapi/joi'
 import yaml from 'js-yaml'
 import mls from 'multilines'
 
