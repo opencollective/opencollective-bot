@@ -6,9 +6,10 @@ import Octokit, {
 import { Message } from './config'
 
 export type GithubLabel = string
+
 export interface GithubIssue {
-  owner: string
   number: number
+  owner: string
   repo: string
 }
 
@@ -61,7 +62,7 @@ export async function messageGithubIssue(
     github.issues.createComment({
       repo: issue.repo,
       owner: issue.owner,
-      number: issue.number,
+      issue_number: issue.number,
       body: message,
     }),
   )
@@ -107,7 +108,7 @@ export async function labelGithubIssue(
   return github.issues.addLabels({
     repo: issue.repo,
     owner: issue.owner,
-    number: issue.number,
+    issue_number: issue.number,
     labels: labels,
   })
 }
@@ -129,7 +130,7 @@ export async function removeLabelsFromGithubIssue(
     github.issues.removeLabel({
       repo: issue.repo,
       owner: issue.owner,
-      number: issue.number,
+      issue_number: issue.number,
       name: label,
     }),
   )
