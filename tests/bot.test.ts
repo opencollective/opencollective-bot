@@ -5,7 +5,6 @@ import { opencollective } from '../src/bot'
 import yaml from 'js-yaml'
 import btoa from 'btoa'
 
-import { Member } from '../src/collective'
 import { Config } from '../src/config'
 
 import issueOpenedFixture from './__fixtures__/issues.opened'
@@ -93,28 +92,39 @@ describe('opencollective issues.opened', () => {
   })
 
   test('ignores admin issues', async () => {
-    nock('https://opencollective.com/')
-      .get('/graphql-shield/members.json')
-      .reply(200, [
-        {
-          MemberId: 1,
-          type: 'USER',
-          role: 'ADMIN',
-          tier: 'Backer',
-          isActive: true,
-          name: 'maticzav',
-          github: 'https://github.com/maticzav',
+    nock('https://api.opencollective.com/')
+      .post('/graphql/v2')
+      .reply(200, {
+        data: {
+          account: {
+            members: {
+              limit: 1000,
+              totalCount: 2,
+              nodes: [
+                {
+                  role: 'ADMIN',
+                  account: {
+                    slug: 'maticzav',
+                    githubHandle: 'maticzav',
+                  },
+                  tier: null,
+                },
+                {
+                  role: 'BACKER',
+                  account: {
+                    slug: 'airbnb',
+                    githubHandle: 'airbnb',
+                  },
+                  tier: {
+                    slug: 'sponsor',
+                    name: 'Sponsor',
+                  },
+                },
+              ],
+            },
+          },
         },
-        {
-          MemberId: 2,
-          type: 'ORGANIZATION',
-          role: 'BACKER',
-          tier: 'Sponsor',
-          isActive: true,
-          name: 'graphql-boilerplates',
-          github: 'https://github.com/graphql-boilerplates',
-        },
-      ] as Member[])
+      })
 
     const app = new probot.Application()
 
@@ -199,28 +209,42 @@ describe('opencollective issues.opened', () => {
   })
 
   test('sends correct message', async () => {
-    nock('https://opencollective.com/')
-      .get('/graphql-shield/members.json')
-      .reply(200, [
-        {
-          MemberId: 1,
-          type: 'USER',
-          role: 'BACKER',
-          tier: 'Backer',
-          isActive: true,
-          name: 'maticzav',
-          github: 'https://github.com/maticzav',
+    nock('https://api.opencollective.com/')
+      .post('/graphql/v2')
+      .reply(200, {
+        data: {
+          account: {
+            members: {
+              limit: 1000,
+              totalCount: 2,
+              nodes: [
+                {
+                  role: 'BACKER',
+                  account: {
+                    slug: 'maticzav',
+                    githubHandle: 'maticzav',
+                  },
+                  tier: {
+                    slug: 'backer',
+                    name: 'Backer',
+                  },
+                },
+                {
+                  role: 'BACKER',
+                  account: {
+                    slug: 'graphql-boilerplates',
+                    githubHandle: 'graphql-boilerplates',
+                  },
+                  tier: {
+                    slug: 'sponsor',
+                    name: 'Sponsor',
+                  },
+                },
+              ],
+            },
+          },
         },
-        {
-          MemberId: 2,
-          type: 'ORGANIZATION',
-          role: 'BACKER',
-          tier: 'Sponsor',
-          isActive: true,
-          name: 'graphql-boilerplates',
-          github: 'https://github.com/graphql-boilerplates',
-        },
-      ] as Member[])
+      })
 
     const app = new probot.Application()
 
@@ -355,19 +379,31 @@ describe('opencollective issues.labeled', () => {
   })
 
   test('removes incorrect label', async () => {
-    nock('https://opencollective.com/')
-      .get('/graphql-shield/members.json')
-      .reply(200, [
-        {
-          MemberId: 1,
-          type: 'USER',
-          role: 'BACKER',
-          tier: 'Backer',
-          isActive: true,
-          name: 'maticzav',
-          github: 'https://github.com/maticzav',
+    nock('https://api.opencollective.com/')
+      .post('/graphql/v2')
+      .reply(200, {
+        data: {
+          account: {
+            members: {
+              limit: 1000,
+              totalCount: 1,
+              nodes: [
+                {
+                  role: 'BACKER',
+                  account: {
+                    slug: 'maticzav',
+                    githubHandle: 'maticzav',
+                  },
+                  tier: {
+                    slug: 'backer',
+                    name: 'Backer',
+                  },
+                },
+              ],
+            },
+          },
         },
-      ] as Member[])
+      })
 
     const app = new probot.Application()
 
@@ -429,28 +465,42 @@ describe('opencollective issues.labeled', () => {
   })
 
   test('ignores correct label', async () => {
-    nock('https://opencollective.com/')
-      .get('/graphql-shield/members.json')
-      .reply(200, [
-        {
-          MemberId: 1,
-          type: 'USER',
-          role: 'BACKER',
-          tier: 'Backer',
-          isActive: true,
-          name: 'maticzav',
-          github: 'https://github.com/maticzav',
+    nock('https://api.opencollective.com/')
+      .post('/graphql/v2')
+      .reply(200, {
+        data: {
+          account: {
+            members: {
+              limit: 1000,
+              totalCount: 2,
+              nodes: [
+                {
+                  role: 'BACKER',
+                  account: {
+                    slug: 'maticzav',
+                    githubHandle: 'maticzav',
+                  },
+                  tier: {
+                    slug: 'backer',
+                    name: 'Backer',
+                  },
+                },
+                {
+                  role: 'BACKER',
+                  account: {
+                    slug: 'graphql-boilerplates',
+                    githubHandle: 'graphql-boilerplates',
+                  },
+                  tier: {
+                    slug: 'sponsor',
+                    name: 'Sponsor',
+                  },
+                },
+              ],
+            },
+          },
         },
-        {
-          MemberId: 2,
-          type: 'ORGANIZATION',
-          role: 'BACKER',
-          tier: 'Sponsor',
-          isActive: true,
-          name: 'graphql-boilerplates',
-          github: 'https://github.com/graphql-boilerplates',
-        },
-      ] as Member[])
+      })
 
     const app = new probot.Application()
 
@@ -535,27 +585,42 @@ describe('opencollective issues.labeled', () => {
   })
 
   test('ignores admin label', async () => {
-    nock('https://opencollective.com/')
-      .get('/graphql-shield/members.json')
-      .reply(200, [
-        {
-          MemberId: 1,
-          type: 'USER',
-          role: 'ADMIN',
-          isActive: true,
-          name: 'maticzav',
-          github: 'https://github.com/maticzav',
+    nock('https://api.opencollective.com/')
+      .post('/graphql/v2')
+      .reply(200, {
+        data: {
+          account: {
+            members: {
+              limit: 1000,
+              totalCount: 2,
+              nodes: [
+                {
+                  role: 'ADMIN',
+                  account: {
+                    slug: 'maticzav',
+                    githubHandle: 'maticzav',
+                  },
+                  tier: {
+                    slug: 'backer',
+                    name: 'Backer',
+                  },
+                },
+                {
+                  role: 'BACKER',
+                  account: {
+                    slug: 'graphql-boilerplates',
+                    githubHandle: 'graphql-boilerplates',
+                  },
+                  tier: {
+                    slug: 'sponsor',
+                    name: 'Sponsor',
+                  },
+                },
+              ],
+            },
+          },
         },
-        {
-          MemberId: 2,
-          type: 'ORGANIZATION',
-          role: 'BACKER',
-          tier: 'Sponsor',
-          isActive: true,
-          name: 'graphql-boilerplates',
-          github: 'https://github.com/graphql-boilerplates',
-        },
-      ] as Member[])
+      })
 
     const app = new probot.Application()
 

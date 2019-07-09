@@ -37,14 +37,14 @@ export const opencollective = (app: probot.Application): void => {
 
     // Get backer tiers
     const [
-      allCollectiveMembers,
+      collectiveMembers,
       issueAuthorGithubOrganisations,
     ] = await Promise.all([
       getCollectiveMembers(config.collective),
       getUserOrganisations(context.github, issueAuthorGithubHandle),
     ])
     const issueAuthorCollectiveTiers = getIssueAuthorCollectiveTiers(
-      allCollectiveMembers,
+      collectiveMembers,
       issueAuthorGithubHandle,
       issueAuthorGithubOrganisations,
     )
@@ -100,14 +100,14 @@ export const opencollective = (app: probot.Application): void => {
 
     // Get Open Collective tiers from issue author
     const [
-      allCollectiveMembers,
+      collectiveMembers,
       issueAuthorGithubOrganisations,
     ] = await Promise.all([
       getCollectiveMembers(config.collective),
       getUserOrganisations(context.github, issueAuthorGithubHandle),
     ])
     const issueAuthorCollectiveTiers = getIssueAuthorCollectiveTiers(
-      allCollectiveMembers,
+      collectiveMembers,
       issueAuthorGithubHandle,
       issueAuthorGithubOrganisations,
     )

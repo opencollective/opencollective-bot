@@ -32,21 +32,6 @@ export async function getUserOrganisations(
 
 /**
  *
- * Strips GitHub username from GitHub URL in Open Collective response.
- *
- * @param url
- */
-export function stripGithubName(url: string): string {
-  const matches = url.match(/https:\/\/github.com\/([\w\-]+)(?:\/.*)?/)
-  /* istanbul ignore if */
-  if (!matches || matches.length < 2) {
-    throw new Error(`Couldn't parse Github URL ${url}.`)
-  }
-  return matches[1]
-}
-
-/**
- *
  * Adds messages to a GitHub Issue.
  *
  * @param github

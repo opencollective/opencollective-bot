@@ -1,10 +1,10 @@
 import * as joi from '@hapi/joi'
 import mls from 'multilines'
 import * as probot from 'probot'
+import { flatten, intersection } from 'lodash'
 
 import { Tier } from './collective'
 import { GithubLabel } from './github'
-import { intersect } from './utils'
 
 export type Config = {
   collective: string
@@ -13,7 +13,7 @@ export type Config = {
 }
 
 export type TierConfig = {
-  tiers: Tier[] | '*'
+  tiers: string[] | '*'
   labels: GithubLabel[]
   message: Message
 }
@@ -125,14 +125,18 @@ export function getLabelsFromConfigForTiers(
     return []
   }
 
+  const tiersNamesAndSlugs = flatten(
+    tiers.map(({ slug, name }) => [slug, name]),
+  )
+
   /**
    * Finds all labels for the specified tiers.
    */
-  return config.tiers.reduce<GithubLabel[]>((acc, tier) => {
-    if (tier.tiers === '*') {
-      return [...acc, ...tier.labels]
-    } else if (intersect(tier.tiers)(tiers)) {
-      return [...acc, ...tier.labels]
+  return config.tiers.reduce<GithubLabel[]>((acc, configTier) => {
+    if (configTier.tiers === '*') {
+      return [...acc, ...configTier.labels]
+    } else if (intersection(tiersNamesAndSlugs, configTier.tiers).length > 0) {
+      return [...acc, ...configTier.labels]
     } else {
       return acc
     }
@@ -158,14 +162,18 @@ export function getMessagesFromConfigForTiers(
     return [hydrateMessage(config.invitation)]
   }
 
+  const tiersNamesAndSlugs = flatten(
+    tiers.map(({ slug, name }) => [slug, name]),
+  )
+
   /**
    * Finds all messages for specified tiers.
    */
-  const rawMessages = config.tiers.reduce<Message[]>((acc, tier) => {
-    if (tier.tiers === '*') {
-      return [...acc, tier.message]
-    } else if (intersect(tier.tiers)(tiers)) {
-      return [...acc, tier.message]
+  const rawMessages = config.tiers.reduce<Message[]>((acc, configTier) => {
+    if (configTier.tiers === '*') {
+      return [...acc, configTier.message]
+    } else if (intersection(tiersNamesAndSlugs, configTier.tiers).length > 0) {
+      return [...acc, configTier.message]
     } else {
       return acc
     }
