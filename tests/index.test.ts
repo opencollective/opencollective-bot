@@ -13,6 +13,7 @@ describe('index', () => {
     delete process.env.PRIVATE_KEY
     delete process.env.PRIVATE_KEY_PATH
     delete process.env.DISABLE_STATS
+    delete process.env.WEBHOOK_PROXY_URL
   })
 
   test('reports missing credentials', () => {
@@ -47,6 +48,25 @@ describe('index', () => {
       './__fixtures__/cert.pem',
     )
     process.env.DISABLE_STATS = 'true'
+
+    try {
+      const server = main(0)
+
+      server.close()
+    } catch (err) {
+      fail(err)
+    }
+  })
+
+  test('correctly build server with webhook url', () => {
+    process.env.APP_ID = '1234'
+    process.env.WEBHOOK_SECRET = 'secret'
+    process.env.PRIVATE_KEY_PATH = path.resolve(
+      __dirname,
+      './__fixtures__/cert.pem',
+    )
+    process.env.DISABLE_STATS = 'true'
+    process.env.WEBHOOK_PROXY_URL = 'https://smee.io/oZmMHV0di2DWLopN'
 
     try {
       const server = main(0)

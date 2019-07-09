@@ -10,10 +10,6 @@
 
 - `npm install --global yarn`
 
-3. Make sure you have the [smee.io](https://smee.io/) client available:
-
-- `npm install --global smee-client`
-
 ## Install
 
 We recommend cloning the repository in a folder dedicated to `opencollective` projects.
@@ -63,24 +59,13 @@ Create in the project directory an `.env` file with the following content:
 APP_ID=<APP_ID>
 WEBHOOK_SECRET=development
 PRIVATE_KEY_PATH=private-key.pem
+WEBHOOK_PROXY_URL=<WEBHOOK_PROXY_URL>
 ```
 
 ## Start
-
-### Start the app
 
 In a terminal, run:
 
 ```
 yarn dev
 ```
-
-### Start the Webhook proxy
-
-In a separated terminal, using the `WEBHOOK_PROXY_URL` created before, run:
-
-```
-smee -u <WEBHOOK_PROXY_URL>
-```
-
-example: `smee -u https://smee.io/O1MG7MFNgng8gPJx`

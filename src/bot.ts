@@ -16,7 +16,7 @@ import {
 import { is, not } from './utils'
 
 export const opencollective = (app: probot.Application): void => {
-  app.log('OpenCollective Bot up!')
+  app.log('Open Collective Bot up!')
 
   app.on('issues.opened', async (context: probot.Context) => {
     const issue = context.issue()
