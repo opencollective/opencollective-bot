@@ -1,8 +1,5 @@
 {
   "extends": ["config:base", "docker:disable"],
   "schedule": "before 5am every weekday",
-  "automerge": true,
-  "major": {
-    "automerge": false
-  }
+  "automerge": false
 }
