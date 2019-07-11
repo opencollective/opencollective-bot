@@ -65,9 +65,13 @@ describe('opencollective installation_repositories', () => {
           },
         }),
         createRef: jest.fn(),
+        deleteRef: jest.fn(),
       },
       pulls: {
-        create: jest.fn(),
+        create: jest.fn().mockResolvedValue({
+          // we're just interested in url
+          data: { url: 'https://github.com/znarf/backyourstack/pull/11' },
+        }),
       },
     }
 
@@ -83,7 +87,7 @@ describe('opencollective installation_repositories', () => {
 
     expect(github.repos.get).toBeCalledTimes(1)
     expect(github.repos.getBranch).toBeCalledTimes(1)
-    expect(github.repos.getContents).toBeCalledTimes(2)
+    expect(github.repos.getContents).toBeCalledTimes(1)
     expect(github.repos.createOrUpdateFile).toBeCalledTimes(1)
     expect(github.git.getRef).toBeCalledTimes(1)
     expect(github.git.createRef).toBeCalledTimes(1)
@@ -119,81 +123,20 @@ describe('opencollective installation_repositories', () => {
         createOrUpdateFile: jest.fn(),
       },
       git: {
-        getRef: jest.fn(),
-        createRef: jest.fn(),
-      },
-      pulls: {
-        create: jest.fn(),
-      },
-    }
-
-    // Mock out GitHub client
-    app.load(opencollective)
-    app.auth = () => Promise.resolve(github as any)
-
-    await app.receive({
-      id: '123',
-      name: 'installation_repositories',
-      payload: installationRepositoriesFixture,
-    })
-
-    expect(github.repos.get).toBeCalledTimes(1)
-    expect(github.repos.getBranch).toBeCalledTimes(1)
-    expect(github.repos.getContents).toBeCalledTimes(2)
-    expect(github.repos.createOrUpdateFile).toBeCalledTimes(1)
-    expect(github.git.getRef).toBeCalledTimes(0)
-    expect(github.git.createRef).toBeCalledTimes(0)
-    expect(github.pulls.create).toBeCalledTimes(1)
-  })
-
-  test('properly update configuration file if it exists on the working branch', async () => {
-    nock('https://api.opencollective.com/')
-      .post('/graphql/v2')
-      .reply(200, {
-        data: {
-          collective: {
-            slug: 'backyourstack',
-          },
-        },
-      })
-
-    const app = new probot.Application()
-
-    const github = {
-      repos: {
-        get: jest.fn().mockResolvedValue({
-          // we're just interested in default_branch
+        getRef: jest.fn().mockResolvedValue({
+          // we're just interested in sha
           data: {
-            default_branch: 'master',
+            object: { sha: 'a9993e364706816aba3e25717850c26c9cd0d89d' },
           },
         }),
-        getBranch: jest.fn().mockResolvedValue({
-          // we're not interested in any data, just needs to return
-          data: {},
-        }),
-        getContents: jest.fn().mockImplementation(({ ref }) => {
-          if (ref === 'heads/master') {
-            return Promise.reject(new Error('File not found'))
-          } else {
-            return Promise.resolve({
-              data: {
-                content: btoa(
-                  yaml.dump({
-                    collective: 'backyourstack',
-                  } as Config),
-                ),
-              },
-            })
-          }
-        }),
-        createOrUpdateFile: jest.fn(),
-      },
-      git: {
-        getRef: jest.fn(),
         createRef: jest.fn(),
+        deleteRef: jest.fn(),
       },
       pulls: {
-        create: jest.fn(),
+        create: jest.fn().mockResolvedValue({
+          // we're just interested in url
+          data: { url: 'https://github.com/znarf/backyourstack/pull/11' },
+        }),
       },
     }
 
@@ -209,10 +152,11 @@ describe('opencollective installation_repositories', () => {
 
     expect(github.repos.get).toBeCalledTimes(1)
     expect(github.repos.getBranch).toBeCalledTimes(1)
-    expect(github.repos.getContents).toBeCalledTimes(2)
+    expect(github.repos.getContents).toBeCalledTimes(1)
     expect(github.repos.createOrUpdateFile).toBeCalledTimes(1)
-    expect(github.git.getRef).toBeCalledTimes(0)
-    expect(github.git.createRef).toBeCalledTimes(0)
+    expect(github.git.getRef).toBeCalledTimes(1)
+    expect(github.git.createRef).toBeCalledTimes(1)
+    expect(github.git.deleteRef).toBeCalledTimes(1)
     expect(github.pulls.create).toBeCalledTimes(1)
   })
 

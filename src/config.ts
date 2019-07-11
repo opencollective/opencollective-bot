@@ -1,6 +1,9 @@
+import fs from 'fs'
+import path from 'path'
+
 import * as joi from '@hapi/joi'
-import mls from 'multilines'
 import * as probot from 'probot'
+import yaml from 'js-yaml'
 import { flatten, intersection } from 'lodash'
 
 import { Tier } from './collective'
@@ -19,6 +22,13 @@ export type TierConfig = {
 }
 
 export type Message = string
+
+const defaultConfig = yaml.safeLoad(
+  fs.readFileSync(
+    path.resolve(__dirname, './assets/default-config.yml'),
+    'utf8',
+  ),
+)
 
 /* Schema */
 
@@ -42,32 +52,10 @@ export const configSchema = joi
       .array()
       .items(tierConfigSchema)
       .optional()
-      .default([
-        {
-          tiers: '*',
-          labels: ['priority'],
-          message: mls`
-          | Hey <author> :wave:,
-          |
-          | Thanks for backing our project. We will handle your issue with priority support. To make sure we don't forget how special you are, we added a ${'`priority`'} label to your issue.
-          |
-          | Thanks again for backing us :tada:!
-          `,
-        },
-      ]),
+      .default(defaultConfig.tiers),
     invitation: joi
       .string()
-      .default(
-        mls`
-        | Hey <author> :wave:,
-        |
-        | Thank you for opening an issue. We will get back to you as soon as we can. Also, check out our Open Collective and consider backing us.
-        |
-        | <link>
-        |
-        | > PS.: We offer ${'`priority`'} support for all backers. Don't forget to add ${'`priority`'} label when you start backing us :smile:
-      `,
-      )
+      .default(defaultConfig.invitation)
       .allow(false)
       .optional()
       .description('An invitation message shown to non-backers'),
