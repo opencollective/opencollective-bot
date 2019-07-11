@@ -30,15 +30,17 @@ invitation: |-
 
   > PS.: We offer `priority` support for all financial contributors. Don't forget to add `priority` label once you start contributing :smile:
 
+# To disable that feature, you can use the following syntax
+
+# invitation: false
+
 # Tiers
 # -----
 
-# In this section you can define specific behavior for all supported tiers,
-# ie: "backer" "and sponsor".
+# In this section you can define specific behavior for all supported tiers, ie: "backer" "and sponsor".
 
 tiers:
-  # # Uncomment this block if you want to activate a custom comment
-  # # for people contributors to the "backer" tier
+  # # Uncomment this block if you want to activate a custom comment for people contributors to the "backer" tier
   # - tiers: ['backer']
   #   labels: ['priority']
   #   message: |-
@@ -48,8 +50,7 @@ tiers:
   #
   #     Thank you again for contributing :tada:!
 
-  # # Uncomment this block if you want to activate a custom comment
-  # # for people contributors to the "sponsor" tier
+  # # Uncomment this block if you want to activate a custom commentfor people contributors to the "sponsor" tier
   # - tiers: ['sponsor']
   #   labels: ['priority']
   #   message: |-
@@ -68,3 +69,7 @@ tiers:
       Thank you for contributing to our project financially. We will handle your issue with priority support. To make sure we don't forget how special you are, we added a `priority` label to your issue.
 
       Thank you again for contributing :tada:!
+
+# To disable that feature, you can use the following syntax
+
+# tiers: []
