@@ -22,6 +22,12 @@ const membersGraphqlQuery = `query account($slug: String!) {
   }
 }`
 
+const collectiveWithGithubhandleQuery = `query collective($githubHandle: String!) {
+  collective(githubHandle: $githubHandle) {
+    slug
+  }
+}`
+
 export type Tier = {
   slug: string
   name: string
@@ -45,6 +51,16 @@ export type Member = {
   tier: Tier | null
 }
 
+async function graphqlQuery(query: string, variables: object): Promise<any> {
+  const result = await fetch(graphqlEndpoint, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query, variables }),
+  })
+
+  return result.json().then(res => res.data)
+}
+
 /**
  *
  * Fetches members of a particuar collective.
@@ -52,11 +68,21 @@ export type Member = {
  * @param slug
  */
 export async function getCollectiveMembers(slug: string): Promise<Member[]> {
-  const result = await fetch(graphqlEndpoint, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query: membersGraphqlQuery, variables: { slug } }),
-  })
+  const result = graphqlQuery(membersGraphqlQuery, { slug })
 
-  return result.json().then(res => res.data.account.members.nodes)
+  return result.then(data => data.account.members.nodes)
+}
+
+/**
+ *
+ * Fetch the collective matching a given githubHandle
+ *
+ * @param githubHandle
+ */
+export async function getCollectiveWithGithubHandle(
+  githubHandle: string,
+): Promise<Account> {
+  const result = graphqlQuery(collectiveWithGithubhandleQuery, { githubHandle })
+
+  return result.then(data => data.collective)
 }

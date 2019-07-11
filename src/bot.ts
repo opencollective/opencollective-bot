@@ -15,8 +15,12 @@ import {
 } from './github'
 import { is, not } from './utils'
 
+import installationRepositoriesAdded from './actions/installation-repositories-added'
+
 export const opencollective = (app: probot.Application): void => {
   app.log('Open Collective Bot up!')
+
+  app.on('installation_repositories.added', installationRepositoriesAdded)
 
   app.on('issues.opened', async (context: probot.Context) => {
     const issue = context.issue()

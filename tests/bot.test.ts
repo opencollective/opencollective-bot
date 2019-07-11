@@ -1,10 +1,10 @@
 /* Some of the code here is taken from Stale bot, thanks Probot! */
 import nock from 'nock'
 import * as probot from 'probot'
-import { opencollective } from '../src/bot'
 import yaml from 'js-yaml'
 import btoa from 'btoa'
 
+import { opencollective } from '../src/bot'
 import { Config } from '../src/config'
 
 import issueOpenedFixture from './__fixtures__/issues.opened'

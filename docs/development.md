@@ -40,7 +40,7 @@ yarn install
 - Webhook URL: Use your `WEBHOOK_PROXY_URL` from the previous step.
 - Webhook Secret: `development`
 - Permissions:
-  - Repository contents: Read only
+  - Repository contents: Read & Write
   - Issues: Read & Write
   - Pull requests: Read & Write
 - Events
