@@ -15,12 +15,27 @@ import {
 } from './github'
 import { is, not } from './utils'
 
-import installationRepositoriesAdded from './actions/installation-repositories-added'
+import createConfiguration from './actions/createConfiguration'
+import createFunding from './actions/createFunding'
 
 export const opencollective = (app: probot.Application): void => {
   app.log('Open Collective Bot up!')
 
-  app.on('installation_repositories.added', installationRepositoriesAdded)
+  app.on('installation_repositories.added', async (context: probot.Context) => {
+    const { github, payload } = context
+
+    for (const repositoryAdded of payload.repositories_added) {
+      const [owner, repo] = repositoryAdded.full_name.split('/')
+
+      if (!process.env.FEATURE_DISABLE_CONFIGURATION) {
+        await createConfiguration({ owner, repo, github })
+      }
+
+      if (!process.env.FEATURE_DISABLE_FUNDING) {
+        await createFunding({ owner, repo, github })
+      }
+    }
+  })
 
   app.on('issues.opened', async (context: probot.Context) => {
     const issue = context.issue()
