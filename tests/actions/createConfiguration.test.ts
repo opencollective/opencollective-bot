@@ -6,7 +6,9 @@ import btoa from 'btoa'
 import { opencollective } from '../../src/bot'
 import { Config } from '../../src/config'
 
-import installationRepositoriesFixture from '../__fixtures__/installation_repositories.added'
+import installationRepositoriesFixture from '../__fixtures__/installation_repositories.added-multiple'
+import repository1 from '../__fixtures__/repos.get-1'
+import repository2 from '../__fixtures__/repos.get-2'
 
 beforeEach(async () => {
   if (!nock.isActive()) nock.activate()
@@ -33,16 +35,29 @@ describe('opencollective installation_repositories', () => {
         },
       })
 
+    nock('https://api.opencollective.com/')
+      .post('/graphql/v2')
+      .reply(200, {
+        data: {
+          collective: null,
+        },
+      })
+
     const app = new probot.Application()
 
     const github = {
       repos: {
-        get: jest.fn().mockResolvedValue({
-          // we're just interested in default_branch
-          data: {
-            default_branch: 'master',
-          },
-        }),
+        get: jest
+          .fn()
+          .mockResolvedValue({
+            data: repository1,
+          })
+          .mockResolvedValueOnce({
+            data: repository1,
+          })
+          .mockResolvedValueOnce({
+            data: repository2,
+          }),
         getBranch: jest.fn().mockRejectedValue(new Error('Branch not found')),
         getContents: jest.fn().mockImplementation(({ ref }) => {
           if (!ref) {
@@ -89,7 +104,7 @@ describe('opencollective installation_repositories', () => {
       payload: installationRepositoriesFixture,
     })
 
-    expect(github.repos.get).toBeCalledTimes(1)
+    expect(github.repos.get).toBeCalledTimes(3)
     expect(github.repos.getBranch).toBeCalledTimes(1)
     expect(github.repos.getContents).toBeCalledTimes(1)
     expect(github.repos.createOrUpdateFile).toBeCalledTimes(1)
@@ -101,6 +116,7 @@ describe('opencollective installation_repositories', () => {
   test('properly create configuration file if not exists and branch exists', async () => {
     nock('https://api.opencollective.com/')
       .post('/graphql/v2')
+      .times(2)
       .reply(200, {
         data: {
           collective: null,
@@ -111,12 +127,17 @@ describe('opencollective installation_repositories', () => {
 
     const github = {
       repos: {
-        get: jest.fn().mockResolvedValue({
-          // we're just interested in default_branch
-          data: {
-            default_branch: 'master',
-          },
-        }),
+        get: jest
+          .fn()
+          .mockResolvedValue({
+            data: repository1,
+          })
+          .mockResolvedValueOnce({
+            data: repository1,
+          })
+          .mockResolvedValueOnce({
+            data: repository2,
+          }),
         getBranch: jest.fn().mockResolvedValue({
           // we're not interested in any data, just needs to return
           data: {},
@@ -152,7 +173,7 @@ describe('opencollective installation_repositories', () => {
       payload: installationRepositoriesFixture,
     })
 
-    expect(github.repos.get).toBeCalledTimes(1)
+    expect(github.repos.get).toBeCalledTimes(3)
     expect(github.repos.getBranch).toBeCalledTimes(1)
     expect(github.repos.getContents).toBeCalledTimes(1)
     expect(github.repos.createOrUpdateFile).toBeCalledTimes(1)
@@ -165,6 +186,7 @@ describe('opencollective installation_repositories', () => {
   test('do nothing if config file exists on the default branch', async () => {
     nock('https://api.opencollective.com/')
       .post('/graphql/v2')
+      .times(2)
       .reply(200, {
         data: {
           collective: null,
@@ -175,12 +197,17 @@ describe('opencollective installation_repositories', () => {
 
     const github = {
       repos: {
-        get: jest.fn().mockResolvedValue({
-          // we're just interested in default_branch
-          data: {
-            default_branch: 'master',
-          },
-        }),
+        get: jest
+          .fn()
+          .mockResolvedValue({
+            data: repository1,
+          })
+          .mockResolvedValueOnce({
+            data: repository1,
+          })
+          .mockResolvedValueOnce({
+            data: repository2,
+          }),
         getContents: jest.fn().mockResolvedValue({
           data: {
             content: btoa(
@@ -203,7 +230,7 @@ describe('opencollective installation_repositories', () => {
       payload: installationRepositoriesFixture,
     })
 
-    expect(github.repos.get).toBeCalledTimes(0)
+    expect(github.repos.get).toBeCalledTimes(2)
     expect(github.repos.getContents).toBeCalledTimes(1)
   })
 })

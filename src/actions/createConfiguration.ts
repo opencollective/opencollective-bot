@@ -1,4 +1,5 @@
 import mls from 'multilines'
+import Octokit, { ReposGetResponse } from '@octokit/rest'
 
 import { base64, sha } from '../utils'
 import { getCollectiveWithGithubHandle } from '../collective'
@@ -19,11 +20,13 @@ const CONFIG_PR_BODY = mls`
 
 const CONFIG_DEFAULT_FILE_CONTENT = defaultConfigAsString
 
-export default async function createConfiguration({
-  github,
-  owner,
-  repo,
-}: any) {
+export default async function createConfiguration(
+  github: Octokit,
+  repoResponse: ReposGetResponse,
+) {
+  const owner = repoResponse.owner.login
+  const repo = repoResponse.name
+
   /**
    * Flow
    *
@@ -42,8 +45,6 @@ export default async function createConfiguration({
     })
     .then((res: any) => res.data)
     .catch(() => null)
-
-  console.log(githubConfig)
 
   // If configuration is already existing, do nothing
   if (githubConfig) {

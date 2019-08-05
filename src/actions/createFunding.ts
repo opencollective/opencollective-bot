@@ -1,4 +1,5 @@
 import mls from 'multilines'
+import Octokit, { ReposGetResponse } from '@octokit/rest'
 
 import { base64, sha } from '../utils'
 import { getCollectiveWithGithubHandle } from '../collective'
@@ -23,7 +24,13 @@ const FUNDING_PR_BODY = mls`
 
 const FUNDING_DEFAULT_FILE_CONTENT = defaultFundingAsString
 
-export default async function createFunding({ github, owner, repo }: any) {
+export default async function createFunding(
+  github: Octokit,
+  repoResponse: ReposGetResponse,
+) {
+  const owner = repoResponse.owner.login
+  const repo = repoResponse.name
+
   // Check if funding file is existing
   const githubFundingUpper = await github.repos
     .getContents({
