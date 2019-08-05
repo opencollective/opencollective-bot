@@ -1,6 +1,7 @@
 import fetch from 'node-fetch'
 
-const graphqlEndpoint = 'https://api.opencollective.com/graphql/v2'
+// const graphqlEndpoint = 'https://api.opencollective.com/graphql/v2'
+const graphqlEndpoint = 'http://0.0.0.0:3060/graphql/v2'
 
 const membersGraphqlQuery = `query account($slug: String!) {
   account(slug: $slug) {
@@ -52,13 +53,26 @@ export type Member = {
 }
 
 async function graphqlQuery(query: string, variables: object): Promise<any> {
-  const result = await fetch(graphqlEndpoint, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query, variables }),
-  })
+  const result = await fetch(
+    `${graphqlEndpoint}?apiKey=b00142949ef0aaad15287015ca37176cca620e67`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query, variables }),
+    },
+  )
+  console.log(
+    'x-ratelimit-remaining',
+    result.headers.get('x-ratelimit-remaining'),
+  )
+  console.log('x-ratelimit-reset', result.headers.get('x-ratelimit-reset'))
 
-  return result.json().then(res => res.data)
+  return result.json().then(res => {
+    if (!res.data) {
+      console.log(res)
+    }
+    return res.data
+  })
 }
 
 /**
@@ -84,5 +98,10 @@ export async function getCollectiveWithGithubHandle(
 ): Promise<Account> {
   const result = graphqlQuery(collectiveWithGithubhandleQuery, { githubHandle })
 
-  return result.then(data => data.collective)
+  return result.then(data => {
+    if (!data.collective) {
+      console.log(data)
+    }
+    return data.collective
+  })
 }

@@ -55,7 +55,9 @@ export default async function createFunding({ github, owner, repo }: any) {
   let fileContent = FUNDING_DEFAULT_FILE_CONTENT
 
   // Fetch the collective from Open Collective
-  const collective = await getCollectiveWithGithubHandle(`${owner}/${repo}`)
+  const collective = await getCollectiveWithGithubHandle(
+    `opencollective/${repo}`,
+  )
 
   // Replace placeholder with proper collective slug
   if (collective) {
