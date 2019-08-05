@@ -1,11 +1,10 @@
-import fs from 'fs'
-import path from 'path'
-
 import mls from 'multilines'
 
 import { base64, sha } from '../utils'
 import { getCollectiveWithGithubHandle } from '../collective'
 import { resetBranch } from '../github'
+
+import defaultConfigAsString from '../assets/default-config'
 
 const CONFIG_BRANCH_NAME = `opencollective-bot/configuration`
 
@@ -18,10 +17,7 @@ const CONFIG_PR_BODY = mls`
   |
   | To activate and configure it, please review and merge this PR.`
 
-const CONFIG_DEFAULT_FILE_CONTENT = fs.readFileSync(
-  path.resolve(__dirname, '../assets/default-config.yml'),
-  'utf8',
-)
+const CONFIG_DEFAULT_FILE_CONTENT = defaultConfigAsString
 
 export default async function createConfiguration({
   github,

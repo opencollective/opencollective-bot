@@ -1,4 +1,4 @@
-# Collective
+const defaultConfig = `# Collective
 # ----------
 
 # Define the Open Collective you want to link the repository with.
@@ -28,7 +28,7 @@ invitation: |-
 
   <link>
 
-  > PS.: We offer `priority` support for all financial contributors. Don't forget to add `priority` label once you start contributing :smile:
+  > PS.: We offer \`priority\` support for all financial contributors. Don't forget to add \`priority\` label once you start contributing :smile:
 
 # To disable that feature, you can use the following syntax
 
@@ -46,7 +46,7 @@ tiers:
   #   message: |-
   #     Hey <author> :wave:,
   #
-  #     Thank you for being a "backer". We will handle your issue with priority support. To make sure we don't forget how special you are, we added a `priority` label to your issue.
+  #     Thank you for being a "backer". We will handle your issue with priority support. To make sure we don't forget how special you are, we added a \`priority\` label to your issue.
   #
   #     Thank you again for contributing :tada:!
 
@@ -56,7 +56,7 @@ tiers:
   #   message: |-
   #     Hey <author> :wave:,
   #
-  #     Thank you for being a "sponsor".  We will handle your issue with priority support. To make sure we don't forget how special you are, we added a `priority` label to your issue.
+  #     Thank you for being a "sponsor".  We will handle your issue with priority support. To make sure we don't forget how special you are, we added a \`priority\` label to your issue.
   #
   #     Thank you again for contributing :tada:!
 
@@ -66,10 +66,15 @@ tiers:
     message: |-
       Hey <author> :wave:,
 
-      Thank you for contributing to our project financially. We will handle your issue with priority support. To make sure we don't forget how special you are, we added a `priority` label to your issue.
+      Thank you for contributing to our project financially. We will handle your issue with priority support. To make sure we don't forget how special you are, we added a \`priority\` label to your issue.
 
       Thank you again for contributing :tada:!
 
 # To disable that feature, you can use the following syntax
 
 # tiers: []
+
+
+`
+
+export default defaultConfig
