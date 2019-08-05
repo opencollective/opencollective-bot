@@ -1,6 +1,3 @@
-import fs from 'fs'
-import path from 'path'
-
 import * as joi from '@hapi/joi'
 import * as probot from 'probot'
 import yaml from 'js-yaml'
@@ -8,6 +5,8 @@ import { flatten, intersection } from 'lodash'
 
 import { Tier } from './collective'
 import { GithubLabel } from './github'
+
+import defaultConfigAsString from './assets/default-config'
 
 export type Config = {
   collective: string
@@ -23,12 +22,7 @@ export type TierConfig = {
 
 export type Message = string
 
-const defaultConfig = yaml.safeLoad(
-  fs.readFileSync(
-    path.resolve(__dirname, './assets/default-config.yml'),
-    'utf8',
-  ),
-)
+const defaultConfig = yaml.safeLoad(defaultConfigAsString)
 
 /* Schema */
 

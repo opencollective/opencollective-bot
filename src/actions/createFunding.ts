@@ -1,11 +1,10 @@
-import fs from 'fs'
-import path from 'path'
-
 import mls from 'multilines'
 
 import { base64, sha } from '../utils'
 import { getCollectiveWithGithubHandle } from '../collective'
 import { resetBranch } from '../github'
+
+import defaultFundingAsString from '../assets/default-funding'
 
 const FUNDING_BRANCH_NAME = `opencollective-bot/funding`
 
@@ -22,10 +21,7 @@ const FUNDING_PR_BODY = mls`
   |
   | You will also need to activate "Sponsorships" for your repository, see GitHub documentation: https://help.github.com/en/articles/displaying-a-sponsor-button-in-your-repository`
 
-const FUNDING_DEFAULT_FILE_CONTENT = fs.readFileSync(
-  path.resolve(__dirname, '../assets/default-funding.yml'),
-  'utf8',
-)
+const FUNDING_DEFAULT_FILE_CONTENT = defaultFundingAsString
 
 export default async function createFunding({ github, owner, repo }: any) {
   // Check if funding file is existing
