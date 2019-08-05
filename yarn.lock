@@ -336,12 +336,12 @@
     "@zeit/ncc" "0.18.5"
     fs-extra "7.0.1"
 
-"@octokit/app@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@octokit/app/-/app-3.0.1.tgz#072e48127eb3c004f9a8ae9c81bfbf8c1850b41d"
-  integrity sha512-uUN1XCzHJTqiKbeTKAuTYAiu/IYV5uN606smwGZsg//8xVHvlwdv7x9nwpYAs32addRk+TZB55nitwgQlzt1jw==
+"@octokit/app@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@octokit/app/-/app-4.0.0.tgz#82888587f6b4f7d7eb4fa157df19771b46ff8d91"
+  integrity sha512-nc362rJnqWYu2MYVv93+fSiKs2kTfXzZKWbaOMGpikvjZyF+fvQ+uPoDCGqpITgVSXVvhPU8s0aiIvzI4kX/CA==
   dependencies:
-    "@octokit/request" "^4.1.0"
+    "@octokit/request" "^5.0.0"
     jsonwebtoken "^8.3.0"
     lru-cache "^5.1.1"
 
@@ -355,13 +355,13 @@
     universal-user-agent "^2.1.0"
     url-template "^2.0.8"
 
-"@octokit/graphql@2.1.3":
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/@octokit/graphql/-/graphql-2.1.3.tgz#60c058a0ed5fa242eca6f938908d95fd1a2f4b92"
-  integrity sha512-XoXJqL2ondwdnMIW3wtqJWEwcBfKk37jO/rYkoxNPEVeLBDGsGO1TCWggrAlq3keGt/O+C/7VepXnukUxwt5vA==
+"@octokit/graphql@3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@octokit/graphql/-/graphql-3.0.1.tgz#7559c3bb606a2aab7ba91e82633c044642b354c0"
+  integrity sha512-TiegCo0jueDPlkpcYlx8KSYa3ybs13ePBteoJutEHou0hu8sJHHhvIaQWvDH5jj4mHfJwZwD4r6/Xbl33UHLUw==
   dependencies:
     "@octokit/request" "^5.0.0"
-    universal-user-agent "^2.0.3"
+    universal-user-agent "^3.0.0"
 
 "@octokit/plugin-enterprise-compatibility@^1.0.0":
   version "1.1.1"
@@ -390,7 +390,7 @@
     deprecation "^2.0.0"
     once "^1.4.0"
 
-"@octokit/request@^4.0.1", "@octokit/request@^4.1.0":
+"@octokit/request@^4.0.1":
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/@octokit/request/-/request-4.1.1.tgz#614262214f48417b4d3b14e047d09a9c8e2f7a09"
   integrity sha512-LOyL0i3oxRo418EXRSJNk/3Q4I0/NKawTn6H/CQp+wnrG1UFLGu080gSsgnWobhPo5BpUNgSQ5BRk5FOOJhD1Q==
@@ -2391,7 +2391,7 @@ has@^1.0.1, has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
-hbs@^4.0.3:
+hbs@^4.0.4:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/hbs/-/hbs-4.0.4.tgz#6139e8dcdec83d6352da3303337457823bca2c45"
   integrity sha512-esVlyV/V59mKkwFai5YmPRSNIWZzhqL5YMN0++ueMxyK1cCfPa5f6JiHtapPKAIVAhQR6rpGxow0troav9WMEg==
@@ -4465,13 +4465,13 @@ pretty-quick@1.11.1:
     mri "^1.1.0"
     multimatch "^3.0.0"
 
-probot@9.2.16:
-  version "9.2.16"
-  resolved "https://registry.yarnpkg.com/probot/-/probot-9.2.16.tgz#837124416052f39d58d5efa9a36156f6f0643867"
-  integrity sha512-29X54OsIvJmbAvHMvIL5nFY1LyxA3a8ca7L5/zJXaLO8ym1Lgbl6Grgy78ENAKHWH5jDg4OIGGLGhZBvAcV9gQ==
+probot@9.2.20:
+  version "9.2.20"
+  resolved "https://registry.yarnpkg.com/probot/-/probot-9.2.20.tgz#302a85a937266f028398885571e25662ade74ddc"
+  integrity sha512-GDzyR+yNqMKneRfpwnAku099sIGpJ5b2Zxqncw9/QvdM13DmDLNN0hL9dC6QJR2WefcXjjMbQOIO65GhnLSOVQ==
   dependencies:
-    "@octokit/app" "^3.0.1"
-    "@octokit/graphql" "2.1.3"
+    "@octokit/app" "^4.0.0"
+    "@octokit/graphql" "3.0.1"
     "@octokit/plugin-enterprise-compatibility" "^1.0.0"
     "@octokit/plugin-retry" "^2.1.1"
     "@octokit/plugin-throttling" "^2.3.0"
@@ -4488,7 +4488,7 @@ probot@9.2.16:
     eventsource "^1.0.7"
     express "^4.16.2"
     express-async-errors "^3.0.0"
-    hbs "^4.0.3"
+    hbs "^4.0.4"
     ioredis "^4.5.1"
     is-base64 "0.1.0"
     js-yaml "^3.13.1"
@@ -5529,10 +5529,17 @@ unique-string@^1.0.0:
   dependencies:
     crypto-random-string "^1.0.0"
 
-universal-user-agent@^2.0.0, universal-user-agent@^2.0.3, universal-user-agent@^2.1.0:
+universal-user-agent@^2.0.0, universal-user-agent@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/universal-user-agent/-/universal-user-agent-2.1.0.tgz#5abfbcc036a1ba490cb941f8fd68c46d3669e8e4"
   integrity sha512-8itiX7G05Tu3mGDTdNY2fB4KJ8MgZLS54RdG6PkkfwMAavrXu1mV/lls/GABx9O3Rw4PnTtasxrvbMQoBYY92Q==
+  dependencies:
+    os-name "^3.0.0"
+
+universal-user-agent@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/universal-user-agent/-/universal-user-agent-3.0.0.tgz#4cc88d68097bffd7ac42e3b7c903e7481424b4b9"
+  integrity sha512-T3siHThqoj5X0benA5H0qcDnrKGXzU8TKoX15x/tQHw1hQBvIEBHjxQ2klizYsqBOO/Q+WuxoQUihadeeqDnoA==
   dependencies:
     os-name "^3.0.0"
 
