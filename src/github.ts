@@ -1,5 +1,6 @@
 import Octokit, {
   Response,
+  ReposGetResponse,
   IssuesCreateCommentResponse,
   IssuesAddLabelsResponseItem,
 } from '@octokit/rest'
@@ -21,11 +22,20 @@ export interface GithubPullRequest {
   base: string
 }
 
+export interface GithubRepoMinimal {
+  id: number
+  node_id: string
+  name: string
+  full_name: string
+  private: boolean
+}
+
 /**
  *
  * Returns a list of user organisations.
  *
- * @param context
+ * @param github
+ * @param username
  */
 export async function getUserOrganisations(
   github: Octokit,
@@ -36,6 +46,41 @@ export async function getUserOrganisations(
       username: username,
     })
     .then(res => res.data.map(org => org.login))
+}
+
+/**
+ *
+ * Fetch multiple repositories
+ *
+ * @param github
+ * @param repositories
+ */
+export async function fetchRepos(
+  github: Octokit,
+  repositories: GithubRepoMinimal[],
+): Promise<ReposGetResponse[]> {
+  return Promise.all(
+    repositories.map(repository => {
+      const [owner, repo] = repository.full_name.split('/')
+      return getRepo(github, owner, repo)
+    }),
+  )
+}
+
+/**
+ *
+ * Get a single repository
+ *
+ * @param github
+ * @param owner
+ * @param repo
+ */
+export async function getRepo(
+  github: Octokit,
+  owner: string,
+  repo: string,
+): Promise<ReposGetResponse> {
+  return github.repos.get({ owner, repo }).then((res: any) => res.data)
 }
 
 /**
@@ -69,7 +114,7 @@ export async function messageGithubIssue(
  *
  * @param github
  * @param issue
- * @param messages
+ * @param labels
  */
 export async function labelGithubIssue(
   github: Octokit,
@@ -112,7 +157,7 @@ export async function labelGithubIssue(
  *
  * @param github
  * @param issue
- * @param messages
+ * @param labels
  */
 export async function removeLabelsFromGithubIssue(
   github: Octokit,
@@ -141,6 +186,7 @@ export async function removeLabelsFromGithubIssue(
  * @param owner
  * @param repo
  * @param branchName
+ * @param defaultBranchName
  */
 export async function resetBranch(
   github: Octokit,

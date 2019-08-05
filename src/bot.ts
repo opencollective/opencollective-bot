@@ -1,4 +1,6 @@
 import * as probot from 'probot'
+import { orderBy } from 'lodash'
+
 import { getIssueAuthorCollectiveTiers } from './backers'
 import {
   getConfig,
@@ -8,6 +10,7 @@ import {
 } from './config'
 import { getCollectiveMembers } from './collective'
 import {
+  fetchRepos,
   getUserOrganisations,
   messageGithubIssue,
   labelGithubIssue,
@@ -24,15 +27,24 @@ export const opencollective = (app: probot.Application): void => {
   app.on('installation_repositories.added', async (context: probot.Context) => {
     const { github, payload } = context
 
-    for (const repositoryAdded of payload.repositories_added) {
-      const [owner, repo] = repositoryAdded.full_name.split('/')
+    let repos = await fetchRepos(github, payload.repositories_added)
 
+    // Make sure we don't flood (fetch top repos with 100 stars)
+    if (repos.length >= 2) {
+      repos = orderBy(
+        repos.filter(repo => repo.stargazers_count >= 100),
+        'stargazers_count',
+        'desc',
+      ).slice(0, 2)
+    }
+
+    for (const repo of repos) {
       if (!process.env.FEATURE_DISABLE_CONFIGURATION) {
-        await createConfiguration({ owner, repo, github })
+        await createConfiguration(github, repo)
       }
 
       if (!process.env.FEATURE_DISABLE_FUNDING) {
-        await createFunding({ owner, repo, github })
+        await createFunding(github, repo)
       }
     }
   })
