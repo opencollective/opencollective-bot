@@ -3,7 +3,7 @@
   "name": "opencollective-bot",
   "version": 2,
   "alias": "bot.opencollective.com",
-  "builds": [{ "src": "src/index.ts", "use": "@now/node-server@0.7.4" }],
+  "builds": [{ "src": "src/index.ts", "use": "@now/node@0.12.3" }],
   "routes": [{ "src": "/.*", "dest": "src/index.ts" }],
   "env": {
     "APP_ID": "@oc-bot-app-id",
