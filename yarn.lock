@@ -322,17 +322,17 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^12.0.9"
 
-"@now/node-bridge@^1.1.4":
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/@now/node-bridge/-/node-bridge-1.2.3.tgz#1e632e99a85ec55282fd968490dde136efd20ec1"
-  integrity sha512-OsFCwK6dTO01fXivSo2qrRlr5r7rDg3StPRNxFiC6a9unNJvhQ3Ir7O9T3mcy3oHONBRuTK/UOTq3u1C71DiYQ==
+"@now/node-bridge@1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@now/node-bridge/-/node-bridge-1.2.2.tgz#b4740d8806227b8dd1d4d8481e21b3b30ad299b4"
+  integrity sha512-E5xqal3QRN8RvcQ4Q82vtg/hvWmQWaIYp2bJHd550Ps/kemGabcwAAQsP/TUM/4b5oYlOmjrfuYPq9AhMvFqkQ==
 
-"@now/node-server@0.7.4":
-  version "0.7.4"
-  resolved "https://registry.yarnpkg.com/@now/node-server/-/node-server-0.7.4.tgz#b7245c69d0a633a3c0b8c4b8a27a57a65421150e"
-  integrity sha512-EH+v3vgg2nMcYNTImfyYXx6hnJdjeN7kkwQsJHn36BtsnR6YGMBaNKWZwSza91287ugtP+R265B+swwacxnD9Q==
+"@now/node-server@0.8.2":
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/@now/node-server/-/node-server-0.8.2.tgz#7d90ed9cc468be601cf00c44006bceb0059d8bc2"
+  integrity sha512-zoDpP2MbXB3aTIjd7RskME+rsUwB1Ao/+YumOGZnsnGFOYXCXDUG20BbO1HhVtbnqBE/OnWoM/QLGGFAHv6PBA==
   dependencies:
-    "@now/node-bridge" "^1.1.4"
+    "@now/node-bridge" "1.2.2"
     "@zeit/ncc" "0.18.5"
     fs-extra "7.0.1"
 
