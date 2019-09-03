@@ -24,11 +24,11 @@ collective: <YOUR-COLLECTIVE-SLUG>
 invitation: |-
   Hey <author> :wave:,
 
-  Thank you for opening an issue. We will get back to you as soon as we can. Also, check out our Open Collective and consider contributing financially.
+  Thank you for opening an issue. We will get back to you as soon as we can. Have you seen our Open Collective page? Please consider contributing financially to our project. This will help us involve more contributors and get to issues like yours faster.
 
   <link>
 
-  > PS.: We offer \`priority\` support for all financial contributors. Don't forget to add \`priority\` label once you start contributing :smile:
+  > We offer \`priority\` support for all financial contributors. Don't forget to add \`priority\` label once you become one! :smile:
 
 # To disable that feature, you can use the following syntax
 
