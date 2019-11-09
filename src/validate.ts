@@ -1,6 +1,5 @@
 import bodyParser from 'body-parser'
 import express from 'express'
-import * as joi from '@hapi/joi'
 import yaml from 'js-yaml'
 import mls from 'multilines'
 
@@ -29,26 +28,21 @@ validator.post(
       const config = yaml.safeLoad(file)
 
       // Validate configuration.
-      joi
-        .validate(config, configSchema, {
-          abortEarly: false,
-        })
-        .then(() => {
-          res.status(200).send('Valid configuration!')
-        })
-        .catch(err => {
-          /* Compose a report */
-          const message = err.details
-            .map(
-              (detail: { path: string[]; message: string }) =>
-                `- ${detail.path.join('.')}: ${detail.message}`,
-            )
-            .join('\n')
-
-          res.status(400).send(message)
-        })
+      await configSchema.validateAsync(config, { abortEarly: false })
+      res.status(200).send('Valid configuration!')
     } catch (err) {
-      res.status(400).send('Something went wrong.')
+      if (err.isJoi) {
+        /* Compose a report */
+        const message = err.details
+          .map(
+            (detail: { path: string[]; message: string }) =>
+              `- ${detail.path.join('.')}: ${detail.message}`,
+          )
+          .join('\n')
+        return res.status(400).send(message)
+      }
+
+      return res.status(400).send('Something went wrong.')
     }
   },
 )

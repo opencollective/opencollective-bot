@@ -35,26 +35,23 @@ const tierConfigSchema = joi.object().keys({
   message: joi.string().required(),
 })
 
-export const configSchema = joi
-  .object()
-  .keys({
-    collective: joi
-      .string()
-      .regex(/^[\w\-]+$/, 'Use your collective slug.')
-      .required(),
-    tiers: joi
-      .array()
-      .items(tierConfigSchema)
-      .optional()
-      .default(defaultConfig.tiers),
-    invitation: joi
-      .string()
-      .default(defaultConfig.invitation)
-      .allow(false)
-      .optional()
-      .description('An invitation message shown to non-backers'),
-  })
-  .requiredKeys(['collective'])
+export const configSchema = joi.object().keys({
+  collective: joi
+    .string()
+    .regex(/^[\w\-]+$/, 'Use your collective slug.')
+    .required(),
+  tiers: joi
+    .array()
+    .items(tierConfigSchema)
+    .optional()
+    .default(defaultConfig.tiers),
+  invitation: joi
+    .string()
+    .default(defaultConfig.invitation)
+    .allow(false)
+    .optional()
+    .description('An invitation message shown to non-backers'),
+})
 
 /**
  *
@@ -67,7 +64,7 @@ export async function getConfig(
 ): Promise<Config | null> {
   try {
     const config = await context.config('opencollective.yml')
-    const value = await joi.validate(config, configSchema)
+    const value = await configSchema.validateAsync(config)
 
     return value
   } catch (err) {
