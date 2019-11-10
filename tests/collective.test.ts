@@ -41,7 +41,7 @@ describe('collective', () => {
       expect(res.length).not.toBe(0)
       const validations = res.map(async member => {
         try {
-          await joi.validate(member, memberTypeSchema, { allowUnknown: true })
+          await memberTypeSchema.validateAsync(member, { allowUnknown: true })
         } catch (err) {
           console.log(err, member)
           throw err

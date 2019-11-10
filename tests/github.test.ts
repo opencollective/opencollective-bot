@@ -23,7 +23,7 @@ describe('github', () => {
       expect(res.length).not.toBe(0)
       const validations = res.map(async org => {
         try {
-          await joi.validate(org, organsisationTypeSchema, {
+          await organsisationTypeSchema.validateAsync(org, {
             allowUnknown: true,
           })
         } catch (err) {
