@@ -14,6 +14,7 @@ beforeEach(async () => {
   if (!nock.isActive()) nock.activate()
 
   process.env.FEATURE_DISABLE_FUNDING = 'TRUE'
+  process.env.FEATURE_DISABLE_FUNDING_PACKAGE_JSON = 'TRUE'
 })
 
 afterEach(async () => {
@@ -21,6 +22,7 @@ afterEach(async () => {
   nock.cleanAll()
 
   delete process.env.FEATURE_DISABLE_FUNDING
+  delete process.env.FEATURE_DISABLE_FUNDING_PACKAGE_JSON
 })
 
 describe('opencollective installation_repositories', () => {

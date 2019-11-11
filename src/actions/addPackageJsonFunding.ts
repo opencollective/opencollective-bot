@@ -23,6 +23,14 @@ const PR_BODY = mls`
 
 const FUNDING_DEFAULT_FILE_CONTENT = defaultFundingPackageAsString
 
+/**
+ * Finds last line before closing curly bracket of package.json
+ * Adds comma
+ * Adds newContent (new properties to package.json)
+ * Add closing curly bracket
+ * @param packageJSON
+ * @param newContent
+ */
 function updatePackageJson(packageJSON: String, newContent: String) {
   const removeLastChar = packageJSON.substr(0, packageJSON.lastIndexOf('}'))
   const indexes = [
@@ -60,10 +68,14 @@ export default async function addPackageJsonFunding(
     console.log(`There is not package.json on ${owner}/${repo}`)
     return
   }
+
+  // Content Base64 Decoding
   const packageJsonContent = Buffer.from(
     packageJsonFile.content,
     'base64',
   ).toString()
+
+  // Check if package.json already contains funding property
   if (packageJsonContent.includes('"funding":')) {
     console.log(`Funding property already exists on ${owner}/${repo}`)
     return
@@ -87,6 +99,7 @@ export default async function addPackageJsonFunding(
 
   await resetBranch(github, owner, repo, BRANCH_NAME, defaultBranchName)
 
+  // Add funding property to at the end of package.json that fetched from reposiory
   const updatedPackageJsonContent = updatePackageJson(
     packageJsonContent,
     fileContent,
