@@ -46,7 +46,18 @@ describe('opencollective installation_repositories', () => {
             data: {
               name: 'package.json',
               path: 'package.json',
-              content: `{"name": "backyourstack"}`,
+              /* 
+                content: {
+                  "name": "backyourstack",
+                  "version": "1.1.0",
+                  "jest": {
+                    "coverageDirectory": "./coverage/",
+                    "collectCoverage": true
+                  }
+                }
+              */
+              content:
+                'ewogICJuYW1lIjogImJhY2t5b3Vyc3RhY2siLAogICJ2ZXJzaW9uIjogIjEu\nMS4wIiwKICAiamVzdCI6IHsKICAgICJjb3ZlcmFnZURpcmVjdG9yeSI6ICIu\nL2NvdmVyYWdlLyIsCiAgICAiY29sbGVjdENvdmVyYWdlIjogdHJ1ZQogIH0K\nfQo=\n',
             },
           })
         }),
@@ -111,7 +122,18 @@ describe('opencollective installation_repositories', () => {
             data: {
               name: 'package.json',
               path: 'package.json',
-              content: `{"name": "backyourstack"}`,
+              /* 
+                  content: {
+                    "name": "backyourstack",
+                    "version": "1.1.0",
+                    "jest": {
+                      "coverageDirectory": "./coverage/",
+                      "collectCoverage": true
+                    }
+                  }
+                */
+              content:
+                'ewogICJuYW1lIjogImJhY2t5b3Vyc3RhY2siLAogICJ2ZXJzaW9uIjogIjEu\nMS4wIiwKICAiamVzdCI6IHsKICAgICJjb3ZlcmFnZURpcmVjdG9yeSI6ICIu\nL2NvdmVyYWdlLyIsCiAgICAiY29sbGVjdENvdmVyYWdlIjogdHJ1ZQogIH0K\nfQo=\n',
             },
           })
         }),
@@ -181,7 +203,18 @@ describe('opencollective installation_repositories', () => {
               data: {
                 name: 'package.json',
                 path: 'package.json',
-                content: `{"name": "backyourstack"}`,
+                /* 
+                  content: {
+                    "name": "backyourstack",
+                    "version": "1.1.0",
+                    "jest": {
+                      "coverageDirectory": "./coverage/",
+                      "collectCoverage": true
+                    }
+                  }
+                */
+                content:
+                  'ewogICJuYW1lIjogImJhY2t5b3Vyc3RhY2siLAogICJ2ZXJzaW9uIjogIjEu\nMS4wIiwKICAiamVzdCI6IHsKICAgICJjb3ZlcmFnZURpcmVjdG9yeSI6ICIu\nL2NvdmVyYWdlLyIsCiAgICAiY29sbGVjdENvdmVyYWdlIjogdHJ1ZQogIH0K\nfQo=\n',
               },
             })
           }

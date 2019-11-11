@@ -26,25 +26,18 @@ const FUNDING_DEFAULT_FILE_CONTENT = defaultFundingPackageAsString
 /**
  * Finds last line before closing curly bracket of package.json
  * Adds comma
- * Adds newContent (new properties to package.json)
+ * Adds fundingUrl (new properties to package.json)
  * Add closing curly bracket
  * @param packageJSON
- * @param newContent
+ * @param fundingUrl
  */
-function updatePackageJson(packageJSON: String, newContent: String) {
-  const removeLastChar = packageJSON.substr(0, packageJSON.lastIndexOf('}'))
-  const indexes = [
-    removeLastChar.lastIndexOf('"'),
-    removeLastChar.lastIndexOf(']'),
-    removeLastChar.lastIndexOf('}'),
-  ]
-  const index = Math.max(...indexes)
-  return (
-    removeLastChar.substr(0, index + 1) +
-    `,
-  ${newContent}
-}`
-  )
+function updatePackageJson(packageJSON: string, fundingUrl: string) {
+  const obj = JSON.parse(packageJSON)
+  obj['funding'] = {
+    type: 'opencollective',
+    url: fundingUrl,
+  }
+  return JSON.stringify(obj, null, 2)
 }
 
 export default async function addPackageJsonFunding(
@@ -99,7 +92,7 @@ export default async function addPackageJsonFunding(
 
   await resetBranch(github, owner, repo, BRANCH_NAME, defaultBranchName)
 
-  // Add funding property to at the end of package.json that fetched from reposiory
+  // Add funding property to package.json that fetched from reposiory
   const updatedPackageJsonContent = updatePackageJson(
     packageJsonContent,
     fileContent,
