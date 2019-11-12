@@ -7,6 +7,7 @@
     "dev": "nodemon --exec dotenv ts-node src/index.ts",
     "test": "NODE_ENV=test jest",
     "coverage": "yarn codecov",
+    "build": "tsc -p tsconfig.json",
     "deploy:staging": "now -e APP_ID=@oc-bot-staging-app-id -e WEBHOOK_SECRET=@oc-bot-staging-webhook-secret -e PRIVATE_KEY=@oc-bot-staging-private-key -e SENTRY_DSN=@oc-bot-staging-sentry-dsn --target staging && now alias bot-staging.opencollective.com",
     "deploy:production": "now --target production"
   },
