@@ -1,5 +1,6 @@
 import mls from 'multilines'
 import Octokit, { ReposGetResponse } from '@octokit/rest'
+import detectIndent from 'detect-indent'
 
 import { base64 } from '../utils'
 import { getCollectiveWithGithubHandle } from '../collective'
@@ -23,23 +24,21 @@ const PR_BODY = mls`
 
 const FUNDING_DEFAULT_FILE_CONTENT = defaultFundingPackageAsString
 
-/**
- * Finds last line before closing curly bracket of package.json
- * Adds comma
- * Adds fundingUrl (new properties to package.json)
- * Add closing curly bracket
- * @param packageJSON
- * @param fundingUrl
- */
+function setIndent(packageJSON: string): string {
+  return detectIndent(packageJSON).indent || '  '
+}
+
 function updatePackageJson(packageJSON: string, fundingUrl: string) {
+  const indent = setIndent(packageJSON)
   const obj = JSON.parse(packageJSON)
   obj['funding'] = {
     type: 'opencollective',
     url: fundingUrl,
   }
-  return JSON.stringify(obj, null, 2)
+  return JSON.stringify(obj, null, indent)
 }
 
+export { setIndent }
 export default async function addPackageJsonFunding(
   github: Octokit,
   repoResponse: ReposGetResponse,

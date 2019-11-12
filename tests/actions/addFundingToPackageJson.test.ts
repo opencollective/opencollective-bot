@@ -5,6 +5,7 @@ import { opencollective } from '../../src/bot'
 
 import installationRepositoriesFixture from '../__fixtures__/installation_repositories.added'
 import repository from '../__fixtures__/repos.get-1'
+import { setIndent } from '../../src/actions/addPackageJsonFunding'
 
 beforeEach(async () => {
   if (!nock.isActive()) nock.activate()
@@ -337,5 +338,37 @@ describe('opencollective installation_repositories', () => {
     expect(github.git.createRef).toBeCalledTimes(0)
     expect(github.repos.createOrUpdateFile).toBeCalledTimes(0)
     expect(github.pulls.create).toBeCalledTimes(0)
+  })
+})
+
+describe('package.json indents', () => {
+  test('mixed, gets first line indents (8)', () => {
+    expect(
+      setIndent(`
+      {
+              "name": "backyourstack",
+        "version": "1.1.0",
+            "jest": {
+          "coverageDirectory": "./coverage/",
+      "collectCoverage": true
+              }
+      }
+      `),
+    ).toBe('        ')
+  })
+
+  test('no indent, sets (2)', () => {
+    expect(
+      setIndent(
+        `{
+"name": "backyourstack",
+"version": "1.1.0",
+"jest": {
+"coverageDirectory": "./coverage/",
+"collectCoverage": true
+}
+}`,
+      ),
+    ).toBe('  ')
   })
 })
