@@ -6,7 +6,7 @@ import { base64 } from '../utils'
 import { getCollectiveWithGithubHandle } from '../collective'
 import { resetBranch } from '../github'
 
-import defaultFundingPackageAsString from '../assets/default-funding-package'
+const defaultFundingPackageAsString = `https://opencollective.com/<YOUR-COLLECTIVE-SLUG>`
 
 const BRANCH_NAME = `opencollective-bot/funding_package`
 
