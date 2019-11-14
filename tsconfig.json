@@ -9,8 +9,7 @@
     "outDir": "dist",
     "sourceMap": true,
     "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true
+    "esModuleInterop": true
   },
   "include": ["./src/**/*.ts"],
   "exclude": ["node_modules", "dist"]
