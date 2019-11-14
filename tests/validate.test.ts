@@ -1,32 +1,23 @@
-import * as fs from 'fs'
 import { safeDump } from 'js-yaml'
-import { AddressInfo, Server } from 'net'
-import * as path from 'path'
+import express from 'express'
 import request from 'request-promise-native'
 
-import { main } from '../src'
+import { validator } from '../src/validate'
+import { Server } from 'net'
 
 describe('validate', () => {
-  let uri: string
   let server: Server
+  let port = 3003
+  let uri = `http://localhost:${port}/validate`
 
-  beforeAll(() => {
-    process.env.APP_ID = '1234'
-    process.env.WEBHOOK_SECRET = 'secret'
-    process.env.PRIVATE_KEY = fs.readFileSync(
-      path.resolve(__dirname, './__fixtures__/cert.pem'),
-      'UTF-8',
-    )
-    process.env.DISABLE_STATS = 'true'
-
-    server = main(0)
-    const { port } = server.address() as AddressInfo
-
-    uri = `http://localhost:${port}/validate`
+  beforeAll(done => {
+    const app = express()
+    app.use('/validate', validator)
+    server = app.listen(port, done)
   })
 
-  afterAll(() => {
-    server.close()
+  afterAll(done => {
+    server.close(done)
   })
 
   test('shows correct usage description', async () => {
