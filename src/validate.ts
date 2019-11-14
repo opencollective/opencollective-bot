@@ -4,6 +4,7 @@ import yaml from 'js-yaml'
 import mls from 'multilines'
 
 import { configSchema } from './config'
+import { ApplicationFunction, Application } from 'probot'
 
 /* Server */
 
@@ -47,4 +48,12 @@ validator.post(
   },
 )
 
-export { validator }
+const validatorApp: ApplicationFunction = (app: Application) => {
+  // Get an express router to expose new HTTP endpoints
+  const router = app.route('/validate')
+
+  // Add express app to router
+  router.use(validator)
+}
+
+export { validator, validatorApp }
