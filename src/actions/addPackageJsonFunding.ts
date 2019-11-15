@@ -69,7 +69,7 @@ export default async function addPackageJsonFunding(
   ).toString()
 
   // Check if package.json already contains funding property
-  if (packageJsonContent.includes('"funding":')) {
+  if (JSON.parse(packageJsonContent)['funding']) {
     console.log(
       `"funding" property already exists in package.json on ${owner}/${repo}`,
     )
