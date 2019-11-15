@@ -8,19 +8,20 @@ import { resetBranch } from '../github'
 
 const defaultFundingPackageAsString = `https://opencollective.com/<YOUR-COLLECTIVE-SLUG>`
 
-const BRANCH_NAME = `opencollective-bot/funding_package`
+const BRANCH_NAME = `opencollective-bot/package-json-funding`
 
 const FILE_PATH = 'package.json'
 
-const PR_TITLE = 'Add FUNDING to package.json'
+const PR_TITLE = 'Add "funding" property to package.json'
 
 const PR_BODY = mls`
-  | Add FUNDING to package.json
+  | Looks like you don't have yet the "funding" property added to your package.json.
   |
-  | Add FUNDING to package.json
+  | This property will be used by NPM to expose your project to developers running "npm fund".
   |
-  | Add FUNDING to package.json
-  `
+  | We recommend adding it!
+  |
+  | You can review and merge this PR to add the "funding" property to your package.json.`
 
 const FUNDING_DEFAULT_FILE_CONTENT = defaultFundingPackageAsString
 
@@ -57,7 +58,7 @@ export default async function addPackageJsonFunding(
     .catch(() => null)
 
   if (!packageJsonFile) {
-    console.log(`There is not package.json on ${owner}/${repo}`)
+    console.log(`There is no package.json on ${owner}/${repo}`)
     return
   }
 
@@ -69,7 +70,9 @@ export default async function addPackageJsonFunding(
 
   // Check if package.json already contains funding property
   if (packageJsonContent.includes('"funding":')) {
-    console.log(`Funding property already exists on ${owner}/${repo}`)
+    console.log(
+      `"funding" property already exists in package.json on ${owner}/${repo}`,
+    )
     return
   }
 
@@ -96,12 +99,13 @@ export default async function addPackageJsonFunding(
     packageJsonContent,
     fileContent,
   )
+
   // Update Package.json
   await github.repos.createOrUpdateFile({
     owner,
     repo,
     path: FILE_PATH,
-    message: `Funding added to ${FILE_PATH}`,
+    message: `chore: add "funding" property to ${FILE_PATH}`,
     content: base64(updatedPackageJsonContent),
     sha: packageJsonFile.sha,
     branch: BRANCH_NAME,
@@ -120,5 +124,5 @@ export default async function addPackageJsonFunding(
     })
     .then((res: any) => res.data)
 
-  console.log(`PR created for adding fund property to package.json: ${pr.url}`)
+  console.log(`PR created to add "funding" property to package.json: ${pr.url}`)
 }
