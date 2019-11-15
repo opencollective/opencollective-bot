@@ -8,7 +8,7 @@
     "test": "NODE_ENV=test jest",
     "coverage": "yarn codecov",
     "build": "tsc -p tsconfig.json",
-    "start": "node dist/index.js",
+    "start": "probot run ./dist/index.js",
     "deploy:staging": "now -e APP_ID=@oc-bot-staging-app-id -e WEBHOOK_SECRET=@oc-bot-staging-webhook-secret -e PRIVATE_KEY=@oc-bot-staging-private-key -e SENTRY_DSN=@oc-bot-staging-sentry-dsn --target staging && now alias bot-staging.opencollective.com",
     "deploy:production": "now --target production"
   },
@@ -23,10 +23,11 @@
     "lodash": "4.17.15",
     "multilines": "1.0.2",
     "node-fetch": "2.6.0",
-    "probot": "9.6.4"
+    "probot": "9.6.4",
+    "probot-serverless-now": "^2.1.1"
   },
   "devDependencies": {
-    "@now/node-server": "0.7.4",
+    "@now/node": "^1.1.2",
     "@types/body-parser": "1.17.1",
     "@types/btoa": "1.2.3",
     "@types/bunyan": "^1.8.6",
