@@ -1,4 +1,4 @@
-import { main } from '../src'
+import main from '../src'
 import { Probot } from 'probot'
 import { Server } from 'net'
 
