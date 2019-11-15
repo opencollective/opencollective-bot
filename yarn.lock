@@ -324,19 +324,12 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@now/node-bridge@^1.1.4":
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/@now/node-bridge/-/node-bridge-1.2.6.tgz#76cce67f268b5038d2444754d9aa0c4bf2e7da0d"
-  integrity sha512-wPLsbRuR3vytseTXqOoh5zKY+I4+RwqFoOHQAzmVVns6kyXm8Q9gQAk2T+tanGJ3T2fMPs89MqEXB70TypcTng==
-
-"@now/node-server@0.7.4":
-  version "0.7.4"
-  resolved "https://registry.yarnpkg.com/@now/node-server/-/node-server-0.7.4.tgz#b7245c69d0a633a3c0b8c4b8a27a57a65421150e"
-  integrity sha512-EH+v3vgg2nMcYNTImfyYXx6hnJdjeN7kkwQsJHn36BtsnR6YGMBaNKWZwSza91287ugtP+R265B+swwacxnD9Q==
+"@now/node@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@now/node/-/node-1.1.2.tgz#32039b2b69d2bce12726b5364c9f4d4ac7384c30"
+  integrity sha512-+v81cTJ4bsXVUgjw17bVs+hJcwOGMzJdEUcHT3Ac1bfbwNdPANWS79LQ627K4NV5zA/tkJ4JArlgou0gPqGtJw==
   dependencies:
-    "@now/node-bridge" "^1.1.4"
-    "@zeit/ncc" "0.18.5"
-    fs-extra "7.0.1"
+    "@types/node" "*"
 
 "@octokit/app@^4.0.0":
   version "4.1.0"
@@ -609,7 +602,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/node@*", "@types/node@>= 8":
+"@types/node@*", "@types/node@>= 8", "@types/node@^12.0.7":
   version "12.12.8"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.8.tgz#dab418655af39ce2fa99286a0bed21ef8072ac9d"
   integrity sha512-XLla8N+iyfjvsa0KKV+BP/iGSoTmwxsu5Ci5sM33z9TjohF72DEz95iNvD6pPmemvbQgxAv/909G73gUn8QR7w==
@@ -680,11 +673,6 @@
   integrity sha512-K8/LfZq2duW33XW/tFwEAfnZlqIfVsoyRB3kfXdPXYhl0nfM8mmh7GS0jg7WrX2Dgq/0Ha/pR1PaR+BvmWwjiQ==
   dependencies:
     "@types/yargs-parser" "*"
-
-"@zeit/ncc@0.18.5":
-  version "0.18.5"
-  resolved "https://registry.yarnpkg.com/@zeit/ncc/-/ncc-0.18.5.tgz#5687df6c32f1a2e2486aa110b3454ccebda4fb9c"
-  integrity sha512-F+SbvEAh8rchiRXqQbmD1UmbePY7dCOKTbvfFtbVbK2xMH/tyri5YKfNxXKK7eL9EWkkbqB3NTVQO6nokApeBA==
 
 abab@^2.0.0:
   version "2.0.3"
@@ -1168,7 +1156,7 @@ cache-base@^1.0.1:
     union-value "^1.0.0"
     unset-value "^1.0.0"
 
-cache-manager@^2.4.0:
+cache-manager@^2.10.1, cache-manager@^2.4.0:
   version "2.10.1"
   resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-2.10.1.tgz#d8f312381255966cfc19c990bc8834c8d24edb2a"
   integrity sha512-bk17v9IkLqNcbCzggEh82LEJhjHp+COnL57L7a0ESbM/cOuXIIBatdVjD/ps7vOsofI48++zAC14Ye+8v50flg==
@@ -2133,15 +2121,6 @@ fresh@0.5.2:
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-0.5.2.tgz#3d8cadd90d976569fa835ab1f8e4b23a105605a7"
   integrity sha1-PYyt2Q2XZWn6g1qx+OSyOhBWBac=
 
-fs-extra@7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-7.0.1.tgz#4f189c44aa123b895f722804f55ea23eadc348e9"
-  integrity sha512-YJDaCJZEnBmcbw13fvdAM9AwNOJwOzrE4pqMqBq5nFiEqXUqHwlK4B+3pUw6JNvfSPtX05xFHtYy/1ni01eGCw==
-  dependencies:
-    graceful-fs "^4.1.2"
-    jsonfile "^4.0.0"
-    universalify "^0.1.0"
-
 fs-minipass@^1.2.5:
   version "1.2.7"
   resolved "https://registry.yarnpkg.com/fs-minipass/-/fs-minipass-1.2.7.tgz#ccff8570841e7fe4265693da88936c55aed7f7c7"
@@ -2287,7 +2266,7 @@ got@^6.7.1:
     unzip-response "^2.0.1"
     url-parse-lax "^1.0.0"
 
-graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6:
+graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.3.tgz#4a12ff1b60376ef09862c2093edd908328be8423"
   integrity sha512-a30VEBm4PEdx1dRB7MFK7BejejvCvBronbLjht+sHuGYj8PHs7M/5Z+rt5lw551vZ7yfTCj4Vuyy3mSJytDWRQ==
@@ -3318,13 +3297,6 @@ json5@2.x, json5@^2.1.0:
   integrity sha512-l+3HXD0GEI3huGq1njuqtzYK8OYJyXMkOLtQ53pjWh89tvWS2h6l+1zMkYWqlb57+SiQodKZyvMEFb2X+KrFhQ==
   dependencies:
     minimist "^1.2.0"
-
-jsonfile@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/jsonfile/-/jsonfile-4.0.0.tgz#8771aae0799b64076b76640fca058f9c10e33ecb"
-  integrity sha1-h3Gq4HmbZAdrdmQPygWPnBDjPss=
-  optionalDependencies:
-    graceful-fs "^4.1.6"
 
 jsonwebtoken@^8.1.0, jsonwebtoken@^8.3.0:
   version "8.5.1"
@@ -4432,6 +4404,14 @@ pretty-quick@2.0.1:
     mri "^1.1.4"
     multimatch "^4.0.0"
 
+probot-serverless-now@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/probot-serverless-now/-/probot-serverless-now-2.1.1.tgz#173730abd51608992d715ee6a3deef6587976f9e"
+  integrity sha512-X5v+hGoZnwjxvk6DD5t1b7GpjE6F+9LycYZ4LFmaqrV/OSOAsLuTX3j53zMtGI9OJJKOVgMQHhbyo9m+WhpEEg==
+  dependencies:
+    "@types/node" "^12.0.7"
+    probot "^9.2.13"
+
 probot@9.6.4:
   version "9.6.4"
   resolved "https://registry.yarnpkg.com/probot/-/probot-9.6.4.tgz#e125cd0f127c4d35803096836a76cb8f390b76be"
@@ -4451,6 +4431,47 @@ probot@9.6.4:
     bunyan-format "^0.2.1"
     bunyan-sentry-stream "^1.1.0"
     cache-manager "^2.4.0"
+    commander "^4.0.0"
+    deepmerge "^4.1.0"
+    dotenv "~8.2.0"
+    eventsource "^1.0.7"
+    express "^4.16.2"
+    express-async-errors "^3.0.0"
+    hbs "^4.0.6"
+    ioredis "^4.5.1"
+    is-base64 "1.0.0"
+    js-yaml "^3.13.1"
+    jsonwebtoken "^8.1.0"
+    octokit-pagination-methods "1.1.0"
+    pkg-conf "^3.0.0"
+    promise-events "^0.1.3"
+    qs "^6.5.2"
+    raven "^2.4.2"
+    resolve "^1.4.0"
+    semver "^6.0.0"
+    supports-color "^7.0.0"
+    update-dotenv "^1.1.0"
+    uuid "^3.2.1"
+
+probot@^9.2.13:
+  version "9.6.5"
+  resolved "https://registry.yarnpkg.com/probot/-/probot-9.6.5.tgz#81cff77184c93a0e39243ac825b1bf1c1c077164"
+  integrity sha512-UpMENjV8qVyZwSy0XjLphmWELqwN1qxRq0KHADkvd4xBybbV08Y/6KZYfUt0l7CIVjVkNQJXRQ/J7bvNfXpu9g==
+  dependencies:
+    "@octokit/app" "^4.0.0"
+    "@octokit/graphql" "^4.2.0"
+    "@octokit/plugin-enterprise-compatibility" "^1.2.1"
+    "@octokit/plugin-retry" "^2.1.1"
+    "@octokit/plugin-throttling" "^2.3.0"
+    "@octokit/request" "^5.1.0"
+    "@octokit/rest" "^16.29.0"
+    "@octokit/webhooks" "^6.0.0"
+    "@types/supports-color" "^5.3.0"
+    bottleneck "^2.15.3"
+    bunyan "^1.8.12"
+    bunyan-format "^0.2.1"
+    bunyan-sentry-stream "^1.1.0"
+    cache-manager "^2.10.1"
     commander "^4.0.0"
     deepmerge "^4.1.0"
     dotenv "~8.2.0"
@@ -5544,11 +5565,6 @@ universal-user-agent@^4.0.0:
   integrity sha512-eM8knLpev67iBDizr/YtqkJsF3GK8gzDc6st/WKzrTuPtcsOKW/0IdL4cnMBsU69pOx0otavLWBDGTwg+dB0aA==
   dependencies:
     os-name "^3.1.0"
-
-universalify@^0.1.0:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/universalify/-/universalify-0.1.2.tgz#b646f69be3942dabcecc9d6639c80dc105efaa66"
-  integrity sha512-rBJeI5CXAlmy1pV+617WB9J63U6XcazHHF2f2dbJix4XzpUF0RS3Zbj0FGIOCAva5P/d/GBOYaACQ1w+0azUkg==
 
 unpipe@1.0.0, unpipe@~1.0.0:
   version "1.0.0"
