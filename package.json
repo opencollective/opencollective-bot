@@ -54,5 +54,9 @@
     "ts-node": "8.5.2",
     "typescript": "3.7.2"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/engineering"
+  }
 }
