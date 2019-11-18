@@ -10,7 +10,10 @@
     "build": "tsc",
     "start": "probot run ./dist/index.js",
     "deploy:staging": "now -e APP_ID=@oc-bot-staging-app-id -e WEBHOOK_SECRET=@oc-bot-staging-webhook-secret -e PRIVATE_KEY=@oc-bot-staging-private-key -e SENTRY_DSN=@oc-bot-staging-sentry-dsn --target staging && now alias bot-staging.opencollective.com",
-    "deploy:production": "now --target production"
+    "deploy:production": "now --target production",
+    "prettier": "prettier \"*.@(ts|js|json|md)\" \"src/**/*.@(ts)\" \"tests/**/*.@(ts)\"",
+    "prettier:write": "npm run prettier -- --write",
+    "prettier:check": "npm run prettier -- --list-different"
   },
   "engines": {
     "node": "10.x"
@@ -48,11 +51,11 @@
     "dotenv-cli": "3.1.0",
     "husky": "3.1.0",
     "jest": "24.9.0",
+    "lint-staged": "9.4.3",
     "nock": "11.7.0",
     "nodemon": "2.0.0",
     "npm-run-all": "4.1.5",
     "prettier": "1.19.1",
-    "pretty-quick": "2.0.1",
     "request": "2.88.0",
     "request-promise-native": "1.0.8",
     "rimraf": "3.0.0",
@@ -60,6 +63,17 @@
     "ts-jest": "24.1.0",
     "ts-node": "8.5.2",
     "typescript": "3.7.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,js,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "license": "MIT"
 }

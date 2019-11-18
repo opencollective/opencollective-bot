@@ -14,6 +14,9 @@ jobs:
       - run:
           name: coverage
           command: yarn coverage
+      - run:
+          name: prettier
+          command: yarn prettier:check
 workflows:
   version: 2
   test:
