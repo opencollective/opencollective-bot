@@ -324,7 +324,7 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@now/node@^1.1.2":
+"@now/node@1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@now/node/-/node-1.1.2.tgz#32039b2b69d2bce12726b5364c9f4d4ac7384c30"
   integrity sha512-+v81cTJ4bsXVUgjw17bVs+hJcwOGMzJdEUcHT3Ac1bfbwNdPANWS79LQ627K4NV5zA/tkJ4JArlgou0gPqGtJw==
@@ -483,7 +483,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/bunyan@^1.8.6":
+"@types/bunyan@1.8.6":
   version "1.8.6"
   resolved "https://registry.yarnpkg.com/@types/bunyan/-/bunyan-1.8.6.tgz#6527641cca30bedec5feb9ab527b7803b8000582"
   integrity sha512-YiozPOOsS6bIuz31ilYqR5SlLif4TBWsousN2aCWLi5233nZSX19tFbcQUPdR7xJ8ypPyxkCGNxg0CIV5n9qxQ==
@@ -502,7 +502,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/eventsource@^1.1.2":
+"@types/eventsource@1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@types/eventsource/-/eventsource-1.1.2.tgz#079ab4213e844e56f7384aec620e1163dab692b3"
   integrity sha512-4AKWJ6tvEU4fk0770oAK4Z0lQUuSnc5ljHTcYZhQtdP7XMDKKvegGUC6xGD8+4+F+svZKAzlxbKnuGWfgMtgVA==
@@ -529,7 +529,7 @@
   resolved "https://registry.yarnpkg.com/@types/hapi__joi/-/hapi__joi-16.0.3.tgz#8ed6a0bd3a3fc40c0b5ff41b399004c5f9bb0b0b"
   integrity sha512-gPxCfPcdZx9220GP4MFlhyBonQuyy8c/NZkGJkdtGipaExFzNLGYzkH2eG+yo0eEoVWdSC/JxhokSR/IHfap8Q==
 
-"@types/ioredis@^4.0.19":
+"@types/ioredis@4.0.19":
   version "4.0.19"
   resolved "https://registry.yarnpkg.com/@types/ioredis/-/ioredis-4.0.19.tgz#9e28b6d36ede7fed7ea56f5f1cb1b486f696962a"
   integrity sha512-kBewWNiNiEIOagoT7YDD928eRbyfk9d8ZVxAspNhS09EDP25ym/W7MRjgQcczpobeIIA4JPHAAE6BzQE5HXLDw==
@@ -573,7 +573,7 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.148.tgz#ffa2786721707b335c6aa1465e6d3d74016fbd3e"
   integrity sha512-05+sIGPev6pwpHF7NZKfP3jcXhXsIVFnYyVRT4WOB0me62E8OlWfTN+sKyt2/rqN+ETxuHAtgTSK1v71F0yncg==
 
-"@types/lru-cache@^5.1.0":
+"@types/lru-cache@5.1.0":
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@types/lru-cache/-/lru-cache-5.1.0.tgz#57f228f2b80c046b4a1bd5cac031f81f207f4f03"
   integrity sha512-RaE0B+14ToE4l6UqdarKPnXwVDuigfFv+5j9Dze/Nqr23yyuqdNvzcZi3xB+3Agvi5R4EOgAksfv3lXX4vBt9w==
@@ -4399,7 +4399,7 @@ pretty-quick@2.0.1:
     mri "^1.1.4"
     multimatch "^4.0.0"
 
-probot-serverless-now@^2.1.1:
+probot-serverless-now@2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/probot-serverless-now/-/probot-serverless-now-2.1.1.tgz#173730abd51608992d715ee6a3deef6587976f9e"
   integrity sha512-X5v+hGoZnwjxvk6DD5t1b7GpjE6F+9LycYZ4LFmaqrV/OSOAsLuTX3j53zMtGI9OJJKOVgMQHhbyo9m+WhpEEg==
