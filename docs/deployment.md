@@ -53,16 +53,16 @@ You must configure the environment variables using this command:
 
 The variables to be published are:
 
-| name                | description                                |
-| ------------------- | ------------------------------------------ |
-| `APP_ID`            | GitHub app id                              |
-| `WEBHOOK_SECRET`    | GitHub webhook-secret                      |
-| `PRIVATE_KEY`       | One of GitHub private keys                 |
-| `SENTRY_DSN`        | Sentry DSN for error reporting             |
+| name             | description                                  |
+| ---------------- | -------------------------------------------- |
+| `APP_ID`         | GitHub app id                                |
+| `WEBHOOK_SECRET` | GitHub webhook-secret                        |
+| `PRIVATE_KEY`    | One of GitHub private keys encoded in base64 |
+| `SENTRY_DSN`     | Sentry DSN for error reporting               |
 
-In the particular case of the private key you can use a command similar to this one to send the string to Heroku
+The contents of the private key for your GitHub App. If you're unable to use multiline environment variables, use base64 encoding to convert the key to a single line string.
 
-`heroku config:set PRIVATE_KEY="$(cat private-key.pem)"`
+`heroku config:set PRIVATE_KEY="$(cat private-key.pem | base64)"`
 
 ### Deploying
 
