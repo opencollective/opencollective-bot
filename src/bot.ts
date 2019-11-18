@@ -20,6 +20,7 @@ import { is, not } from './utils'
 
 import createConfiguration from './actions/createConfiguration'
 import createFunding from './actions/createFunding'
+import addPackageJsonFunding from './actions/addPackageJsonFunding'
 
 export const opencollective = (app: probot.Application): void => {
   app.log('Open Collective Bot up!')
@@ -45,6 +46,10 @@ export const opencollective = (app: probot.Application): void => {
 
       if (!process.env.FEATURE_DISABLE_FUNDING) {
         await createFunding(github, repo)
+      }
+
+      if (!process.env.FEATURE_DISABLE_FUNDING_PACKAGE_JSON) {
+        await addPackageJsonFunding(github, repo)
       }
     }
   })
