@@ -372,7 +372,8 @@ describe('opencollective installation_repositories', () => {
                         "funding": {
                             "type": "opencollective",
                             "url": "https://opencollective.com/backyourstack"
-                        }
+                        },
+                        "private": true
                     }
                     */
               content:
