@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf dist",
-    "dev": "nodemon --exec dotenv ts-node src/index.ts",
+    "dev": "nodemon --exec dotenv ts-node ./dev-server.ts",
     "test": "NODE_ENV=test jest",
     "coverage": "yarn codecov",
     "build": "tsc -p tsconfig.json",
