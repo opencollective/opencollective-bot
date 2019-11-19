@@ -36,7 +36,7 @@ function updatePackageJson(packageJSON: string, fundingUrl: string) {
     type: 'opencollective',
     url: fundingUrl,
   }
-  return JSON.stringify(obj, null, indent)
+  return JSON.stringify(obj, null, indent) + '\n'
 }
 
 export { setIndent }
@@ -73,6 +73,12 @@ export default async function addPackageJsonFunding(
     console.log(
       `"funding" property already exists in package.json on ${owner}/${repo}`,
     )
+    return
+  }
+
+  // Check if package is private
+  if (JSON.parse(packageJsonContent)['private']) {
+    console.log(`This is a private package, ${owner}/${repo}`)
     return
   }
 
