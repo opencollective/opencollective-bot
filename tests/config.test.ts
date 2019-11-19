@@ -10,18 +10,21 @@ import {
 
 /* Helpers */
 
-const contextify = (config: Config): probot.Context => ({
-  config: (name: string) => Promise.resolve(config),
-  name: '',
-  id: '',
-  payload: {} as any,
-  github: {} as any,
-  log: {} as any,
-  event: {} as any,
-  repo: {} as any,
-  issue: {} as any,
-  isBot: true,
-})
+class MockContext extends probot.Context<any> {
+  public _config: Config
+
+  constructor(event: any, github: any, log: any, config: Config) {
+    super(event, github, log)
+    this._config = config
+  }
+
+  public async config<T>(fileName: string): Promise<object | null> {
+    return this._config
+  }
+}
+
+const contextify = (config: Config): probot.Context =>
+  new MockContext({}, {}, {}, config)
 
 /* Tests */
 

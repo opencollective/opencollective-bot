@@ -4,9 +4,11 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf dist",
-    "dev": "nodemon --exec dotenv ts-node src/index.ts",
+    "dev": "nodemon --exec dotenv ts-node ./dev-server.ts",
     "test": "NODE_ENV=test jest",
     "coverage": "yarn codecov",
+    "build": "tsc -p tsconfig.json",
+    "start": "probot run ./dist/index.js",
     "deploy:staging": "now -e APP_ID=@oc-bot-staging-app-id -e WEBHOOK_SECRET=@oc-bot-staging-webhook-secret -e PRIVATE_KEY=@oc-bot-staging-private-key -e SENTRY_DSN=@oc-bot-staging-sentry-dsn --target staging && now alias bot-staging.opencollective.com",
     "deploy:production": "now --target production"
   },
@@ -21,17 +23,22 @@
     "lodash": "4.17.15",
     "multilines": "1.0.2",
     "node-fetch": "2.6.0",
-    "probot": "9.2.20"
+    "probot": "9.6.6",
+    "probot-serverless-now": "2.1.1"
   },
   "devDependencies": {
-    "@now/node-server": "0.7.4",
+    "@now/node": "1.1.2",
     "@types/body-parser": "1.17.1",
     "@types/btoa": "1.2.3",
+    "@types/bunyan": "1.8.6",
+    "@types/eventsource": "1.1.2",
     "@types/express": "4.17.2",
     "@types/hapi__joi": "16.0.3",
+    "@types/ioredis": "4.0.19",
     "@types/jest": "24.0.23",
     "@types/js-yaml": "3.12.1",
     "@types/lodash": "4.14.149",
+    "@types/lru-cache": "5.1.0",
     "@types/nock": "10.0.3",
     "@types/node": "12.12.9",
     "@types/node-fetch": "2.5.3",
