@@ -33,7 +33,7 @@
     "@types/js-yaml": "3.12.1",
     "@types/lodash": "4.14.148",
     "@types/nock": "10.0.3",
-    "@types/node": "12.12.8",
+    "@types/node": "12.12.9",
     "@types/node-fetch": "2.5.3",
     "@types/request-promise-native": "1.0.17",
     "btoa": "1.2.1",
