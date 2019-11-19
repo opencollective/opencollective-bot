@@ -43,6 +43,12 @@ validator.post(
         return res.status(400).send(message)
       }
 
+      if (err.name === 'YAMLException') {
+        const message =
+          'YAML file is not properly formatted:\nSyntaxError: ' + err.message
+        return res.status(400).send(message)
+      }
+
       return res.status(400).send('Something went wrong.')
     }
   },
