@@ -31,7 +31,7 @@
     "@types/hapi__joi": "16.0.3",
     "@types/jest": "24.0.23",
     "@types/js-yaml": "3.12.1",
-    "@types/lodash": "4.14.148",
+    "@types/lodash": "4.14.149",
     "@types/nock": "10.0.3",
     "@types/node": "12.12.8",
     "@types/node-fetch": "2.5.3",
