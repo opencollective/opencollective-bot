@@ -7,7 +7,7 @@ import crypto from 'crypto'
  * @param a
  */
 export function is<T>(a: T): (b: T) => boolean {
-  return b => a === b
+  return (b): boolean => a === b
 }
 
 /**
@@ -19,7 +19,7 @@ export function is<T>(a: T): (b: T) => boolean {
 export function not<T>(
   fn: (...args: T[]) => boolean,
 ): (...args: T[]) => boolean {
-  return (...args) => !fn(...args)
+  return (...args): boolean => !fn(...args)
 }
 
 /**
@@ -28,7 +28,7 @@ export function not<T>(
  *
  * @param value
  */
-export function sha(value: string) {
+export function sha(value: string): string {
   return crypto
     .createHash('sha1')
     .update(value)
@@ -41,6 +41,6 @@ export function sha(value: string) {
  *
  * @param value
  */
-export function base64(value: string) {
+export function base64(value: string): string {
   return Buffer.from(value).toString('base64')
 }

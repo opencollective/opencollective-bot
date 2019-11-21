@@ -6,7 +6,10 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    '@typescript-eslint/member-delimiter-style': 'warn',
-    '@typescript-eslint/camelcase': 'warn',
+    '@typescript-eslint/member-delimiter-style': [
+      'warn',
+      { multiline: { delimiter: 'none' } },
+    ],
+    '@typescript-eslint/camelcase': ['warn', { properties: 'never' }],
   },
 }

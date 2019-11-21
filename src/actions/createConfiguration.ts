@@ -23,7 +23,7 @@ const CONFIG_DEFAULT_FILE_CONTENT = defaultConfigAsString
 export default async function createConfiguration(
   github: Octokit,
   repoResponse: ReposGetResponse,
-) {
+): Promise<void> {
   const owner = repoResponse.owner.login
   const repo = repoResponse.name
 
@@ -43,7 +43,7 @@ export default async function createConfiguration(
       repo,
       path: CONFIG_FILE_PATH,
     })
-    .then((res: any) => res.data)
+    .then(({ data }) => data)
     .catch(() => null)
 
   // If configuration is already existing, do nothing
@@ -66,7 +66,7 @@ export default async function createConfiguration(
   // we're only interested in the default_branch
   const { default_branch: defaultBranchName } = await github.repos
     .get({ owner, repo })
-    .then((res: any) => res.data)
+    .then(({ data }) => data)
 
   await resetBranch(github, owner, repo, CONFIG_BRANCH_NAME, defaultBranchName)
 
@@ -92,7 +92,7 @@ export default async function createConfiguration(
       body: CONFIG_PR_BODY,
       maintainer_can_modify: true,
     })
-    .then((res: any) => res.data)
+    .then(({ data }) => data)
 
   console.log(`PR created for configuration: ${pr.url}`)
 }

@@ -29,7 +29,7 @@ function setIndent(packageJSON: string): string {
   return detectIndent(packageJSON).indent || '  '
 }
 
-function updatePackageJson(packageJSON: string, fundingUrl: string) {
+function updatePackageJson(packageJSON: string, fundingUrl: string): string {
   const indent = setIndent(packageJSON)
   const obj = JSON.parse(packageJSON)
   obj['funding'] = {
@@ -43,7 +43,7 @@ export { setIndent }
 export default async function addPackageJsonFunding(
   github: Octokit,
   repoResponse: ReposGetResponse,
-) {
+): Promise<void> {
   const owner = repoResponse.owner.login
   const repo = repoResponse.name
 
@@ -96,7 +96,7 @@ export default async function addPackageJsonFunding(
   // we're only interested in the default_branch
   const { default_branch: defaultBranchName } = await github.repos
     .get({ owner, repo })
-    .then((res: any) => res.data)
+    .then(({ data }) => data)
 
   await resetBranch(github, owner, repo, BRANCH_NAME, defaultBranchName)
 
@@ -128,7 +128,7 @@ export default async function addPackageJsonFunding(
       body: PR_BODY,
       maintainer_can_modify: true,
     })
-    .then((res: any) => res.data)
+    .then(({ data }) => data)
 
   console.log(`PR created to add "funding" property to package.json: ${pr.url}`)
 }
