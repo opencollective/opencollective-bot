@@ -30,7 +30,7 @@
     "probot-serverless-now": "2.1.1"
   },
   "devDependencies": {
-    "@now/node": "1.1.2",
+    "@now/node": "1.2.0",
     "@types/body-parser": "1.17.1",
     "@types/btoa": "1.2.3",
     "@types/bunyan": "1.8.6",
