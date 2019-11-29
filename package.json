@@ -19,7 +19,7 @@
     "node": "10.x"
   },
   "dependencies": {
-    "@hapi/joi": "16.1.7",
+    "@hapi/joi": "16.1.8",
     "body-parser": "1.19.0",
     "detect-indent": "6.0.0",
     "js-yaml": "3.13.1",
