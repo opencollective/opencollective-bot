@@ -15,6 +15,7 @@ beforeEach(async () => {
 
   process.env.FEATURE_DISABLE_FUNDING = 'TRUE'
   process.env.FEATURE_DISABLE_FUNDING_PACKAGE_JSON = 'TRUE'
+  process.env.DISABLE_WEBHOOK_EVENT_CHECK = 'TRUE'
 })
 
 afterEach(async () => {
@@ -23,6 +24,7 @@ afterEach(async () => {
 
   delete process.env.FEATURE_DISABLE_FUNDING
   delete process.env.FEATURE_DISABLE_FUNDING_PACKAGE_JSON
+  delete process.env.DISABLE_WEBHOOK_EVENT_CHECK
 })
 
 describe('opencollective installation_repositories', () => {

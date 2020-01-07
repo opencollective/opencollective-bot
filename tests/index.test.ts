@@ -9,6 +9,7 @@ describe('index', () => {
   beforeEach(() => {
     probot = new Probot({})
     server = probot.httpServer
+    process.env.DISABLE_WEBHOOK_EVENT_CHECK = 'TRUE'
   })
 
   afterEach(done => {
@@ -16,6 +17,7 @@ describe('index', () => {
       return done()
     }
     server.close(done)
+    delete process.env.DISABLE_WEBHOOK_EVENT_CHECK
   })
 
   test('load applications to Probot', () => {
