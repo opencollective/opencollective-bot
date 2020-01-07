@@ -16,7 +16,7 @@
     "prettier:check": "npm run prettier -- --list-different"
   },
   "engines": {
-    "node": "10.x"
+    "node": "12.x"
   },
   "dependencies": {
     "@hapi/joi": "16.1.8",
