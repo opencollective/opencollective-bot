@@ -35,11 +35,13 @@ const config = btoa(
 
 beforeEach(async () => {
   if (!nock.isActive()) nock.activate()
+  process.env.DISABLE_WEBHOOK_EVENT_CHECK = 'TRUE'
 })
 
 afterEach(async () => {
   nock.restore()
   nock.cleanAll()
+  delete process.env.DISABLE_WEBHOOK_EVENT_CHECK
 })
 
 describe('opencollective issues.opened', () => {

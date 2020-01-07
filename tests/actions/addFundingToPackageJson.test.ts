@@ -12,6 +12,7 @@ beforeEach(async () => {
 
   process.env.FEATURE_DISABLE_CONFIGURATION = 'TRUE'
   process.env.FEATURE_DISABLE_FUNDING = 'TRUE'
+  process.env.DISABLE_WEBHOOK_EVENT_CHECK = 'TRUE'
 })
 
 afterEach(async () => {
@@ -20,6 +21,7 @@ afterEach(async () => {
 
   delete process.env.FEATURE_DISABLE_CONFIGURATION
   delete process.env.FEATURE_DISABLE_FUNDING
+  delete process.env.DISABLE_WEBHOOK_EVENT_CHECK
 })
 
 describe('opencollective installation_repositories', () => {
@@ -47,7 +49,7 @@ describe('opencollective installation_repositories', () => {
             data: {
               name: 'package.json',
               path: 'package.json',
-              /* 
+              /*
                 content: {
                   "name": "backyourstack",
                   "version": "1.1.0",
@@ -123,7 +125,7 @@ describe('opencollective installation_repositories', () => {
             data: {
               name: 'package.json',
               path: 'package.json',
-              /* 
+              /*
                   content: {
                     "name": "backyourstack",
                     "version": "1.1.0",
@@ -204,7 +206,7 @@ describe('opencollective installation_repositories', () => {
               data: {
                 name: 'package.json',
                 path: 'package.json',
-                /* 
+                /*
                   content: {
                     "name": "backyourstack",
                     "version": "1.1.0",
@@ -284,8 +286,8 @@ describe('opencollective installation_repositories', () => {
             data: {
               name: 'package.json',
               path: 'package.json',
-              /*  
-                    content: 
+              /*
+                    content:
                     {
                         "name": "backyourstack",
                         "version": "1.1.0",
@@ -364,8 +366,8 @@ describe('opencollective installation_repositories', () => {
             data: {
               name: 'package.json',
               path: 'package.json',
-              /*  
-                    content: 
+              /*
+                    content:
                     {
                         "name": "backyourstack",
                         "version": "1.1.0",
