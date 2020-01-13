@@ -26,7 +26,7 @@
     "express": "4.17.1",
     "js-yaml": "3.13.1",
     "lodash": "4.17.15",
-    "multilines": "1.0.2",
+    "multilines": "1.0.3",
     "node-fetch": "2.6.0",
     "probot": "9.9.0",
     "probot-serverless-now": "2.1.2"
