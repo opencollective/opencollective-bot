@@ -4280,10 +4280,10 @@ ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
-multilines@1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/multilines/-/multilines-1.0.2.tgz#3328bccb9ca9e7896ae2dd94bb4b29921e9c845d"
-  integrity sha512-PcDdrteMyLwzlzmuKyaTvbgW5wfJo0RfgWPTAJrjHA75ZU65fN+SluJ3xPytXJ2/kqFM6BXHSGaHfdEZwxjAWw==
+multilines@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/multilines/-/multilines-1.0.3.tgz#e7add2ed8cae9bbd2ef239c036f859d5bf60f011"
+  integrity sha512-7gbBXFs7epYsX4u4cUmWDOfNCm7fJPj/DyiMrjgZTKV+0zEHpC2t4heew8gWM+O9EeDpl8BT+T5wR4eQCURu3Q==
 
 mv@~2:
   version "2.1.1"
