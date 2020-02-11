@@ -32,7 +32,7 @@
     "probot-serverless-now": "2.1.2"
   },
   "devDependencies": {
-    "@types/body-parser": "1.17.1",
+    "@types/body-parser": "1.19.0",
     "@types/btoa": "1.2.3",
     "@types/bunyan": "1.8.6",
     "@types/express": "4.17.2",
