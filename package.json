@@ -43,7 +43,7 @@
     "@types/lodash": "4.14.149",
     "@types/lru-cache": "5.1.0",
     "@types/nock": "11.1.0",
-    "@types/node": "12.12.25",
+    "@types/node": "12.12.30",
     "@types/node-fetch": "2.5.4",
     "@types/request-promise-native": "1.0.17",
     "btoa": "1.2.1",
