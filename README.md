@@ -97,7 +97,7 @@ add `priority` label when you start backing us :smile:
 
 ## Development
 
-**Summary**: This project is developed in TypeScript, running with Node and dependencies are managed with Yarn. To configure the project, you will need to create a GitHub App. Because the projet rely on Webhooks, you will also need to setup a proxy for that.
+**Summary**: This project is developed in TypeScript, running with Node and dependencies are managed with Yarn. To configure the project, you will need to create a GitHub App. Because the project relies on Webhooks, you will also need to setup a proxy for that.
 
 See: [docs/development.md](docs/development.md)
 
