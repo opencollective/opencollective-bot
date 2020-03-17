@@ -47,7 +47,7 @@
     "@types/node-fetch": "2.5.4",
     "@types/request-promise-native": "1.0.17",
     "btoa": "1.2.1",
-    "codecov": "3.6.1",
+    "codecov": "3.6.5",
     "dotenv-cli": "3.1.0",
     "husky": "4.2.3",
     "jest": "24.9.0",
