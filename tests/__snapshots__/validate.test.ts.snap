@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`validate correctly handles unexpected errors 1`] = `[StatusCodeError: 400 - "Something went wrong."]`;
+
 exports[`validate correctly reports invalid configuration 1`] = `[StatusCodeError: 400 - "- collective: \\"collective\\" is required\\n- opencollective: \\"opencollective\\" is not allowed"]`;
 
 exports[`validate correctly validates valid configuration 1`] = `"Valid configuration!"`;
