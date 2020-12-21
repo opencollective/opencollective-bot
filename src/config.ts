@@ -137,8 +137,12 @@ export function getMessagesFromConfigForTiers(
   /**
    * Returns invitation message if user has no tiers.
    */
-  if (tiers.length === 0 && config.invitation) {
-    return [hydrateMessage(config.invitation)]
+  if (tiers.length === 0) {
+    if (config.invitation) {
+      return [hydrateMessage(config.invitation)]
+    } else {
+      return []
+    }
   }
 
   const tiersNamesAndSlugs = flatten(
