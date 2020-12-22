@@ -40,7 +40,7 @@
     "@types/ioredis": "4.14.9",
     "@types/jest": "25.2.3",
     "@types/js-yaml": "3.12.2",
-    "@types/lodash": "4.14.149",
+    "@types/lodash": "4.14.165",
     "@types/lru-cache": "5.1.0",
     "@types/nock": "11.1.0",
     "@types/node": "12.12.30",
