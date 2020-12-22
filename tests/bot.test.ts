@@ -138,7 +138,7 @@ describe('opencollective issues.opened', () => {
       issues: {
         createComment: jest
           .fn()
-          .mockImplementation(args => Promise.resolve(args)),
+          .mockImplementation((args) => Promise.resolve(args)),
         getLabel: jest.fn().mockImplementation(() =>
           Promise.reject({
             code: 404,
@@ -148,11 +148,13 @@ describe('opencollective issues.opened', () => {
         ),
         createLabel: jest
           .fn()
-          .mockImplementation(args => Promise.resolve(args)),
-        addLabels: jest.fn().mockImplementation(args => Promise.resolve(args)),
+          .mockImplementation((args) => Promise.resolve(args)),
+        addLabels: jest
+          .fn()
+          .mockImplementation((args) => Promise.resolve(args)),
         removeLabel: jest
           .fn()
-          .mockImplementation(args => Promise.resolve(args)),
+          .mockImplementation((args) => Promise.resolve(args)),
       },
       repos: {
         getContents: jest.fn().mockReturnValue({
@@ -258,7 +260,7 @@ describe('opencollective issues.opened', () => {
       issues: {
         createComment: jest
           .fn()
-          .mockImplementation(args => Promise.resolve(args)),
+          .mockImplementation((args) => Promise.resolve(args)),
         getLabel: jest.fn().mockImplementation(() =>
           Promise.reject({
             code: 404,
@@ -268,11 +270,13 @@ describe('opencollective issues.opened', () => {
         ),
         createLabel: jest
           .fn()
-          .mockImplementation(args => Promise.resolve(args)),
-        addLabels: jest.fn().mockImplementation(args => Promise.resolve(args)),
+          .mockImplementation((args) => Promise.resolve(args)),
+        addLabels: jest
+          .fn()
+          .mockImplementation((args) => Promise.resolve(args)),
         removeLabel: jest
           .fn()
-          .mockImplementation(args => Promise.resolve(args)),
+          .mockImplementation((args) => Promise.resolve(args)),
       },
       repos: {
         getContents: jest.fn().mockReturnValue({
@@ -417,7 +421,7 @@ describe('opencollective issues.labeled', () => {
       issues: {
         createComment: jest
           .fn()
-          .mockImplementation(args => Promise.resolve(args)),
+          .mockImplementation((args) => Promise.resolve(args)),
         getLabel: jest.fn().mockImplementation(() =>
           Promise.reject({
             code: 404,
@@ -427,11 +431,13 @@ describe('opencollective issues.labeled', () => {
         ),
         createLabel: jest
           .fn()
-          .mockImplementation(args => Promise.resolve(args)),
-        addLabels: jest.fn().mockImplementation(args => Promise.resolve(args)),
+          .mockImplementation((args) => Promise.resolve(args)),
+        addLabels: jest
+          .fn()
+          .mockImplementation((args) => Promise.resolve(args)),
         removeLabel: jest
           .fn()
-          .mockImplementation(args => Promise.resolve(args)),
+          .mockImplementation((args) => Promise.resolve(args)),
       },
       repos: {
         getContents: jest.fn().mockReturnValue({
@@ -514,7 +520,7 @@ describe('opencollective issues.labeled', () => {
       issues: {
         createComment: jest
           .fn()
-          .mockImplementation(args => Promise.resolve(args)),
+          .mockImplementation((args) => Promise.resolve(args)),
         getLabel: jest.fn().mockImplementation(() =>
           Promise.reject({
             code: 404,
@@ -524,11 +530,13 @@ describe('opencollective issues.labeled', () => {
         ),
         createLabel: jest
           .fn()
-          .mockImplementation(args => Promise.resolve(args)),
-        addLabels: jest.fn().mockImplementation(args => Promise.resolve(args)),
+          .mockImplementation((args) => Promise.resolve(args)),
+        addLabels: jest
+          .fn()
+          .mockImplementation((args) => Promise.resolve(args)),
         removeLabel: jest
           .fn()
-          .mockImplementation(args => Promise.resolve(args)),
+          .mockImplementation((args) => Promise.resolve(args)),
       },
       repos: {
         getContents: jest.fn().mockReturnValue({
@@ -634,7 +642,7 @@ describe('opencollective issues.labeled', () => {
       issues: {
         createComment: jest
           .fn()
-          .mockImplementation(args => Promise.resolve(args)),
+          .mockImplementation((args) => Promise.resolve(args)),
         getLabel: jest.fn().mockImplementation(() =>
           Promise.reject({
             code: 404,
@@ -644,11 +652,13 @@ describe('opencollective issues.labeled', () => {
         ),
         createLabel: jest
           .fn()
-          .mockImplementation(args => Promise.resolve(args)),
-        addLabels: jest.fn().mockImplementation(args => Promise.resolve(args)),
+          .mockImplementation((args) => Promise.resolve(args)),
+        addLabels: jest
+          .fn()
+          .mockImplementation((args) => Promise.resolve(args)),
         removeLabel: jest
           .fn()
-          .mockImplementation(args => Promise.resolve(args)),
+          .mockImplementation((args) => Promise.resolve(args)),
       },
       repos: {
         getContents: jest.fn().mockReturnValue({

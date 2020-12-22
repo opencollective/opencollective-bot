@@ -33,7 +33,7 @@ export const opencollective = (app: probot.Application): void => {
     // Make sure we don't flood (fetch top repos with 100 stars)
     if (repos.length >= 2) {
       repos = orderBy(
-        repos.filter(repo => repo.stargazers_count >= 100),
+        repos.filter((repo) => repo.stargazers_count >= 100),
         'stargazers_count',
         'desc',
       ).slice(0, 2)

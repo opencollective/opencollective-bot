@@ -13,7 +13,7 @@
     "deploy:production": "now --target production",
     "prettier": "prettier \"*.@(ts|js|json|md)\" \"src/**/*.@(ts)\" \"tests/**/*.@(ts)\"",
     "prettier:write": "npm run prettier -- --write",
-    "prettier:check": "npm run prettier -- --list-different"
+    "prettier:check": "npm run prettier -- --check"
   },
   "engines": {
     "node": "12.x"

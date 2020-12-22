@@ -21,7 +21,7 @@ describe('github', () => {
 
       const res = await getUserOrganisations(client, 'maticzav')
       expect(res.length).not.toBe(0)
-      const validations = res.map(async org => {
+      const validations = res.map(async (org) => {
         try {
           await organsisationTypeSchema.validateAsync(org, {
             allowUnknown: true,
@@ -43,7 +43,7 @@ describe('github', () => {
       issues: {
         createComment: jest
           .fn()
-          .mockImplementation(args => Promise.resolve(args)),
+          .mockImplementation((args) => Promise.resolve(args)),
       },
     }
     const issue = {
@@ -80,7 +80,9 @@ describe('github', () => {
           .mockRejectedValueOnce(undefined)
           .mockResolvedValue(undefined),
         createLabel: jest.fn().mockResolvedValue(undefined),
-        addLabels: jest.fn().mockImplementation(args => Promise.resolve(args)),
+        addLabels: jest
+          .fn()
+          .mockImplementation((args) => Promise.resolve(args)),
       },
     }
     const issue = {
@@ -108,7 +110,7 @@ describe('github', () => {
       issues: {
         removeLabel: jest
           .fn()
-          .mockImplementation(args => Promise.resolve(args)),
+          .mockImplementation((args) => Promise.resolve(args)),
       },
     }
     const issue = {

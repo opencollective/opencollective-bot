@@ -7,7 +7,7 @@ const main: ApplicationFunction = (app: Application) => {
 
   const apps: ApplicationFunction[] = [opencollective, validatorApp]
 
-  apps.forEach(appFn => {
+  apps.forEach((appFn) => {
     appFn(app)
   })
 }

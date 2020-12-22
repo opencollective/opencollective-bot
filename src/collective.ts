@@ -58,7 +58,7 @@ async function graphqlQuery(query: string, variables: object): Promise<any> {
     body: JSON.stringify({ query, variables }),
   })
 
-  return result.json().then(res => res.data)
+  return result.json().then((res) => res.data)
 }
 
 /**
@@ -70,7 +70,7 @@ async function graphqlQuery(query: string, variables: object): Promise<any> {
 export async function getCollectiveMembers(slug: string): Promise<Member[]> {
   const result = graphqlQuery(membersGraphqlQuery, { slug })
 
-  return result.then(data => data.account.members.nodes)
+  return result.then((data) => data.account.members.nodes)
 }
 
 /**
@@ -84,5 +84,5 @@ export async function getCollectiveWithGithubHandle(
 ): Promise<Account> {
   const result = graphqlQuery(collectiveWithGithubhandleQuery, { githubHandle })
 
-  return result.then(data => data.collective)
+  return result.then((data) => data.collective)
 }
