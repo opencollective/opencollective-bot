@@ -10,13 +10,13 @@ describe('validate', () => {
   let port = 3003
   let uri = `http://localhost:${port}/validate`
 
-  beforeAll(done => {
+  beforeAll((done) => {
     const app = express()
     app.use('/validate', validator)
     server = app.listen(port, done)
   })
 
-  afterAll(done => {
+  afterAll((done) => {
     server.close(done)
   })
 
@@ -47,7 +47,7 @@ describe('validate', () => {
       .then(() => {
         fail()
       })
-      .catch(err => {
+      .catch((err) => {
         expect(err).toMatchSnapshot()
       })
   })
@@ -69,7 +69,7 @@ describe('validate', () => {
       .then(() => {
         fail()
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err.message)
         expect(err.message).toContain('YAML file is not properly formatted')
       })

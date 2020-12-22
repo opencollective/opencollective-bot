@@ -27,10 +27,7 @@ const defaultConfig = yaml.safeLoad(defaultConfigAsString)
 /* Schema */
 
 const tierConfigSchema = joi.object().keys({
-  tiers: joi
-    .array()
-    .items(joi.string())
-    .allow('*'),
+  tiers: joi.array().items(joi.string()).allow('*'),
   labels: joi.array().items(joi.string()),
   message: joi.string().required(),
 })

@@ -39,7 +39,7 @@ describe('collective', () => {
     async () => {
       const res = await getCollectiveMembers('webpack')
       expect(res.length).not.toBe(0)
-      const validations = res.map(async member => {
+      const validations = res.map(async (member) => {
         try {
           await memberTypeSchema.validateAsync(member, { allowUnknown: true })
         } catch (err) {

@@ -45,7 +45,7 @@ export async function getUserOrganisations(
     .listForUser({
       username: username,
     })
-    .then(res => res.data.map(org => org.login))
+    .then((res) => res.data.map((org) => org.login))
 }
 
 /**
@@ -60,7 +60,7 @@ export async function fetchRepos(
   repositories: GithubRepoMinimal[],
 ): Promise<ReposGetResponse[]> {
   return Promise.all(
-    repositories.map(repository => {
+    repositories.map((repository) => {
       const [owner, repo] = repository.full_name.split('/')
       return getRepo(github, owner, repo)
     }),
@@ -96,7 +96,7 @@ export async function messageGithubIssue(
   issue: GithubIssue,
   messages: Message[],
 ): Promise<Response<IssuesCreateCommentResponse>[]> {
-  const actions = messages.map(message =>
+  const actions = messages.map((message) =>
     github.issues.createComment({
       repo: issue.repo,
       owner: issue.owner,
@@ -128,7 +128,7 @@ export async function labelGithubIssue(
    * 3. Add labels to issue.
    */
 
-  const actions = labels.map(async label =>
+  const actions = labels.map(async (label) =>
     github.issues
       .getLabel({ ...issue, name: label })
       .then(() => Promise.resolve())
@@ -164,7 +164,7 @@ export async function removeLabelsFromGithubIssue(
   issue: GithubIssue,
   labels: GithubLabel[],
 ): Promise<GithubLabel[]> {
-  const actions = labels.map(label =>
+  const actions = labels.map((label) =>
     github.issues.removeLabel({
       repo: issue.repo,
       owner: issue.owner,

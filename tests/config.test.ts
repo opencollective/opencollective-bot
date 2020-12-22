@@ -56,7 +56,7 @@ describe('getConfig', () => {
       },
     ]
 
-    const validations = correctConfigurations.map(async config => {
+    const validations = correctConfigurations.map(async (config) => {
       expect(await getConfig(contextify(config))).not.toBeNull()
     })
 
@@ -76,7 +76,7 @@ describe('getConfig', () => {
       },
     ]
 
-    const validations = wrongConfigurations.map(async config => {
+    const validations = wrongConfigurations.map(async (config) => {
       expect(await getConfig(contextify(config))).toBeNull()
     })
 

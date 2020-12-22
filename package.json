@@ -13,7 +13,7 @@
     "deploy:production": "now --target production",
     "prettier": "prettier \"*.@(ts|js|json|md)\" \"src/**/*.@(ts)\" \"tests/**/*.@(ts)\"",
     "prettier:write": "npm run prettier -- --write",
-    "prettier:check": "npm run prettier -- --list-different"
+    "prettier:check": "npm run prettier -- --check"
   },
   "engines": {
     "node": "12.x"
@@ -54,7 +54,7 @@
     "lint-staged": "10.5.3",
     "nock": "12.0.3",
     "nodemon": "2.0.6",
-    "prettier": "1.19.1",
+    "prettier": "2.2.1",
     "request": "2.88.2",
     "request-promise-native": "1.0.8",
     "rimraf": "3.0.2",

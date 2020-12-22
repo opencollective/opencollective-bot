@@ -12,7 +12,7 @@ describe('index', () => {
     process.env.DISABLE_WEBHOOK_EVENT_CHECK = 'TRUE'
   })
 
-  afterEach(done => {
+  afterEach((done) => {
     if (!server) {
       return done()
     }
