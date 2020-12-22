@@ -71,7 +71,10 @@ export const opencollective = (app: probot.Application): void => {
 
     // Get configuration
     const config = await getConfig(context)
-    if (!config) return
+    if (!config) {
+      console.log('-> No config')
+      return
+    }
 
     // Get backer tiers
     const [
@@ -91,7 +94,7 @@ export const opencollective = (app: probot.Application): void => {
      * Ignore messages to admins, contributors...
      */
     if (issueAuthorCollectiveTiers === null) {
-      console.log(`Ignore Admin for issue message`)
+      console.log(`-> Ignore Admin for issue message`)
       return
     }
 
@@ -116,7 +119,7 @@ export const opencollective = (app: probot.Application): void => {
       labelGithubIssue(context.github, issue, labels),
     ])
 
-    console.log(`Commented on ${issue.owner}/${issue.repo}/${issue.number}.`)
+    console.log(`-> Commented on ${issue.owner}/${issue.repo}/${issue.number}.`)
   })
 
   app.on('issues.labeled', async (context: probot.Context) => {
@@ -137,7 +140,10 @@ export const opencollective = (app: probot.Application): void => {
 
     // Get configuration
     const config = await getConfig(context)
-    if (!config) return
+    if (!config) {
+      console.log('-> No config')
+      return
+    }
 
     // Get Open Collective tiers from issue author
     const [
@@ -157,7 +163,7 @@ export const opencollective = (app: probot.Application): void => {
      * Admins, Contributors,... have full control over labels.
      */
     if (issueAuthorCollectiveTiers === null) {
-      console.log(`Ignore Admin for issue label`)
+      console.log(`-> Ignore Admin for issue label`)
       return
     }
 
@@ -172,7 +178,7 @@ export const opencollective = (app: probot.Application): void => {
     if (allLabels.some(is(label)) && applicableLabels.every(not(is(label)))) {
       await removeLabelsFromGithubIssue(context.github, issue, [label])
       console.log(
-        `Removed ${label} from ${issue.owner}/${issue.repo}/${issue.number}.`,
+        `-> Removed ${label} from ${issue.owner}/${issue.repo}/${issue.number}.`,
       )
     }
   })
