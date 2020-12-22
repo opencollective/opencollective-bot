@@ -58,6 +58,8 @@ export const opencollective = (app: probot.Application): void => {
     const issue = context.issue()
     const issueAuthorGithubHandle = context.payload.issue.user.login
 
+    console.log(`Issue Opened ${issue.owner}/${issue.repo}/${issue.number}.`)
+
     /**
      * Flow
      *
@@ -89,6 +91,7 @@ export const opencollective = (app: probot.Application): void => {
      * Ignore messages to admins, contributors...
      */
     if (issueAuthorCollectiveTiers === null) {
+      console.log(`Ignore Admin for issue message`)
       return
     }
 
@@ -121,6 +124,8 @@ export const opencollective = (app: probot.Application): void => {
     const issue = context.issue()
     const issueAuthorGithubHandle = context.payload.issue.user.login
 
+    console.log(`Label Added ${issue.owner}/${issue.repo}/${issue.number}.`)
+
     /**
      * Flow
      *
@@ -152,6 +157,7 @@ export const opencollective = (app: probot.Application): void => {
      * Admins, Contributors,... have full control over labels.
      */
     if (issueAuthorCollectiveTiers === null) {
+      console.log(`Ignore Admin for issue label`)
       return
     }
 
