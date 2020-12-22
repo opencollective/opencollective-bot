@@ -7,8 +7,9 @@ coverage
 .DS_Store
 *.log*
 .env*
-package-lock.json
 
 __tmp__
 
 *.pem
+
+.vercel

@@ -103,7 +103,7 @@ See: [docs/development.md](docs/development.md)
 
 ## Deployment
 
-**Summary**: This project is currently deployed with [Now](https://zeit.co/now) (v2). To deploy to staging or production, you need to be a core member of the Open Collective team.
+**Summary**: This project is currently deployed with [Vercel](https://vercel.com). To deploy to staging or production, you need to be a core member of the Open Collective team.
 
 See: [docs/deployment.md](docs/deployment.md)
 

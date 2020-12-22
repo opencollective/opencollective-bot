@@ -9,8 +9,8 @@
     "coverage": "yarn codecov",
     "build": "tsc",
     "start": "probot run ./dist/index.js",
-    "deploy:staging": "now -e APP_ID=@oc-bot-staging-app-id -e WEBHOOK_SECRET=@oc-bot-staging-webhook-secret -e PRIVATE_KEY=@oc-bot-staging-private-key -e SENTRY_DSN=@oc-bot-staging-sentry-dsn --target staging && now alias bot-staging.opencollective.com",
-    "deploy:production": "now --target production",
+    "deploy:staging": "vercel",
+    "deploy:production": "vercel --prod",
     "prettier": "prettier \"*.@(ts|js|json|md)\" \"src/**/*.@(ts)\" \"tests/**/*.@(ts)\"",
     "prettier:write": "npm run prettier -- --write",
     "prettier:check": "npm run prettier -- --check"

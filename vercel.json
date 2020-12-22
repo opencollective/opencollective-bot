@@ -1,0 +1,10 @@
+{
+  "public": false,
+  "version": 2,
+  "builds": [{ "src": "now-lambda.ts", "use": "@now/node" }],
+  "routes": [{ "src": "/.*", "dest": "now-lambda.ts" }],
+  "github": {
+    "enabled": true,
+    "autoAlias": false
+  }
+}

@@ -2,11 +2,11 @@
 
 ## Now
 
-Open Collective Bot is currently deployed with [Now](https://zeit.co/now) (v2). You will need to install [Now Desktop](https://github.com/zeit/now-desktop) or [Now CLI](https://github.com/zeit/now-cli).
+Open Collective Bot is currently deployed with [Vercel](https://vercel.com) (v2). You will need to install [Vercel CLI](https://github.com/vercel/vercel).
 
 Authenticate with:
 
-`now login`
+`vercel login`
 
 Switch to the Open Collective team account:
 
@@ -14,7 +14,7 @@ Switch to the Open Collective team account:
 
 ### Secrets
 
-Make sure that the following secrets are set (uses [now secrets](https://zeit.co/docs/v2/deployments/environment-variables-and-secrets/)):
+Make sure that the following secrets are set (uses [vercel secrets](https://vercel.com/docs/environment-variables)):
 
 | name (production)       | name (staging)                  | description                                |
 | ----------------------- | ------------------------------- | ------------------------------------------ |
@@ -23,7 +23,7 @@ Make sure that the following secrets are set (uses [now secrets](https://zeit.co
 | `oc-bot-private-key`    | `oc-bot-staging-private-key`    | One of GitHub private keys, base64 encoded |
 | `oc-bot-sentry-dsn`     | `oc-bot-staging-sentry-dsn`     | Sentry DSN for error reporting             |
 
-Eg: `now secrets add oc-bot-app-id {value}`
+Eg: `vercel secrets add oc-bot-app-id {value}`
 
 ### Deploying to staging
 
