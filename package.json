@@ -58,7 +58,7 @@
     "request": "2.88.2",
     "request-promise-native": "1.0.8",
     "rimraf": "3.0.2",
-    "ts-jest": "25.2.1",
+    "ts-jest": "25.5.1",
     "ts-node": "8.6.2",
     "typescript": "3.8.3"
   },
