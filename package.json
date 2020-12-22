@@ -27,7 +27,7 @@
     "js-yaml": "3.13.1",
     "lodash": "4.17.19",
     "multilines": "1.0.3",
-    "node-fetch": "2.6.0",
+    "node-fetch": "2.6.1",
     "probot": "9.9.1",
     "probot-serverless-now": "2.1.2"
   },
