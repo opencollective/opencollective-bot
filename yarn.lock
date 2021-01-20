@@ -902,10 +902,10 @@
   resolved "https://registry.yarnpkg.com/@types/hapi__joi/-/hapi__joi-17.1.6.tgz#b84663676aa9753c17183718338dd40ddcbd3754"
   integrity sha512-y3A1MzNC0FmzD5+ys59RziE1WqKrL13nxtJgrSzjoO7boue5B7zZD2nZLPwrSuUviFjpKFQtgHYSvhDGfIE4jA==
 
-"@types/ioredis@4.17.9":
-  version "4.17.9"
-  resolved "https://registry.yarnpkg.com/@types/ioredis/-/ioredis-4.17.9.tgz#b11e4768a40ce6ae8d0c8b1266feb98e9dbfd999"
-  integrity sha512-YVLcCDQXaQRMK6Lut2f7KaiU2sV2dEN57AmZTtcZW/TXYv3wKwZTV87oUaA/IAI1Xk4s+d+kXLlCJkGAycfpHw==
+"@types/ioredis@4.19.1":
+  version "4.19.1"
+  resolved "https://registry.yarnpkg.com/@types/ioredis/-/ioredis-4.19.1.tgz#354c4907498b90fe14c2edff8e8ea9e5aea9821f"
+  integrity sha512-+q10eLAgjbYJMY/fAM7+zmNBegCAk3FZwcvgjdsPy5xK4MzFcVXB6yxa69bTB5Ouz24WqJiub6lPzasLE5BYZQ==
   dependencies:
     "@types/node" "*"
 
