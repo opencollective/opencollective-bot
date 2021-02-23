@@ -39,7 +39,7 @@
     "@types/hapi__joi": "17.1.6",
     "@types/ioredis": "4.19.4",
     "@types/jest": "26.0.19",
-    "@types/js-yaml": "3.12.2",
+    "@types/js-yaml": "4.0.0",
     "@types/lodash": "4.14.168",
     "@types/lru-cache": "5.1.0",
     "@types/nock": "11.1.0",
