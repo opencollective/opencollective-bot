@@ -28,7 +28,7 @@
     "lodash": "4.17.20",
     "multilines": "1.0.3",
     "node-fetch": "2.6.1",
-    "probot": "9.9.1",
+    "probot": "11.1.0",
     "probot-serverless-now": "2.1.2"
   },
   "devDependencies": {
