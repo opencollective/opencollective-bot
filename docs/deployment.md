@@ -66,6 +66,6 @@ The contents of the private key for your GitHub App. If you're unable to use mul
 
 ### Deploying
 
-To deploy your app to Heroku, you typically use the `git push` command to push the code from your local repository’s master branch to your heroku remote, like so:
+To deploy your app to Heroku, you typically use the `git push` command to push the code from your local repository’s main branch to your heroku remote, like so:
 
-`git push heroku master`
+`git push heroku main`

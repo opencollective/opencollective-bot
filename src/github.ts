@@ -214,7 +214,7 @@ export async function resetBranch(
     })
   }
 
-  // Get the reference for the default branch (not necessarily master)
+  // Get the reference for the default branch (not necessarily main)
   const reference = await github.git
     .getRef({
       owner,

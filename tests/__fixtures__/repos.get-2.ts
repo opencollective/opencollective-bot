@@ -133,7 +133,7 @@ export default {
   forks: 20,
   open_issues: 34,
   watchers: 116,
-  default_branch: 'master',
+  default_branch: 'main',
   organization: {
     login: 'opencollective',
     id: 13403593,
