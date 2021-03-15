@@ -36,7 +36,7 @@ invitation: |
 
 See some examples:
 
-- [captain-fact](https://github.com/CaptainFact/captain-fact/blob/main/.github/opencollective.yml)
+- [captain-fact](https://github.com/CaptainFact/captain-fact/blob/master/.github/opencollective.yml)
 - [more](https://github.com/search?q=%22opencollective.yml%22+in%3Apath&type=Code)
 
 #### Available tags
