@@ -201,7 +201,7 @@ export default {
     forks: 0,
     open_issues: 5,
     watchers: 29,
-    default_branch: 'master',
+    default_branch: 'main',
   },
   sender: {
     login: 'maticzav',

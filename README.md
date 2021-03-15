@@ -2,8 +2,8 @@
 
 # Open Collective Bot
 
-[![CircleCI](https://circleci.com/gh/opencollective/opencollective-bot/tree/master.svg?style=shield)](https://circleci.com/gh/opencollective/opencollective-bot/tree/master)
-[![codecov](https://codecov.io/gh/opencollective/opencollective-bot/branch/master/graph/badge.svg)](https://codecov.io/gh/opencollective/opencollective-bot)
+[![CircleCI](https://circleci.com/gh/opencollective/opencollective-bot/tree/main.svg?style=shield)](https://circleci.com/gh/opencollective/opencollective-bot/tree/main)
+[![codecov](https://codecov.io/gh/opencollective/opencollective-bot/branch/main/graph/badge.svg)](https://codecov.io/gh/opencollective/opencollective-bot)
 
 The Open Collective Bot will comment on issues based on whether the author is already a backer of your [Open Collective](https://opencollective.com/). It can also tag issues based on the same information.
 
