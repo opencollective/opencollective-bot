@@ -41,8 +41,7 @@ export default {
       {
         id: 1195537647,
         node_id: 'MDU6TGFiZWwxMTk1NTM3NjQ3',
-        url:
-          'https://api.github.com/repos/maticzav/opencollective-bot/labels/invalid',
+        url: 'https://api.github.com/repos/maticzav/opencollective-bot/labels/invalid',
         name: 'sponsor',
         color: 'e4e669',
         default: true,
@@ -63,8 +62,7 @@ export default {
   label: {
     id: 1195537647,
     node_id: 'MDU6TGFiZWwxMTk1NTM3NjQ3',
-    url:
-      'https://api.github.com/repos/maticzav/opencollective-bot/labels/invalid',
+    url: 'https://api.github.com/repos/maticzav/opencollective-bot/labels/invalid',
     name: 'sponsor',
     color: 'e4e669',
     default: true,
