@@ -1,5 +1,5 @@
 {
-  "extends": ["config:base", "docker:disable"],
+  "extends": ["github>opencollective/renovate-config", "docker:disable"],
   "schedule": "before 5am every weekday",
   "automerge": false
 }
