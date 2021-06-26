@@ -54,7 +54,7 @@
     "lint-staged": "10.5.4",
     "nock": "13.0.5",
     "nodemon": "2.0.7",
-    "prettier": "2.2.1",
+    "prettier": "2.3.2",
     "request": "2.88.2",
     "request-promise-native": "1.0.9",
     "rimraf": "3.0.2",
