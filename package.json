@@ -16,7 +16,7 @@
     "prettier:check": "npm run prettier -- --check"
   },
   "engines": {
-    "node": "12.x"
+    "node": "14.x"
   },
   "dependencies": {
     "@hapi/joi": "17.1.1",
@@ -43,7 +43,7 @@
     "@types/lodash": "4.14.168",
     "@types/lru-cache": "5.1.0",
     "@types/nock": "11.1.0",
-    "@types/node": "14.14.31",
+    "@types/node": "14.17.12",
     "@types/node-fetch": "2.5.10",
     "@types/request-promise-native": "1.0.17",
     "btoa": "1.2.1",
